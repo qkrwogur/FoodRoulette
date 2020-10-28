@@ -18,6 +18,8 @@
         </activity>
         <activity android:name=".login"/>
         <activity android:name=".create_acount"/>
+        <activity android:name=".Roulette"/>
+        <activity android:name=".List" android:theme="@android:style/Theme.Dialog"/>
     </application>
 
 </manifest>
