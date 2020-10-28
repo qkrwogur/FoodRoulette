@@ -8,216 +8,261 @@
     tools:context=".MainActivity">
 
     <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:layout_marginTop="10dp"
-    android:layout_marginBottom="50dp">
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="8"
-        android:text="검색"
-        android:textSize="30dp" />
-
-    <ImageButton
-        android:layout_width="39dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:src="@drawable/serachbtn"
-        android:text="a"
-
-        />
-</LinearLayout>
-    <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:rowCount="5"
-        android:columnCount="4"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="8"
-        >
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="50dp"
+        android:orientation="horizontal">
 
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="8"
+            android:text="검색"
+            android:textSize="30dp" />
+
+        <ImageButton
+            android:layout_width="39dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/serachbtn"
+            android:text="a"
+
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/korea"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_row="0"
-            android:layout_column="0"
-
-            android:layout_marginBottom="30dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="15dp"
-            android:text="한식" />
+            android:text="한식"
+            android:layout_marginRight="5dp"
+            android:textSize="15sp" />
 
         <Button
             android:id="@+id/japan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="5dp"
             android:text="일식"
-            />
+            android:textSize="15sp" />
+
         <Button
             android:id="@+id/chain"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="5dp"
             android:text="중식"
-            />
+            android:textSize="15sp" />
+
         <Button
             android:id="@+id/western"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:text="양식"
-            />
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+
         <Button
             android:id="@+id/flour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
-            android:layout_marginLeft="15dp"
+            android:layout_marginRight="5dp"
             android:text="분식"
-            />
+            android:textSize="15sp" />
+
         <Button
             android:id="@+id/alone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
             android:text="혼밥"
-            />
+            android:textSize="15sp" />
+
         <Button
             android:id="@+id/delivery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
             android:text="배달"
-            />
+            android:textSize="15sp" />
+
         <Button
             android:id="@+id/asia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="아시아"
-            />
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal">
+
         <Button
             android:id="@+id/fast"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
-            android:layout_marginLeft="15dp"
-
             android:text="패스트푸드"
-            />
+            android:textSize="15sp" />
+
         <Button
             android:id="@+id/latenihgt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="야식"
-            />
+            android:textSize="15sp" />
+
         <Button
             android:id="@+id/cafe"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="카페,디저트"
-            />
+            android:textSize="15sp" />
+
         <Button
             android:id="@+id/pig"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="족발.보쌈"
-            />
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal">
+
         <Button
             android:id="@+id/steamedsoup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
-            android:layout_marginLeft="15dp"
             android:text="찜.탕"
-            />
+            android:textSize="15sp" />
+
         <Button
             android:id="@+id/box"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="도시락"
-            />
+            android:textSize="15sp" />
+
         <Button
             android:id="@+id/chicken"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="치킨"
-            />
+            android:textSize="15sp" />
+
         <Button
             android:id="@+id/pizza"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="피자"
-            />
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal">
+
         <Button
             android:id="@+id/all"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="15dp"
-
             android:text="모든 식당"
-            />
+            android:textSize="15sp" />
 
         <Button
             android:id="@+id/roulette1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="돌림판"
-            />
+            android:textSize="15sp" />
+
         <Button
             android:id="@+id/ladder1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="사다리"
-            />
+            android:textSize="15sp" />
+        <Button
+            android:id="@+id/invisiblebtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="사다리"
+            android:textSize="15sp"
+            android:visibility="invisible"/>
+    </LinearLayout>
 
-
-    </GridLayout>
     <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:layout_weight="1"
-    >
-    <Button
-        android:id="@+id/home"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
-        android:text="홈"
-        />
-    <Button
-        android:id="@+id/map"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="match_parent"
-        android:text="지도"
-        />
-    <Button
-        android:id="@+id/roulette2"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="match_parent"
-        android:text="돌림판"
-        />
-    <Button
-        android:id="@+id/ladder2"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="match_parent"
-        android:text="사다리"
-        />
-    <Button
-        android:id="@+id/myinformation"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="match_parent"
-        android:text="내 정보"
-        />
+        <Button
+            android:id="@+id/home"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
 
-</LinearLayout>
+            android:text="홈" />
+
+        <Button
+            android:id="@+id/map"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="지도" />
+
+        <Button
+            android:id="@+id/roulette2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="돌림판" />
+
+        <Button
+            android:id="@+id/ladder2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="사다리" />
+
+        <Button
+            android:id="@+id/myinformation"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="내 정보" />
+
+    </LinearLayout>
 </LinearLayout>
