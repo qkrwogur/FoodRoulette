@@ -1,18 +1,223 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="50dp">
+
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_weight="8"
+        android:text="검색"
+        android:textSize="30dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageButton
+        android:layout_width="39dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:src="@drawable/serachbtn"
+        android:text="a"
+
+        />
+</LinearLayout>
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:rowCount="5"
+        android:columnCount="4"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="8"
+        >
+
+
+        <Button
+            android:id="@+id/korea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:layout_column="0"
+
+            android:layout_marginBottom="30dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="15dp"
+            android:text="한식" />
+
+        <Button
+            android:id="@+id/japan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:text="일식"
+            />
+        <Button
+            android:id="@+id/chain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:text="중식"
+            />
+        <Button
+            android:id="@+id/western"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="양식"
+            />
+        <Button
+            android:id="@+id/flour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:layout_marginLeft="15dp"
+            android:text="분식"
+            />
+        <Button
+            android:id="@+id/alone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="혼밥"
+            />
+        <Button
+            android:id="@+id/delivery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="배달"
+            />
+        <Button
+            android:id="@+id/asia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="아시아"
+            />
+        <Button
+            android:id="@+id/fast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:layout_marginLeft="15dp"
+
+            android:text="패스트푸드"
+            />
+        <Button
+            android:id="@+id/latenihgt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="야식"
+            />
+        <Button
+            android:id="@+id/cafe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="카페,디저트"
+            />
+        <Button
+            android:id="@+id/pig"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="족발.보쌈"
+            />
+        <Button
+            android:id="@+id/steamedsoup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:layout_marginLeft="15dp"
+            android:text="찜.탕"
+            />
+        <Button
+            android:id="@+id/box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="도시락"
+            />
+        <Button
+            android:id="@+id/chicken"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="치킨"
+            />
+        <Button
+            android:id="@+id/pizza"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="피자"
+            />
+        <Button
+            android:id="@+id/all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="15dp"
+
+            android:text="모든 식당"
+            />
+
+        <Button
+            android:id="@+id/roulette1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="돌림판"
+            />
+        <Button
+            android:id="@+id/ladder1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="사다리"
+            />
+
+
+    </GridLayout>
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_weight="1"
+    >
+    <Button
+        android:id="@+id/home"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+
+        android:text="홈"
+        />
+    <Button
+        android:id="@+id/map"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:text="지도"
+        />
+    <Button
+        android:id="@+id/roulette2"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:text="돌림판"
+        />
+    <Button
+        android:id="@+id/ladder2"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:text="사다리"
+        />
+    <Button
+        android:id="@+id/myinformation"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:text="내 정보"
+        />
+
+</LinearLayout>
+</LinearLayout>
