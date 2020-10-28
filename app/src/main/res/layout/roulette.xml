@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnDrawRouletteplus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="+" />
+
+        <Button
+            android:id="@+id/btnDrawRouletteminus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="-" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/sharp_label_black_18dp2" />
+
+            <RelativeLayout
+                android:id="@+id/layoutRoulette"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:orientation="vertical"
+                android:background="@drawable/background_roulette">
+            </RelativeLayout>
+
+        <Button
+            android:id="@+id/btnlist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="popUpClick"
+            android:text="내용" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnRotate"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:text="spin"
+        android:layout_centerInParent="true" />
+
+    <TextView
+        android:id="@+id/tvResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Result : "
+        android:textSize="32sp"/>
+
+</LinearLayout>
