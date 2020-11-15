@@ -40,6 +40,7 @@
         <activity android:name=".login" />
         <activity android:name=".create_acount" />
         <activity android:name=".Roulette" />
+        <activity android:name=".test"/>
         <activity
             android:name=".List"
             android:theme="@android:style/Theme.Dialog" />
@@ -49,5 +50,6 @@
     </application>
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
 </manifest>
