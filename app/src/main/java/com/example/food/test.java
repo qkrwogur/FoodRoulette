@@ -63,7 +63,7 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
         btntest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                searchNaver("천안");
+                searchNaver("백석대학교");
             }
         });
     }
@@ -161,9 +161,10 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
                             postdate[k] = array[i + 2];
                             k++;
                         }
+
                     }
 
-                    Log.d(TAG, "title잘나오니: " + title[0] + title[1] + title[2]);
+                    Log.d(TAG, "title잘나오니: " + title[0] + title[3] + title[4]);
                     // title[0], link[0], bloggername[0] 등 인덱스 값에 맞게 검색결과를 변수화하였다.
 
                 } catch (Exception e) {

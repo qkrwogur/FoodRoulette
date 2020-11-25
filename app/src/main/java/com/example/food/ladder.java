@@ -168,22 +168,22 @@ public class ladder extends AppCompatActivity {
         initListView();
 
         // '이름' 입력 제목
-        MyItem mi = new MyItem("Input Name", true);
+        MyItem mi = new MyItem("참가자", true);
         mArMember.add(mi);
 
         // 이름 개수 만큼 항목 추가
         for(int i=0; i < mPeopleMax; i++) {
-            mi = new MyItem("Name-" + (i+1), false);
+            mi = new MyItem("참가자-" + (i+1), false);
             mArMember.add(mi);
         }
 
         // '벌칙' 입력 제목
-        mi = new MyItem("Input Present", true);
+        mi = new MyItem("당첨항목", true);
         mArMember.add(mi);
 
         // 벌칙 개수 만큼 항목 추가
         for(int i=0; i < mPeopleMax; i++) {
-            mi = new MyItem("Present-" + (i+1), false);
+            mi = new MyItem("당첨-" + (i+1), false);
             mArMember.add(mi);
         }
 
