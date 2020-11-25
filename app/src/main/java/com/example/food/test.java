@@ -20,11 +20,19 @@ import com.naver.maps.map.OnMapReadyCallback;
 import com.naver.maps.map.overlay.Marker;
 import com.naver.maps.map.util.FusedLocationSource;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
 import java.io.BufferedReader;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
 public class test extends AppCompatActivity implements OnMapReadyCallback {
     private static final String TAG = "test";
@@ -38,6 +46,10 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
     private FusedLocationSource mLocationSource;
     private NaverMap mNaverMap;
     Button btntest;
+    String clientId = "jp1w3bsYCw5vg6bzD2S4";
+    String clientSecret = "3X23L0Crpr";
+    String m_strSearch = "한식";
+    final int display = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +75,7 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
         btntest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                searchNaver("백석대학교");
+                searchNaver("천안");
             }
         });
     }
@@ -101,7 +113,6 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
         final String clientId = "jp1w3bsYCw5vg6bzD2S4";//애플리케이션 클라이언트 아이디값";
         final String clientSecret = "3X23L0Crpr";//애플리케이션 클라이언트 시크릿값";
         final int display = 5; // 보여지는 검색결과의 수
-        Log.d(TAG, "들어왓니? ");
 
         // 네트워크 연결은 Thread 생성 필요
         new Thread() {
@@ -155,18 +166,17 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
                             link[k] = array[i + 2];
                         if (array[i].equals("description"))
                             description[k] = array[i + 2];
-                        if (array[i].equals("bloggername"))
+                        if (array[i].equals("address"))
                             bloggername[k] = array[i + 2];
-                        if (array[i].equals("postdate")) {
+                        if (array[i].equals("roadAddress")) {
                             postdate[k] = array[i + 2];
                             k++;
                         }
-
                     }
-
-                    Log.d(TAG, "title잘나오니: " + title[0] + title[3] + title[4]);
-                    // title[0], link[0], bloggername[0] 등 인덱스 값에 맞게 검색결과를 변수화하였다.
-
+                    for (int i = 0; i < array.length; i++) {
+                        Log.d(TAG, "title잘나오니: " + array[i]);
+                        // title[0], link[0], bloggername[0] 등 인덱스 값에 맞게 검색결과를 변수화하였다.
+                    }
                 } catch (Exception e) {
                     Log.d(TAG, "error : " + e);
                 }
@@ -174,19 +184,6 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
             }
         }.start();
 
-    }
-
-    class SearchData
-    {
-        String m_strName;
-        String m_strAddress;
-        String m_strX;
-        String m_strY;
-
-        public String toString()
-        {
-            return "name(" + m_strName + ") address(" + m_strAddress + ") x(" + m_strX + ") y(" + m_strY + ")";
-        }
     }
 
 }
