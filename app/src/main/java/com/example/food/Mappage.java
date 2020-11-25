@@ -58,7 +58,7 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.testmap);
+        setContentView(R.layout.activity_naver_map);
 
         mapView = findViewById(R.id.map_view);
 

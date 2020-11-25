@@ -75,7 +75,7 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
         btntest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                searchNaver("천안");
+                searchNaver("식당");
             }
         });
     }
@@ -109,6 +109,7 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
             }
         }
     }
+
     public void searchNaver(final String searchObject) { // 검색어 = searchObject로 ;
         final String clientId = "jp1w3bsYCw5vg6bzD2S4";//애플리케이션 클라이언트 아이디값";
         final String clientSecret = "3X23L0Crpr";//애플리케이션 클라이언트 시크릿값";
@@ -131,7 +132,7 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
                     con.connect();
 
                     int responseCode = con.getResponseCode();
-                    BufferedReader br;
+                    BufferedReader br;  // 버퍼를 활용한 입력
 
                     if(responseCode==200) { // 정상 호출
                         br = new BufferedReader(new InputStreamReader(con.getInputStream()));
@@ -141,7 +142,11 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
                     }
 
                     StringBuilder searchResult = new StringBuilder();
+                    // String을 연산하면 메모리 할당과 해제를 발생시키며 성능적으로 좋지 않음
+                    // 그래서 나온게 StringBuilder 문자열을 더할 때 새로운 객체를 생성하는 것이 아니라 기존 데이터에 더하는 방식
                     String inputLine;
+                    //readLine()은 개행문자가 포함되어야 내부 blocking이 풀리면서 wihle문이 실행한다는 것이다.
+                    //스트림에서의 개행문자는 "\r\n"이 개행문자다.
                     while ((inputLine = br.readLine()) != null) {
                         searchResult.append(inputLine + "\n");
 
@@ -161,20 +166,20 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
                     int k = 0;
                     for (int i = 0; i < array.length; i++) {
                         if (array[i].equals("title"))
-                            title[k] = array[i + 2];
+                            title[k] = array[i + 2].replaceAll("<[^>]*>", " ");
                         if (array[i].equals("link"))
-                            link[k] = array[i + 2];
+                            link[k] = array[i + 2].replaceAll("<[^>]*>", " ");
                         if (array[i].equals("description"))
-                            description[k] = array[i + 2];
+                            description[k] = array[i + 2].replaceAll("<[^>]*>", " ");
                         if (array[i].equals("address"))
-                            bloggername[k] = array[i + 2];
+                            bloggername[k] = array[i + 2].replaceAll("<[^>]*>", " ");
                         if (array[i].equals("roadAddress")) {
-                            postdate[k] = array[i + 2];
+                            postdate[k] = array[i + 2].replaceAll("<[^>]*>", " ");
                             k++;
                         }
                     }
-                    for (int i = 0; i < array.length; i++) {
-                        Log.d(TAG, "title잘나오니: " + array[i]);
+                    for (int i = 0; i < display; i++) {
+                        Log.d(TAG, "title잘나오니: " + title[i]);
                         // title[0], link[0], bloggername[0] 등 인덱스 값에 맞게 검색결과를 변수화하였다.
                     }
                 } catch (Exception e) {
@@ -185,5 +190,6 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
         }.start();
 
     }
+
 
 }
