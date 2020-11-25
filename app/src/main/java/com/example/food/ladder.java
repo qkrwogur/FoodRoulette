@@ -140,11 +140,11 @@ public class ladder extends AppCompatActivity {
             if( mi.mEditName.getText().toString().length() < 1 ) {
                 // 사람 이름 일때
                 if( position <= mPeopleMax )
-                    mi.mEditName.setText("People-" + position);
+                    mi.mEditName.setText("이름-" + position);
                     // 벌칙 이름 일때
                 else {
                     int index = position - mPeopleMax - 1;
-                    mi.mEditName.setText("Present-" + index);
+                    mi.mEditName.setText("당첨-" + index);
                 }
             }
 

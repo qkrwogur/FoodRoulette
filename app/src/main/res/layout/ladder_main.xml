@@ -13,7 +13,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Choice Number" />
+        android:text="참가자수 설정" />
 
     <LinearLayout
         android:id="@+id/layoutSetMax"
@@ -53,7 +53,7 @@
             android:layout_weight="1"
             android:layout_marginLeft="50dp"
             android:onClick="onClick"
-            android:text="Start"/>
+            android:text="시작"/>
 
     </LinearLayout>
 

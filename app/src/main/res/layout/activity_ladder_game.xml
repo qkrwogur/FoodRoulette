@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true"
-        android:text="Game Start" />
+        android:text="게임 시작" />
 
     <RelativeLayout
         android:id="@+id/layoutCanvas"
