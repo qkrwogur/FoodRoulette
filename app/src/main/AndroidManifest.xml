@@ -48,6 +48,7 @@
         <activity
             android:name=".List"
             android:theme="@android:style/Theme.Dialog" />
+        <activity android:name=".gps" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />

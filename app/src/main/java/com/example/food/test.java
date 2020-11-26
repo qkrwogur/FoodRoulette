@@ -1,17 +1,25 @@
 package com.example.food;
 
 import android.Manifest;
+import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 
+import com.google.android.gms.location.LocationListener;
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.LocationTrackingMode;
 import com.naver.maps.map.MapFragment;
@@ -50,14 +58,14 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
     String clientSecret = "3X23L0Crpr";
     String m_strSearch = "한식";
     final int display = 5;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.testmap);
-
+        final LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         // 지도 객체 생성
         FragmentManager fm = getSupportFragmentManager();
+
         MapFragment mapFragment = (MapFragment)fm.findFragmentById(R.id.navermap);
         if (mapFragment == null) {
             mapFragment = MapFragment.newInstance();
@@ -71,12 +79,23 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
         // 위치를 반환하는 구현체인 FusedLocationSource 생성
         mLocationSource =
                 new FusedLocationSource(this, PERMISSION_REQUEST_CODE);
+
+        Intent intent = getIntent();
+        double latitude = intent.getDoubleExtra("latitude", 0);
+        double longitude = intent.getDoubleExtra("longitude", 0);
+
+        TextView location = findViewById(R.id.Txttest);
+        location.setText("위도=" + latitude + ", 경도=" + longitude);
+        searchNaver("식당");
         btntest = (Button)findViewById(R.id.btntest);
         btntest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                searchNaver("식당");
+                Intent intentread = new Intent(getApplicationContext(), gps.class);
+                startActivity(intentread);
+
             }
+
         });
     }
 
