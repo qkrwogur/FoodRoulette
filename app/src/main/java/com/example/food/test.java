@@ -1,6 +1,7 @@
 package com.example.food;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -21,6 +22,10 @@ import androidx.fragment.app.FragmentManager;
 
 import com.google.android.gms.location.LocationListener;
 import com.naver.maps.geometry.LatLng;
+import com.naver.maps.geometry.Tm128;
+import com.naver.maps.geometry.Utmk;
+import com.naver.maps.map.CameraPosition;
+import com.naver.maps.map.CameraUpdate;
 import com.naver.maps.map.LocationTrackingMode;
 import com.naver.maps.map.MapFragment;
 import com.naver.maps.map.NaverMap;
@@ -38,13 +43,14 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.Vector;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 public class test extends AppCompatActivity implements OnMapReadyCallback {
     private static final String TAG = "test";
-
+    StringBuffer road = new StringBuffer();// 도로명 주소가 저장되는 변수
     private static final int PERMISSION_REQUEST_CODE = 100;
     private static final String[] PERMISSIONS = {
             Manifest.permission.ACCESS_FINE_LOCATION,
@@ -53,11 +59,25 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
 
     private FusedLocationSource mLocationSource;
     private NaverMap mNaverMap;
-    Button btntest,btnReverse;
+    Button btntest, btnReverse, btnlist;
     String clientId = "jp1w3bsYCw5vg6bzD2S4";
     String clientSecret = "3X23L0Crpr";
     String m_strSearch = "한식";
+    String category="";
     final int display = 5;
+    String[] title = new String[display];
+    String[] link = new String[display];
+    String[] description = new String[display];
+    String[] bloggername = new String[display];
+    String[] postdate = new String[display];
+    String[] mapx = new String[display];
+    String[] mapy = new String[display];
+    boolean flag = false;
+    double latitude = 37.5670135;
+    double longitude = 127.066242;
+    Marker marker = new Marker();
+
+    // onCreate-----------------------------------------------------------------------------------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +86,7 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
         // 지도 객체 생성
         FragmentManager fm = getSupportFragmentManager();
 
-        MapFragment mapFragment = (MapFragment)fm.findFragmentById(R.id.navermap);
+        MapFragment mapFragment = (MapFragment) fm.findFragmentById(R.id.navermap);
         if (mapFragment == null) {
             mapFragment = MapFragment.newInstance();
             fm.beginTransaction().add(R.id.navermap, mapFragment).commit();
@@ -74,20 +94,22 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
 
         // getMapAsync를 호출하여 비동기로 onMapReady 콜백 메서드 호출
         // onMapReady에서 NaverMap 객체를 받음
-        mapFragment.getMapAsync(this);
+
 
         // 위치를 반환하는 구현체인 FusedLocationSource 생성
         mLocationSource =
                 new FusedLocationSource(this, PERMISSION_REQUEST_CODE);
 
         Intent intent = getIntent();
-        double latitude = intent.getDoubleExtra("latitude", 0);
-        double longitude = intent.getDoubleExtra("longitude", 0);
-
+        latitude = intent.getDoubleExtra("latitude", 37.5670135);
+        longitude = intent.getDoubleExtra("longitude", 127.066242);
+        category = intent.getStringExtra("category");
         TextView location = findViewById(R.id.Txttest);
         location.setText("위도=" + latitude + ", 경도=" + longitude);
-        searchNaver("식당");
-        btntest = (Button)findViewById(R.id.btntest);
+
+
+        btntest = (Button) findViewById(R.id.btntest);
+        // 검색 버튼
         btntest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -97,23 +119,43 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
             }
 
         });
-        btnReverse=(Button)findViewById(R.id.btnReverse);
+        // 반환 버튼
+        btnReverse = (Button) findViewById(R.id.btnReverse);
         btnReverse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Reversegeododing(latitude,longitude);
+                road = new StringBuffer();
+                Reversegeododing(latitude, longitude);
+                searchNaver("문암로"+category);
+                //road.toString()
             }
         });
+        btnlist=(Button)findViewById(R.id.btnlist);
+        btnlist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentList= new Intent(getApplicationContext(), Listpage.class);
+                intentList.putExtra("title",title);
+                startActivity(intentList);
+            }
+        });
+        mapFragment.getMapAsync(this);
+
     }
 
+    private void setMarker(Marker marker, double lat, double lng) {
+        //마커 위치
+        marker.setPosition(new LatLng(lat, lng));
+        //마커 우선순위
+        //marker.setZIndex(zIndex);
+        //마커 표시
+        marker.setMap(mNaverMap);
+    }
+
+    //----------------------------------------------------------------------------------------------------------------------------
     @Override
     public void onMapReady(@NonNull NaverMap naverMap) {
-        Log.d( TAG, "onMapReady");
-
-        // 지도상에 마커 표시
-        Marker marker = new Marker();
-        marker.setPosition(new LatLng(37.5670135, 126.9783740));
-        marker.setMap(naverMap);
+        Log.d(TAG, "onMapReady");
 
         // NaverMap 객체 받아서 NaverMap 객체에 위치 소스 지정
         mNaverMap = naverMap;
@@ -121,6 +163,22 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
 
         // 권한확인. 결과는 onRequestPermissionsResult 콜백 매서드 호출
         ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_REQUEST_CODE);
+    }
+
+    // 마커 정보 저장시킬 변수들 선언
+    private Vector<LatLng> markersPosition;
+    private Vector<Marker> activeMarkers;
+
+    // 지도상에 표시되고있는 마커들 지도에서 삭제
+    private void freeActiveMarkers() {
+        if (activeMarkers == null) {
+            activeMarkers = new Vector<Marker>();
+            return;
+        }
+        for (Marker activeMarker : activeMarkers) {
+            activeMarker.setMap(null);
+        }
+        activeMarkers = new Vector<Marker>();
     }
 
     @Override
@@ -136,19 +194,22 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
         }
     }
 
+    // 지역 검색----------------------------------------------------------------------------------------------------------------------------
     public void searchNaver(final String searchObject) { // 검색어 = searchObject로 ;
         final String clientId = "jp1w3bsYCw5vg6bzD2S4";//애플리케이션 클라이언트 아이디값";
         final String clientSecret = "3X23L0Crpr";//애플리케이션 클라이언트 시크릿값";
         final int display = 5; // 보여지는 검색결과의 수
 
         // 네트워크 연결은 Thread 생성 필요
+
+
         new Thread() {
 
             @Override
             public void run() {
                 try {
                     String text = URLEncoder.encode(searchObject, "UTF-8");
-                    String apiURL = "https://openapi.naver.com/v1/search/local.json?query=" + text + "&display=" + display + "&"; // json 결과
+                    String apiURL = "https://openapi.naver.com/v1/search/local.json?query=" + text + "&display=" + display + "&sort=random"; // json 결과
                     // Json 형태로 결과값을 받아옴.
                     URL url = new URL(apiURL);
                     HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -160,7 +221,7 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
                     int responseCode = con.getResponseCode();
                     BufferedReader br;  // 버퍼를 활용한 입력
 
-                    if(responseCode==200) { // 정상 호출
+                    if (responseCode == 200) { // 정상 호출
                         br = new BufferedReader(new InputStreamReader(con.getInputStream()));
 
                     } else {  // 에러 발생
@@ -183,11 +244,13 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
                     String data = searchResult.toString();
                     String[] array;
                     array = data.split("\"");
-                    String[] title = new String[display];
-                    String[] link = new String[display];
-                    String[] description = new String[display];
-                    String[] bloggername = new String[display];
-                    String[] postdate = new String[display];
+                    title = new String[display];
+                    link = new String[display];
+                    description = new String[display];
+                    bloggername = new String[display];
+                    postdate = new String[display];
+                    mapx = new String[display];
+                    mapy = new String[display];
 
                     int k = 0;
                     for (int i = 0; i < array.length; i++) {
@@ -201,13 +264,57 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
                             bloggername[k] = array[i + 2].replaceAll("<[^>]*>", " ");
                         if (array[i].equals("roadAddress")) {
                             postdate[k] = array[i + 2].replaceAll("<[^>]*>", " ");
+                        }
+                        if (array[i].equals("mapx")) {
+                            mapx[k] = array[i + 2].replaceAll("<[^>]*>", " ");
+                        }
+                        if (array[i].equals("mapy")) {
+                            mapy[k] = array[i + 2].replaceAll("<[^>]*>", " ");
                             k++;
                         }
                     }
+
                     for (int i = 0; i < display; i++) {
-                        Log.d(TAG, "title잘나오니: " + title[i]);
+                        Log.d(TAG, "title: " + title[i]);
                         // title[0], link[0], bloggername[0] 등 인덱스 값에 맞게 검색결과를 변수화하였다.
                     }
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                Thread.sleep(100);
+                                freeActiveMarkers();
+                                markersPosition = new Vector<LatLng>();
+                                for (int i = 0; i < display; i++) {
+                                    if (mapx[i] != null && mapx[i].length() != 0 && mapy[i] != null && mapy[i].length() != 0) {
+                                        double mx = Double.parseDouble(mapx[i]);
+                                        double my = Double.parseDouble(mapy[i]);
+                                        Tm128 tm128 = new Tm128(mx, my);
+                                        LatLng latLng = tm128.toLatLng();
+                                        setMarker(marker, latLng.latitude, latLng.longitude);
+                                        markersPosition.add(new LatLng(
+                                                latLng.latitude,
+                                                latLng.longitude
+                                        ));
+                                        Log.d("maker", " maker :" + Integer.toString(i) + " latLng :" + latLng);
+                                    }
+                                }
+                                for (LatLng markerPosition : markersPosition) {
+                                    Marker marker = new Marker();
+                                    marker.setPosition(markerPosition);
+                                    marker.setMap(mNaverMap);
+                                }
+                                for(int i = 0; i < display; i++) {
+                                    Log.d("maker", " mapx :" + mapx[i] + " mapy :" + mapy[i]);
+                                }
+                            }catch (InterruptedException e){
+                                Log.d("IOException:", e.toString());
+                            }
+                        }
+                    });
+                    //flag=true;
+
+
                 } catch (Exception e) {
                     Log.d(TAG, "error : " + e);
                 }
@@ -216,9 +323,11 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
         }.start();
 
     }
+
+    // 현재 좌표를 도로명 주소로 변경----------------------------------------------------------------------------------------------------------------------------
     public void Reversegeododing(final double latitude, final double longitude) { // 검색어 = searchObject로 ;
-        final String clientId = "jp1w3bsYCw5vg6bzD2S4";//애플리케이션 클라이언트 아이디값";
-        final String clientSecret = "3X23L0Crpr";//애플리케이션 클라이언트 시크릿값";
+        final String clientId = "ijv9rapnei";//애플리케이션 클라이언트 아이디값";
+        final String clientSecret = "AMcP25rWcGuckuKB6hzNMNHJLqtAIIKKjdOqhLCZ";//애플리케이션 클라이언트 시크릿값";
         final int display = 5; // 보여지는 검색결과의 수
 
         // 네트워크 연결은 Thread 생성 필요
@@ -228,9 +337,9 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
             public void run() {
                 try {
                     //String text = URLEncoder.encode(searchObject, "UTF-8");
-                    String lat= Double.toString(latitude);
-                    String lon= Double.toString(longitude);
-                    String apiURL =  "https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc?coords="+lon+","+lat+"&orders=roadaddr:&output=json" ; // json 결과
+                    String lat = Double.toString(latitude);
+                    String lon = Double.toString(longitude);
+                    String apiURL = "https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc?coords=" + lon + "," + lat + "&orders=roadaddr&output=json"; // json 결과
                     // Json 형태로 결과값을 받아옴.
                     URL url = new URL(apiURL);
                     HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -242,7 +351,7 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
                     int responseCode = con.getResponseCode();
                     BufferedReader br;  // 버퍼를 활용한 입력
 
-                    if(responseCode==200) { // 정상 호출
+                    if (responseCode == 200) { // 정상 호출
                         br = new BufferedReader(new InputStreamReader(con.getInputStream()));
 
                     } else {  // 에러 발생
@@ -265,31 +374,20 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
                     String data = searchResult.toString();
                     String[] array;
                     array = data.split("\"");
-                    //String[] title = new String[display];
-                    //String[] link = new String[display];
-                    //String[] description = new String[display];
-                   // String[] bloggername = new String[display];
-                    //String[] postdate = new String[display];
-/*
-                    int k = 0;
-                    for (int i = 0; i < array.length; i++) {
-                        if (array[i].equals("title"))
-                            title[k] = array[i + 2].replaceAll("<[^>]*>", " ");
-                        if (array[i].equals("link"))
-                            link[k] = array[i + 2].replaceAll("<[^>]*>", " ");
-                        if (array[i].equals("description"))
-                            description[k] = array[i + 2].replaceAll("<[^>]*>", " ");
-                        if (array[i].equals("address"))
-                            bloggername[k] = array[i + 2].replaceAll("<[^>]*>", " ");
-                        if (array[i].equals("roadAddress")) {
-                            postdate[k] = array[i + 2].replaceAll("<[^>]*>", " ");
-                            k++;
+
+
+                    int count = 0;
+                    for (int i = array.length - 1; i >= 0; i--) {
+                        if (array[i].equals("name")) {
+                            road.append(array[i + 2].replaceAll("<[^>]*>", " "));
+                            break;
                         }
                     }
-  */                  for (int i = 0; i < array.length; i++) {
-                        Log.d(TAG, "title잘나오니: " + array[i]);
-                        // title[0], link[0], bloggername[0] 등 인덱스 값에 맞게 검색결과를 변수화하였다.
-                    }
+                    road.append(" 일식");
+                    // for (int i = 0; i < array.length; i++) {
+                    Log.d(TAG, "name잘나오니: " + road);
+                    // title[0], link[0], bloggername[0] 등 인덱스 값에 맞게 검색결과를 변수화하였다.
+                    //  }
                 } catch (Exception e) {
                     Log.d(TAG, "error : " + e);
                 }

@@ -43,6 +43,7 @@
         <activity android:name=".test"/>
         <activity android:name=".ladder"/>
         <activity android:name=".ladderGame"/>
+        <activity android:name=".Listpage"/>
         <activity android:name=".ladderResult"
             android:theme="@style/Base.Theme.AppCompat.Light.Dialog"></activity>
         <activity
