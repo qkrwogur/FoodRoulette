@@ -53,7 +53,7 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
 
     private FusedLocationSource mLocationSource;
     private NaverMap mNaverMap;
-    Button btntest;
+    Button btntest,btnReverse;
     String clientId = "jp1w3bsYCw5vg6bzD2S4";
     String clientSecret = "3X23L0Crpr";
     String m_strSearch = "한식";
@@ -96,6 +96,13 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
 
             }
 
+        });
+        btnReverse=(Button)findViewById(R.id.btnReverse);
+        btnReverse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Reversegeododing(latitude,longitude);
+            }
         });
     }
 
@@ -209,6 +216,87 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
         }.start();
 
     }
+    public void Reversegeododing(final double latitude, final double longitude) { // 검색어 = searchObject로 ;
+        final String clientId = "jp1w3bsYCw5vg6bzD2S4";//애플리케이션 클라이언트 아이디값";
+        final String clientSecret = "3X23L0Crpr";//애플리케이션 클라이언트 시크릿값";
+        final int display = 5; // 보여지는 검색결과의 수
 
+        // 네트워크 연결은 Thread 생성 필요
+        new Thread() {
+
+            @Override
+            public void run() {
+                try {
+                    //String text = URLEncoder.encode(searchObject, "UTF-8");
+                    String lat= Double.toString(latitude);
+                    String lon= Double.toString(longitude);
+                    String apiURL =  "https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc?coords="+lon+","+lat+"&orders=roadaddr:&output=json" ; // json 결과
+                    // Json 형태로 결과값을 받아옴.
+                    URL url = new URL(apiURL);
+                    HttpURLConnection con = (HttpURLConnection) url.openConnection();
+                    con.setRequestMethod("GET");
+                    con.setRequestProperty("X-NCP-APIGW-API-KEY-ID", clientId);
+                    con.setRequestProperty("X-NCP-APIGW-API-KEY", clientSecret);
+                    con.connect();
+
+                    int responseCode = con.getResponseCode();
+                    BufferedReader br;  // 버퍼를 활용한 입력
+
+                    if(responseCode==200) { // 정상 호출
+                        br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+
+                    } else {  // 에러 발생
+                        br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+                    }
+
+                    StringBuilder searchResult = new StringBuilder();
+                    // String을 연산하면 메모리 할당과 해제를 발생시키며 성능적으로 좋지 않음
+                    // 그래서 나온게 StringBuilder 문자열을 더할 때 새로운 객체를 생성하는 것이 아니라 기존 데이터에 더하는 방식
+                    String inputLine;
+                    //readLine()은 개행문자가 포함되어야 내부 blocking이 풀리면서 wihle문이 실행한다는 것이다.
+                    //스트림에서의 개행문자는 "\r\n"이 개행문자다.
+                    while ((inputLine = br.readLine()) != null) {
+                        searchResult.append(inputLine + "\n");
+
+                    }
+                    br.close();
+                    con.disconnect();
+
+                    String data = searchResult.toString();
+                    String[] array;
+                    array = data.split("\"");
+                    //String[] title = new String[display];
+                    //String[] link = new String[display];
+                    //String[] description = new String[display];
+                   // String[] bloggername = new String[display];
+                    //String[] postdate = new String[display];
+/*
+                    int k = 0;
+                    for (int i = 0; i < array.length; i++) {
+                        if (array[i].equals("title"))
+                            title[k] = array[i + 2].replaceAll("<[^>]*>", " ");
+                        if (array[i].equals("link"))
+                            link[k] = array[i + 2].replaceAll("<[^>]*>", " ");
+                        if (array[i].equals("description"))
+                            description[k] = array[i + 2].replaceAll("<[^>]*>", " ");
+                        if (array[i].equals("address"))
+                            bloggername[k] = array[i + 2].replaceAll("<[^>]*>", " ");
+                        if (array[i].equals("roadAddress")) {
+                            postdate[k] = array[i + 2].replaceAll("<[^>]*>", " ");
+                            k++;
+                        }
+                    }
+  */                  for (int i = 0; i < array.length; i++) {
+                        Log.d(TAG, "title잘나오니: " + array[i]);
+                        // title[0], link[0], bloggername[0] 등 인덱스 값에 맞게 검색결과를 변수화하였다.
+                    }
+                } catch (Exception e) {
+                    Log.d(TAG, "error : " + e);
+                }
+
+            }
+        }.start();
+
+    }
 
 }
