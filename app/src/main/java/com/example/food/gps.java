@@ -41,10 +41,14 @@ public class gps extends AppCompatActivity {
     private FusedLocationProviderClient fusedLocationProviderClient;
     private LocationRequest locationRequest;
     private double longitude, latitude;
+    String category;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intentread=getIntent();
+        category = intentread.getStringExtra("category");
+
     }
 
     @Override
@@ -158,6 +162,7 @@ public class gps extends AppCompatActivity {
             Intent intent = new Intent(gps.this, test.class);
             intent.putExtra("latitude", latitude);
             intent.putExtra("longitude", longitude);
+            intent.putExtra("category", category);
             startActivity(intent);
             finish();
         }
