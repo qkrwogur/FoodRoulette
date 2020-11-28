@@ -36,7 +36,7 @@
         android:text="한식"
         android:textSize="15sp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="55dp"
+
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/MainEdit" />
@@ -48,7 +48,7 @@
         android:text="일식"
         android:textSize="15sp"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="55dp"
+
         app:layout_constraintLeft_toRightOf="@id/korea"
         app:layout_constraintTop_toBottomOf="@id/MainEdit" />
     <Button
@@ -58,7 +58,7 @@
         android:text="중식"
         android:textSize="15sp"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="55dp"
+
         app:layout_constraintLeft_toRightOf="@id/japan"
         app:layout_constraintTop_toBottomOf="@id/MainEdit" />
     <Button
@@ -68,7 +68,7 @@
         android:text="양식"
         android:textSize="15sp"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="55dp"
+
         app:layout_constraintLeft_toRightOf="@id/chain"
         app:layout_constraintTop_toBottomOf="@id/MainEdit" />
 
@@ -78,7 +78,7 @@
         android:layout_height="50dp"
         android:text="분식"
         android:textSize="15sp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="@id/korea"
         app:layout_constraintRight_toRightOf="@id/korea"
         app:layout_constraintTop_toBottomOf="@id/korea" />
@@ -89,7 +89,7 @@
         android:layout_height="50dp"
         android:text="혼밥"
         android:textSize="15sp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="@id/japan"
         app:layout_constraintRight_toRightOf="@id/japan"
         app:layout_constraintTop_toBottomOf="@id/japan" />
@@ -100,7 +100,7 @@
         android:layout_height="50dp"
         android:text="배달"
         android:textSize="15sp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="@id/chain"
         app:layout_constraintRight_toRightOf="@id/chain"
         app:layout_constraintTop_toBottomOf="@id/chain" />
@@ -111,7 +111,7 @@
         android:layout_height="50dp"
         android:text="아시아"
         android:textSize="15sp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="@id/western"
         app:layout_constraintRight_toRightOf="@id/western"
         app:layout_constraintTop_toBottomOf="@id/western" />
@@ -122,7 +122,7 @@
         android:layout_height="50dp"
         android:text="패스트푸드"
         android:textSize="15sp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="@id/korea"
         app:layout_constraintRight_toRightOf="@id/korea"
         app:layout_constraintTop_toBottomOf="@id/flour" />
@@ -133,7 +133,7 @@
         android:layout_height="50dp"
         android:text="야식"
         android:textSize="15sp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="@id/japan"
         app:layout_constraintRight_toRightOf="@id/japan"
         app:layout_constraintTop_toBottomOf="@id/alone" />
@@ -144,7 +144,7 @@
         android:layout_height="50dp"
         android:text="카페"
         android:textSize="15sp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="@id/chain"
         app:layout_constraintRight_toRightOf="@id/chain"
         app:layout_constraintTop_toBottomOf="@id/delivery" />
@@ -155,7 +155,7 @@
         android:layout_height="50dp"
         android:text="아시아"
         android:textSize="15sp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="@id/western"
         app:layout_constraintRight_toRightOf="@id/western"
         app:layout_constraintTop_toBottomOf="@id/asia" />
@@ -166,7 +166,7 @@
         android:layout_height="50dp"
         android:text="찜 , 탕"
         android:textSize="15sp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="@id/korea"
         app:layout_constraintRight_toRightOf="@id/korea"
         app:layout_constraintTop_toBottomOf="@id/fast" />
@@ -177,7 +177,7 @@
         android:layout_height="50dp"
         android:text="야식"
         android:textSize="15sp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="@id/japan"
         app:layout_constraintRight_toRightOf="@id/japan"
         app:layout_constraintTop_toBottomOf="@id/latenihgt" />
@@ -188,7 +188,7 @@
         android:layout_height="50dp"
         android:text="치킨"
         android:textSize="15sp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="@id/chain"
         app:layout_constraintRight_toRightOf="@id/chain"
         app:layout_constraintTop_toBottomOf="@id/cafe" />
@@ -199,7 +199,7 @@
         android:layout_height="50dp"
         android:text="피자"
         android:textSize="15sp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="@id/western"
         app:layout_constraintRight_toRightOf="@id/western"
         app:layout_constraintTop_toBottomOf="@id/pig" />
@@ -208,7 +208,7 @@
         android:layout_width="95dp"
         android:layout_height="50dp"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="20dp"
         android:text="모든 식당"
         android:textSize="15sp"
         app:layout_constraintTop_toBottomOf="@id/steamedsoup"
@@ -220,7 +220,7 @@
         android:layout_width="95dp"
         android:layout_height="50dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="20dp"
         android:text="돌림판"
         android:textSize="15sp"
         app:layout_constraintTop_toBottomOf="@id/box"
@@ -232,7 +232,7 @@
         android:layout_width="95dp"
         android:layout_height="50dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="20dp"
         android:text="사디리"
         android:textSize="15sp"
         app:layout_constraintTop_toBottomOf="@id/chicken"
