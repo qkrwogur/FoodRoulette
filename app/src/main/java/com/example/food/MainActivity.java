@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(getApplicationContext(),test.class);
+                intent.putExtra("category"," 식당");
                 startActivity(intent);
             }
         });

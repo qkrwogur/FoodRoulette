@@ -44,6 +44,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.Vector;
+import com.example.food.gps;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -75,7 +76,7 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
     boolean flag = false;
     double latitude = 37.5670135;
     double longitude = 127.066242;
-    Marker marker = new Marker();
+    //Marker marker = new Marker();
 
     // onCreate-----------------------------------------------------------------------------------------------------
     @Override
@@ -104,6 +105,7 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
         latitude = intent.getDoubleExtra("latitude", 37.5670135);
         longitude = intent.getDoubleExtra("longitude", 127.066242);
         category = intent.getStringExtra("category");
+
         TextView location = findViewById(R.id.Txttest);
         location.setText("위도=" + latitude + ", 경도=" + longitude);
 
@@ -114,6 +116,7 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
             @Override
             public void onClick(View view) {
                 Intent intentread = new Intent(getApplicationContext(), gps.class);
+                intentread.putExtra("category",category);
                 startActivity(intentread);
 
             }
@@ -143,14 +146,14 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
 
     }
 
-    private void setMarker(Marker marker, double lat, double lng) {
+    /*private void setMarker(Marker marker, double lat, double lng) {
         //마커 위치
         marker.setPosition(new LatLng(lat, lng));
         //마커 우선순위
         //marker.setZIndex(zIndex);
         //마커 표시
         marker.setMap(mNaverMap);
-    }
+    }*/
 
     //----------------------------------------------------------------------------------------------------------------------------
     @Override
@@ -273,7 +276,11 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
                             k++;
                         }
                     }
-
+                    /*for(int i = 0; i < display; i++){
+                        if(title[i].length()==0)
+                            title[i] = " ";
+                    }
+*/
                     for (int i = 0; i < display; i++) {
                         Log.d(TAG, "title: " + title[i]);
                         // title[0], link[0], bloggername[0] 등 인덱스 값에 맞게 검색결과를 변수화하였다.
@@ -291,7 +298,7 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
                                         double my = Double.parseDouble(mapy[i]);
                                         Tm128 tm128 = new Tm128(mx, my);
                                         LatLng latLng = tm128.toLatLng();
-                                        setMarker(marker, latLng.latitude, latLng.longitude);
+                                        //setMarker(marker, latLng.latitude, latLng.longitude);
                                         markersPosition.add(new LatLng(
                                                 latLng.latitude,
                                                 latLng.longitude
@@ -383,7 +390,7 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
                             break;
                         }
                     }
-                    road.append(" 일식");
+                    //road.append(" 일식");
                     // for (int i = 0; i < array.length; i++) {
                     Log.d(TAG, "name잘나오니: " + road);
                     // title[0], link[0], bloggername[0] 등 인덱스 값에 맞게 검색결과를 변수화하였다.
