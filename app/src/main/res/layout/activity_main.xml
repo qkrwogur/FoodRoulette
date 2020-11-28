@@ -35,8 +35,6 @@
         android:layout_height="50dp"
         android:text="한식"
         android:textSize="15sp"
-        android:layout_marginLeft="10dp"
-
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintRight_toLeftOf="@id/japan"
