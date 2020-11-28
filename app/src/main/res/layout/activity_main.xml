@@ -31,7 +31,7 @@
 
     <Button
         android:id="@+id/korea"
-        android:layout_width="95dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
         android:text="한식"
         android:textSize="15sp"
@@ -39,6 +39,7 @@
 
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/japan"
         app:layout_constraintTop_toBottomOf="@id/MainEdit" />
 
     <Button
@@ -48,7 +49,7 @@
         android:text="일식"
         android:textSize="15sp"
         android:layout_marginLeft="5dp"
-
+        app:layout_constraintRight_toLeftOf="@id/chain"
         app:layout_constraintLeft_toRightOf="@id/korea"
         app:layout_constraintTop_toBottomOf="@id/MainEdit" />
     <Button
@@ -58,7 +59,7 @@
         android:text="중식"
         android:textSize="15sp"
         android:layout_marginLeft="5dp"
-
+        app:layout_constraintRight_toLeftOf="@id/western"
         app:layout_constraintLeft_toRightOf="@id/japan"
         app:layout_constraintTop_toBottomOf="@id/MainEdit" />
     <Button
@@ -68,7 +69,7 @@
         android:text="양식"
         android:textSize="15sp"
         android:layout_marginLeft="5dp"
-
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toRightOf="@id/chain"
         app:layout_constraintTop_toBottomOf="@id/MainEdit" />
 
