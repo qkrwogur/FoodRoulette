@@ -35,25 +35,24 @@
         android:layout_height="50dp"
         android:text="한식"
         android:textSize="15sp"
-        android:layout_marginLeft="10dp"
-
+        android:layout_marginLeft="5dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintRight_toLeftOf="@id/japan"
         app:layout_constraintTop_toBottomOf="@id/MainEdit" />
 
     <Button
         android:id="@+id/japan"
-        android:layout_width="95dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
         android:text="일식"
         android:textSize="15sp"
+        android:layout_marginLeft="5dp"
         app:layout_constraintRight_toLeftOf="@id/chain"
         app:layout_constraintLeft_toRightOf="@id/korea"
         app:layout_constraintTop_toBottomOf="@id/MainEdit" />
     <Button
         android:id="@+id/chain"
-        android:layout_width="95dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
         android:text="중식"
         android:textSize="15sp"
@@ -63,11 +62,12 @@
         app:layout_constraintTop_toBottomOf="@id/MainEdit" />
     <Button
         android:id="@+id/western"
-        android:layout_width="95dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
         android:text="양식"
         android:textSize="15sp"
         android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toRightOf="@id/chain"
         app:layout_constraintTop_toBottomOf="@id/MainEdit" />
@@ -81,7 +81,7 @@
         android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="@id/korea"
         app:layout_constraintRight_toRightOf="@id/korea"
-        app:layout_constraintTop_toBottomOf="@id/korea" />
+        app:layout_constraintTop_toBottomOf="@+id/korea" />
 
     <Button
         android:id="@+id/alone"
@@ -92,7 +92,7 @@
         android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="@id/japan"
         app:layout_constraintRight_toRightOf="@id/japan"
-        app:layout_constraintTop_toBottomOf="@id/japan" />
+        app:layout_constraintTop_toBottomOf="@+id/japan" />
 
     <Button
         android:id="@+id/delivery"
@@ -125,7 +125,7 @@
         android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="@id/korea"
         app:layout_constraintRight_toRightOf="@id/korea"
-        app:layout_constraintTop_toBottomOf="@id/flour" />
+        app:layout_constraintTop_toBottomOf="@+id/flour" />
 
     <Button
         android:id="@+id/latenihgt"
@@ -136,7 +136,7 @@
         android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="@id/japan"
         app:layout_constraintRight_toRightOf="@id/japan"
-        app:layout_constraintTop_toBottomOf="@id/alone" />
+        app:layout_constraintTop_toBottomOf="@+id/alone" />
 
     <Button
         android:id="@+id/cafe"
@@ -169,13 +169,13 @@
         android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="@id/korea"
         app:layout_constraintRight_toRightOf="@id/korea"
-        app:layout_constraintTop_toBottomOf="@id/fast" />
+        app:layout_constraintTop_toBottomOf="@+id/fast" />
 
     <Button
         android:id="@+id/box"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:text="야식"
+        android:text="도시락"
         android:textSize="15sp"
         android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="@id/japan"
@@ -203,17 +203,18 @@
         app:layout_constraintLeft_toLeftOf="@id/western"
         app:layout_constraintRight_toRightOf="@id/western"
         app:layout_constraintTop_toBottomOf="@id/pig" />
+
     <Button
         android:id="@+id/all"
         android:layout_width="95dp"
         android:layout_height="50dp"
-        android:layout_marginLeft="50dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="20dp"
         android:text="모든 식당"
         android:textSize="15sp"
-        app:layout_constraintTop_toBottomOf="@id/steamedsoup"
+        app:layout_constraintBottom_toTopOf="@+id/map"
         app:layout_constraintLeft_toLeftOf="parent"
-        />
+        app:layout_constraintTop_toBottomOf="@id/steamedsoup" />
 
     <Button
         android:id="@+id/roulette1"
@@ -223,9 +224,9 @@
         android:layout_marginTop="20dp"
         android:text="돌림판"
         android:textSize="15sp"
-        app:layout_constraintTop_toBottomOf="@id/box"
+        app:layout_constraintBottom_toTopOf="@+id/roulette2"
         app:layout_constraintLeft_toRightOf="@id/all"
-        />
+        app:layout_constraintTop_toBottomOf="@id/box" />
 
     <Button
         android:id="@+id/ladder1"
@@ -235,9 +236,19 @@
         android:layout_marginTop="20dp"
         android:text="사디리"
         android:textSize="15sp"
-        app:layout_constraintTop_toBottomOf="@id/chicken"
+        app:layout_constraintBottom_toTopOf="@+id/ladder2"
         app:layout_constraintLeft_toRightOf="@id/roulette1"
-        />
+        app:layout_constraintTop_toBottomOf="@id/chicken" />
+
+    <Button
+        android:id="@+id/no"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/myinformation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/ladder1"
+        app:layout_constraintTop_toBottomOf="@id/pizza" />
 
     <Button
         android:id="@+id/home"
