@@ -2,6 +2,7 @@ package com.example.food;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -32,6 +33,7 @@ import com.naver.maps.map.NaverMap;
 import com.naver.maps.map.OnMapReadyCallback;
 import com.naver.maps.map.overlay.InfoWindow;
 import com.naver.maps.map.overlay.Marker;
+import com.naver.maps.map.overlay.Overlay;
 import com.naver.maps.map.util.FusedLocationSource;
 
 import org.w3c.dom.Document;
@@ -77,6 +79,8 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
     boolean flag = false;
     double latitude = 37.5670135;
     double longitude = 127.066242;
+    int Index=0;
+    View dialogView;
     //Marker marker = new Marker();
 
     // onCreate-----------------------------------------------------------------------------------------------------
@@ -280,6 +284,14 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
                     for(int i = 0; i < display; i++){
                         if(title[i]==null)
                             title[i] = " ";
+                        if(link[i]==null)
+                            link[i] = " ";
+                        if(description[i]==null)
+                            description[i] = " ";
+                        if(postdate[i]==null)
+                            postdate[i] = " ";
+                        if(bloggername[i]==null)
+                            bloggername[i] = " ";
                     }
 
                     for (int i = 0; i < display; i++) {
@@ -307,9 +319,31 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
                                         Log.d("maker", " maker :" + Integer.toString(i) + " latLng :" + latLng);
                                     }
                                 }
-                                int k=0;
+                                Index=0;
+                               /* Overlay.OnClickListener listener = overlay -> {
+                                    InfoWindow infoWindow = (InfoWindow)overlay;
+                                    *//*Intent detailintent = new Intent(getApplicationContext(),Detail.class);
+                                    detailintent.putExtra("title",title[Index]);
+                                    detailintent.putExtra("description",title[Index]);
+                                    detailintent.putExtra("link",title[Index]);
+                                    detailintent.putExtra("address",title[Index]);
+                                    detailintent.putExtra("roadAddress",title[Index]);*//*
+                                    dialogView=(View)View.inflate(test.this,R.layout.detail,null);
+                                    AlertDialog.Builder dlg=new AlertDialog.Builder(test.this);
+                                    Log.d("index", infoWindow.getAdapter().toString());
+                                    infoWindow.
+                                    //dlg.setTitle(title[Index]);
+                                    //dlg.setIcon(R.drawable.ic_menu_allfriends);
+                                    dlg.setView(dialogView);
+                                    dlg.setPositiveButton("확인",null);
+                                    dlg.setNegativeButton("취소", null);
+                                    dlg.show();
+                                    //startActivity(detailintent);
+                                    Log.d("infoWindow", " 정보창 클릭 됨 ");
+                                    return true;
+                            };*/
                                 for (LatLng markerPosition : markersPosition) {
-                                    String makertitle = title[k];
+                                    String makertitle = title[Index];
                                     InfoWindow infoWindow = new InfoWindow();
                                     infoWindow.setAdapter(new InfoWindow.DefaultTextAdapter(getApplicationContext()) {
                                         @NonNull
@@ -318,7 +352,23 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
                                             return makertitle;
                                         }
                                     });
-                                    k++;
+                                    //infoWindow.setOnClickListener(listener);
+                                    infoWindow.setOnClickListener(overlay -> {
+                                        dialogView=(View)View.inflate(test.this,R.layout.detail,null);
+                                        AlertDialog.Builder dlg=new AlertDialog.Builder(test.this);
+                                        Log.d("index", infoWindow.getAdapter().toString());
+                                                //dlg.setTitle(title[Index]);
+                                                //dlg.setIcon(R.drawable.ic_menu_allfriends);
+                                        dlg.setView(dialogView);
+                                        dlg.setPositiveButton("확인",null);
+                                        dlg.setNegativeButton("취소", null);
+                                        dlg.show();
+                                        //startActivity(detailintent);
+                                        Log.d("infoWindow", " 정보창 클릭 됨 ");
+                                        return true;
+                                    });
+
+                                    Index++;
                                     //Marker marker = new Marker();
                                     infoWindow.setPosition(markerPosition);
                                     infoWindow.open(mNaverMap);
@@ -326,6 +376,8 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
                                     //marker.setMap(mNaverMap);
 
                                 }
+
+
                                 for(int i = 0; i < display; i++) {
                                     Log.d("maker", " mapx :" + mapx[i] + " mapy :" + mapy[i]);
                                 }
