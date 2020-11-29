@@ -7,6 +7,7 @@
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the "MyLocation" functionality.
     -->
+    <uses-permission android:name="android.permission.INTERNET"/><!--인터넷 권한-->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -44,6 +45,7 @@
         <activity android:name=".ladder"/>
         <activity android:name=".ladderGame"/>
         <activity android:name=".Listpage"/>
+        <activity android:name=".MyInformation"/>
         <activity android:name=".ladderResult"
             android:theme="@style/Base.Theme.AppCompat.Light.Dialog"></activity>
         <activity

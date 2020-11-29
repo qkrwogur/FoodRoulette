@@ -285,7 +285,7 @@
         android:id="@+id/ladder2"
         android:layout_width="0dp"
         android:layout_height="80dp"
-        android:text="돌림판"
+        android:text="사다리"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/roulette2"
