@@ -30,6 +30,7 @@ import com.naver.maps.map.LocationTrackingMode;
 import com.naver.maps.map.MapFragment;
 import com.naver.maps.map.NaverMap;
 import com.naver.maps.map.OnMapReadyCallback;
+import com.naver.maps.map.overlay.InfoWindow;
 import com.naver.maps.map.overlay.Marker;
 import com.naver.maps.map.util.FusedLocationSource;
 
@@ -276,11 +277,11 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
                             k++;
                         }
                     }
-                    /*for(int i = 0; i < display; i++){
-                        if(title[i].length()==0)
+                    for(int i = 0; i < display; i++){
+                        if(title[i]==null)
                             title[i] = " ";
                     }
-*/
+
                     for (int i = 0; i < display; i++) {
                         Log.d(TAG, "title: " + title[i]);
                         // title[0], link[0], bloggername[0] 등 인덱스 값에 맞게 검색결과를 변수화하였다.
@@ -306,10 +307,24 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
                                         Log.d("maker", " maker :" + Integer.toString(i) + " latLng :" + latLng);
                                     }
                                 }
+                                int k=0;
                                 for (LatLng markerPosition : markersPosition) {
-                                    Marker marker = new Marker();
-                                    marker.setPosition(markerPosition);
-                                    marker.setMap(mNaverMap);
+                                    String makertitle = title[k];
+                                    InfoWindow infoWindow = new InfoWindow();
+                                    infoWindow.setAdapter(new InfoWindow.DefaultTextAdapter(getApplicationContext()) {
+                                        @NonNull
+                                        @Override
+                                        public CharSequence getText(@NonNull InfoWindow infoWindow) {
+                                            return makertitle;
+                                        }
+                                    });
+                                    k++;
+                                    //Marker marker = new Marker();
+                                    infoWindow.setPosition(markerPosition);
+                                    infoWindow.open(mNaverMap);
+                                    //marker.setPosition(markerPosition);
+                                    //marker.setMap(mNaverMap);
+
                                 }
                                 for(int i = 0; i < display; i++) {
                                     Log.d("maker", " mapx :" + mapx[i] + " mapy :" + mapy[i]);
