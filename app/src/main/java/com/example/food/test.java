@@ -320,28 +320,20 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
                                     }
                                 }
                                 Index=0;
-                               /* Overlay.OnClickListener listener = overlay -> {
+                                Overlay.OnClickListener listener = overlay -> {
                                     InfoWindow infoWindow = (InfoWindow)overlay;
-                                    *//*Intent detailintent = new Intent(getApplicationContext(),Detail.class);
-                                    detailintent.putExtra("title",title[Index]);
-                                    detailintent.putExtra("description",title[Index]);
-                                    detailintent.putExtra("link",title[Index]);
-                                    detailintent.putExtra("address",title[Index]);
-                                    detailintent.putExtra("roadAddress",title[Index]);*//*
                                     dialogView=(View)View.inflate(test.this,R.layout.detail,null);
                                     AlertDialog.Builder dlg=new AlertDialog.Builder(test.this);
-                                    Log.d("index", infoWindow.getAdapter().toString());
-                                    infoWindow.
-                                    //dlg.setTitle(title[Index]);
-                                    //dlg.setIcon(R.drawable.ic_menu_allfriends);
+                                    Log.d("index", infoWindow.getTag().toString());
+                                    int number=Integer.parseInt(infoWindow.getTag().toString());
+                                    dlg.setTitle(title[number]);
                                     dlg.setView(dialogView);
                                     dlg.setPositiveButton("확인",null);
                                     dlg.setNegativeButton("취소", null);
                                     dlg.show();
-                                    //startActivity(detailintent);
                                     Log.d("infoWindow", " 정보창 클릭 됨 ");
                                     return true;
-                            };*/
+                            };
                                 for (LatLng markerPosition : markersPosition) {
                                     String makertitle = title[Index];
                                     InfoWindow infoWindow = new InfoWindow();
@@ -352,29 +344,11 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
                                             return makertitle;
                                         }
                                     });
-                                    //infoWindow.setOnClickListener(listener);
-                                    infoWindow.setOnClickListener(overlay -> {
-                                        dialogView=(View)View.inflate(test.this,R.layout.detail,null);
-                                        AlertDialog.Builder dlg=new AlertDialog.Builder(test.this);
-                                        Log.d("index", infoWindow.getAdapter().toString());
-                                                //dlg.setTitle(title[Index]);
-                                                //dlg.setIcon(R.drawable.ic_menu_allfriends);
-                                        dlg.setView(dialogView);
-                                        dlg.setPositiveButton("확인",null);
-                                        dlg.setNegativeButton("취소", null);
-                                        dlg.show();
-                                        //startActivity(detailintent);
-                                        Log.d("infoWindow", " 정보창 클릭 됨 ");
-                                        return true;
-                                    });
-
+                                    infoWindow.setTag(Index);
+                                    infoWindow.setOnClickListener(listener);
                                     Index++;
-                                    //Marker marker = new Marker();
                                     infoWindow.setPosition(markerPosition);
                                     infoWindow.open(mNaverMap);
-                                    //marker.setPosition(markerPosition);
-                                    //marker.setMap(mNaverMap);
-
                                 }
 
 
