@@ -1,14 +1,11 @@
 package com.example.food;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Location;
 import android.location.LocationManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,15 +15,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 
-import com.google.android.gms.location.LocationListener;
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.geometry.Tm128;
-import com.naver.maps.geometry.Utmk;
-import com.naver.maps.map.CameraPosition;
-import com.naver.maps.map.CameraUpdate;
 import com.naver.maps.map.LocationTrackingMode;
 import com.naver.maps.map.MapFragment;
 import com.naver.maps.map.NaverMap;
@@ -36,21 +28,15 @@ import com.naver.maps.map.overlay.Marker;
 import com.naver.maps.map.overlay.Overlay;
 import com.naver.maps.map.util.FusedLocationSource;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 import java.io.BufferedReader;
-import java.io.InputStream;
+
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.Vector;
-import com.example.food.gps;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 
 public class test extends AppCompatActivity implements OnMapReadyCallback {
     private static final String TAG = "test";
@@ -63,10 +49,7 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
 
     private FusedLocationSource mLocationSource;
     private NaverMap mNaverMap;
-    Button btntest, btnReverse, btnlist;
-    String clientId = "jp1w3bsYCw5vg6bzD2S4";
-    String clientSecret = "3X23L0Crpr";
-    String m_strSearch = "한식";
+    Button btntest, btnlist;
     String category="";
     final int display = 5;
     String[] title = new String[display];
@@ -76,11 +59,11 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
     String[] postdate = new String[display];
     String[] mapx = new String[display];
     String[] mapy = new String[display];
-    boolean flag = false;
     double latitude = 37.5670135;
     double longitude = 127.066242;
     int Index=0;
     View dialogView;
+    TextView txtaddress,txtlink,txtdesc,txtroad;
     //Marker marker = new Marker();
 
     // onCreate-----------------------------------------------------------------------------------------------------
@@ -113,7 +96,10 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
 
         TextView location = findViewById(R.id.Txttest);
         location.setText("위도=" + latitude + ", 경도=" + longitude);
-
+        txtaddress=(TextView)findViewById(R.id.txtaddress);
+        txtlink=(TextView)findViewById(R.id.txtlink);
+        txtdesc=(TextView)findViewById(R.id.txtdesc);
+        txtroad=(TextView)findViewById(R.id.txtroad);
 
         btntest = (Button) findViewById(R.id.btntest);
         // 검색 버튼
@@ -123,19 +109,6 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
                 Intent intentread = new Intent(getApplicationContext(), gps.class);
                 intentread.putExtra("category",category);
                 startActivity(intentread);
-
-            }
-
-        });
-        // 반환 버튼
-        btnReverse = (Button) findViewById(R.id.btnReverse);
-        btnReverse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                road = new StringBuffer();
-                Reversegeododing(latitude, longitude);
-                searchNaver("문암로"+category);
-                //road.toString()
             }
         });
         btnlist=(Button)findViewById(R.id.btnlist);
@@ -147,6 +120,10 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
                 startActivity(intentList);
             }
         });
+        road = new StringBuffer();
+        Reversegeododing(latitude, longitude);
+        searchNaver("문암로"+category);
+        //road.toString()
         mapFragment.getMapAsync(this);
 
     }
@@ -301,8 +278,6 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            try {
-                                Thread.sleep(100);
                                 freeActiveMarkers();
                                 markersPosition = new Vector<LatLng>();
                                 for (int i = 0; i < display; i++) {
@@ -322,15 +297,25 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
                                 Index=0;
                                 Overlay.OnClickListener listener = overlay -> {
                                     InfoWindow infoWindow = (InfoWindow)overlay;
-                                    dialogView=(View)View.inflate(test.this,R.layout.detail,null);
-                                    AlertDialog.Builder dlg=new AlertDialog.Builder(test.this);
+                                    AlertDialog.Builder mBuilder = new AlertDialog.Builder(test.this);
+                                    dialogView=getLayoutInflater().inflate(R.layout.detail,null);
+                                    final TextView Txtlink = (TextView)dialogView.findViewById(R.id.txtlink);
+                                    final TextView Txtdesc = (TextView)dialogView.findViewById(R.id.txtdesc);
+                                    final TextView Txtaddress = (TextView)dialogView.findViewById(R.id.txtaddress);
+                                    final TextView Txtroad = (TextView)dialogView.findViewById(R.id.txtroad);
                                     Log.d("index", infoWindow.getTag().toString());
                                     int number=Integer.parseInt(infoWindow.getTag().toString());
-                                    dlg.setTitle(title[number]);
-                                    dlg.setView(dialogView);
-                                    dlg.setPositiveButton("확인",null);
-                                    dlg.setNegativeButton("취소", null);
-                                    dlg.show();
+                                    mBuilder.setTitle(title[number]);
+                                    Txtlink.setText(link[number]);
+                                    Txtdesc.setText(description[number]);
+                                    Txtaddress.setText(postdate[number]);
+                                    Txtroad.setText(bloggername[number]);
+                                    Log.d("test","desc : "+description[number]+"link : "+link[number]+"address"+postdate[number]+"road:"+bloggername[number]);
+                                    mBuilder.setNegativeButton("취소",null);
+                                    mBuilder.setPositiveButton("확인",null);
+                                    mBuilder.setView(dialogView);
+                                    AlertDialog dialog = mBuilder.create();
+                                    dialog.show();;
                                     Log.d("infoWindow", " 정보창 클릭 됨 ");
                                     return true;
                             };
@@ -351,16 +336,12 @@ public class test extends AppCompatActivity implements OnMapReadyCallback {
                                     infoWindow.open(mNaverMap);
                                 }
 
-
                                 for(int i = 0; i < display; i++) {
                                     Log.d("maker", " mapx :" + mapx[i] + " mapy :" + mapy[i]);
                                 }
-                            }catch (InterruptedException e){
-                                Log.d("IOException:", e.toString());
-                            }
+
                         }
                     });
-                    //flag=true;
 
 
                 } catch (Exception e) {

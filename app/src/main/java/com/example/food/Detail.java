@@ -1,33 +1,33 @@
 package com.example.food;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatDialogFragment;
 
-public class Detail extends Activity {
+public class Detail extends AppCompatDialogFragment {
     TextView txttitle,txtlink,txtdesc,txtaddress,txtroad;
+    String Rtitle;
+    @NonNull
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.detail);
-        txttitle = (TextView)findViewById(R.id.txttitle);
-        txtlink = (TextView)findViewById(R.id.txtlink);
-        txtdesc = (TextView)findViewById(R.id.txtdesc);
-        txtaddress = (TextView)findViewById(R.id.txtaddress);
-        txtroad = (TextView)findViewById(R.id.txtroad);
-        Intent intent = getIntent();
-        String title = intent.getStringExtra("title");
-        String desc = intent.getStringExtra("description");
-        String link = intent.getStringExtra("link");
-        String address = intent.getStringExtra("address");
-        String road = intent.getStringExtra("roadAddress");
-        txttitle.setText(title);
-        txtlink.setText(link);
-        txtdesc.setText(desc);
-        txtaddress.setText(address);
-        txtroad.setText(road);
+    public android.app.Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+        AlertDialog.Builder dig = new AlertDialog.Builder(getActivity());
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+        View view = inflater.inflate(R.layout.detail,null);
+
+        return super.onCreateDialog(savedInstanceState);
+
     }
+
+
+
 }
