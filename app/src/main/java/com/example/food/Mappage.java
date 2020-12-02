@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.TranslateAnimation;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -142,11 +143,17 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
                 intentList.putExtra("title",title);
                 startActivity(intentList);*/
                 if (!isUp) {
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, title);
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.foodlist_check, R.id.txt_lan,title);
                     // 리스트뷰에 설정된 arrayadpter를 적용함
-                    listView.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE_MODAL);
-                    listView.setMultiChoiceModeListener(modeListener);
+                    //listView.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE_MODAL);
+                    listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
                     listView.setAdapter(adapter);
+                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                        }
+                    });
 
                     slideUp(myView);
                     isUp = !isUp;
@@ -190,33 +197,7 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
 
 
     }
-    AbsListView.MultiChoiceModeListener modeListener=new AbsListView.MultiChoiceModeListener(){
 
-        @Override
-        public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-            return false;
-        }
-
-        @Override
-        public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
-            return false;
-        }
-
-        @Override
-        public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
-            return false;
-        }
-
-        @Override
-        public void onDestroyActionMode(ActionMode actionMode) {
-
-        }
-
-        @Override
-        public void onItemCheckedStateChanged(ActionMode actionMode, int i, long l, boolean b) {
-
-        }
-    };
 
     public void slideUp(View view){
         view.setVisibility(View.VISIBLE);

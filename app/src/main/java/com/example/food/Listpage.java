@@ -13,7 +13,7 @@ public class Listpage extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.foodlist);
-        ListView listView =(ListView)findViewById(R.id.listfood);
+        ListView listView =(ListView)findViewById(R.id.lvfood);
         String[] title= new String[]{};
         Intent intent = getIntent();
         title = intent.getStringArrayExtra("title");
