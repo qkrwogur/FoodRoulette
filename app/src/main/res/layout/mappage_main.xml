@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    tools:context=".Mappage">
+    <LinearLayout
+        android:id="@+id/my_map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <include
+            layout="@layout/mappage_map"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/my_view"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="400dp">
+        <include
+            layout="@layout/mappage_list"/>
+    </LinearLayout>
+
+</RelativeLayout>

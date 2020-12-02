@@ -159,7 +159,7 @@ public class gps extends AppCompatActivity {
             latitude = locationResult.getLastLocation().getLatitude();
             fusedLocationProviderClient.removeLocationUpdates(locationCallback);
 
-            Intent intent = new Intent(gps.this, test.class);
+            Intent intent = new Intent(gps.this, Mappage.class);
             intent.putExtra("latitude", latitude);
             intent.putExtra("longitude", longitude);
             intent.putExtra("category", category);

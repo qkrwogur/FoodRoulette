@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         korea.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getApplicationContext(),test.class);
+                Intent intent=new Intent(getApplicationContext(),Mappage.class);
                 intent.putExtra("category"," 한식");
                 startActivity(intent);
             }
