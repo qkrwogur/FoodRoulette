@@ -9,8 +9,12 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.ActionMode;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.TranslateAnimation;
+import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -57,7 +61,7 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
 
     private FusedLocationSource mLocationSource;
     private NaverMap mNaverMap;
-    Button btnResearch;
+    Button btnResearch,btn_test;
     ImageButton list_open, list_close;
     String category="";
     final int display = 5;
@@ -140,7 +144,10 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
                 if (!isUp) {
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, title);
                     // 리스트뷰에 설정된 arrayadpter를 적용함
+                    listView.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE_MODAL);
+                    listView.setMultiChoiceModeListener(modeListener);
                     listView.setAdapter(adapter);
+
                     slideUp(myView);
                     isUp = !isUp;
                     myView.bringToFront(); // start when animation complete
@@ -166,14 +173,50 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
                 Log.d("down","눌림");
             }
         });
+        btn_test=(Button)findViewById(R.id.btn_test);
+        btn_test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent testintent = new Intent(getApplicationContext(),Review.class);
+                startActivity(testintent);
+            }
+        });
+
         road = new StringBuffer();
         Reversegeododing(latitude, longitude);
         searchNaver("문암로"+category);
         //road.toString()
         mapFragment.getMapAsync(this);
 
-    }
 
+    }
+    AbsListView.MultiChoiceModeListener modeListener=new AbsListView.MultiChoiceModeListener(){
+
+        @Override
+        public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+            return false;
+        }
+
+        @Override
+        public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+            return false;
+        }
+
+        @Override
+        public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
+            return false;
+        }
+
+        @Override
+        public void onDestroyActionMode(ActionMode actionMode) {
+
+        }
+
+        @Override
+        public void onItemCheckedStateChanged(ActionMode actionMode, int i, long l, boolean b) {
+
+        }
+    };
 
     public void slideUp(View view){
         view.setVisibility(View.VISIBLE);
