@@ -23,6 +23,8 @@ public class Review extends Activity {
         containertalbe=(LinearLayout)findViewById(R.id.rv_Reviewtable);
         for (int i=0;i< test.length;i++){
             Reviewlist n_layout= new Reviewlist(getApplicationContext());
+            TextView rv_Txt = (TextView)n_layout.findViewById(R.id.rv_Txt);
+            rv_Txt.setText(test[i]);
             containertalbe.addView(n_layout);
         }
     }

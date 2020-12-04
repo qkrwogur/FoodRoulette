@@ -31,14 +31,12 @@ public class Roulette extends AppCompatActivity {
     private CircleManager circleManager;
     private RelativeLayout layoutRoulette;
 
-    private Button btnDrawRouletteplus;
-    private Button btnDrawRouletteminus;
     private Button btnRotate;
     Button btnlist;
     private TextView tvResult;
 
     //private ArrayList<String> STRINGS;
-    String[] str = new String[6];
+    String[] list = {};
     private float initAngle = 0.0f;
     private int num_roulette = 0;
 
@@ -50,40 +48,13 @@ public class Roulette extends AppCompatActivity {
 
         tvResult = findViewById(R.id.tvResult);
         btnRotate = findViewById(R.id.btnRotate);
-        btnDrawRouletteplus = findViewById(R.id.btnDrawRouletteplus);
-        btnDrawRouletteminus = findViewById(R.id.btnDrawRouletteminus);
         btnlist=(Button)findViewById(R.id.btnlist);
         layoutRoulette = findViewById(R.id.layoutRoulette);
-
-        btnDrawRouletteplus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(num_roulette<10) {
-                    num_roulette = num_roulette + 1;
-                    if(num_roulette==7){
-                        num_roulette = num_roulette + 1;
-                    }
-                    //STRINGS = setRandom(1000, num_roulette);
-                    circleManager = new CircleManager(Roulette.this, num_roulette);
-                    layoutRoulette.addView(circleManager);
-                }
-            }
-        });
-
-        btnDrawRouletteminus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (num_roulette>1){
-                    num_roulette = num_roulette-1;
-                    if(num_roulette==7){
-                        num_roulette = num_roulette - 1;
-                    }
-                    //STRINGS = setRandom(1000, num_roulette);
-                    circleManager = new CircleManager(Roulette.this, num_roulette);
-                    layoutRoulette.addView(circleManager);
-                }
-            }
-        });
+        Intent listintent= getIntent();
+        list=listintent.getStringArrayExtra("list");
+        num_roulette=list.length;
+        circleManager = new CircleManager(Roulette.this, num_roulette);
+        layoutRoulette.addView(circleManager);
 
         btnRotate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,34 +64,6 @@ public class Roulette extends AppCompatActivity {
         });
 
     }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        num_roulette=1;
-        if (requestCode == 1) {
-            if (resultCode == RESULT_OK) {
-
-                str = data.getStringArrayExtra("list");
-                for (int i = 0; i < 6; i++) {
-                    if (str[i].equals("")) {
-                        break;
-                    }
-                    num_roulette = i+1;
-                }
-                Toast.makeText(getApplicationContext(), Integer.toString(num_roulette), Toast.LENGTH_LONG).show();
-                //if (num_roulette != 0) {
-                    circleManager = new CircleManager(Roulette.this, num_roulette);
-                    layoutRoulette.addView(circleManager);
-                //}
-            }
-        }
-    }
-
-    public void popUpClick(View v){
-        startActivityForResult(new Intent(this, List.class),1);
-    }
-
 
     public void rotateLayout(final RelativeLayout layout, final int num) {
         final float fromAngle = getRandom(360) + 3600 + initAngle;
@@ -194,12 +137,12 @@ public class Roulette extends AppCompatActivity {
         for(int i=0; i<num_roulette; i++){
             if ((anglepoint>=i*save) && (anglepoint<(i+1)*save)){
                 //text = STRINGS.get(i);
-                text=str[i];
+                text=list[i];
                 buildAlert(text);
                 break;
             }
         }
-        tvResult.setText("Result : " + text);
+        tvResult.setText("결과 : " + text);
     }
 
     // if you want use AlertDialog then use this
@@ -219,7 +162,8 @@ public class Roulette extends AppCompatActivity {
 
     public class CircleManager extends View {
         private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        private int[] COLORS = {Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW};
+        private int[] COLORS = {Color.parseColor("#F79D96"), Color.parseColor("#F7D14A"), Color.parseColor("#9DC0E5"),
+                Color.parseColor("#AFD367"), Color.parseColor("#F8B45A"), Color.parseColor("#C3A1DB")};
         private int num;
 
         public CircleManager(Context context, int num) {
@@ -245,7 +189,7 @@ public class Roulette extends AppCompatActivity {
             int temp = 0; // temp : Arc를 그릴 시작 각도
 
             for (int i = 0; i < num; i++) {
-                paint.setColor(COLORS[i%4]);
+                paint.setColor(COLORS[i]);
                 paint.setStyle(Paint.Style.FILL_AND_STROKE);
                 //스타일
                 //FILL    채우기만 하며 외곽선은 그리지 않는다.   (디폴트)
@@ -271,7 +215,7 @@ public class Roulette extends AppCompatActivity {
                 float textX = (centerX + arcCenterX) / 2;
                 float textY = (centerY + arcCenterY) / 2;
 
-                canvas.drawText(str[i], textX, textY, paint);
+                canvas.drawText(list[i], textX, textY, paint);
                 temp += sweepAngle;
             }
         }

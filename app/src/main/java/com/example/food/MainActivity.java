@@ -74,8 +74,8 @@ public class MainActivity extends AppCompatActivity {
         japan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getApplicationContext(),test.class);
-                intent.putExtra("category"," 일식");
+                Intent intent=new Intent(getApplicationContext(),RouletteList.class);
+                //intent.putExtra("category"," 일식");
                 startActivity(intent);
             }
         });

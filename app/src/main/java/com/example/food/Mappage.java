@@ -19,8 +19,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -83,6 +85,7 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
     TextView txtaddress,txtlink,txtdesc,txtroad;
     //Marker marker = new Marker();
     ListView listView;
+    private LinearLayout containertalbe;
     // onCreate-----------------------------------------------------------------------------------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,13 +119,13 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
         longitude = intent.getDoubleExtra("longitude", 127.066242);
         category = intent.getStringExtra("category");
 
-        ListView listView =(ListView) findViewById(R.id.list_food);
         TextView location = findViewById(R.id.Txttest);
         //location.setText("위도=" + latitude + ", 경도=" + longitude);
         txtaddress=(TextView)findViewById(R.id.txtaddress);
         txtlink=(TextView)findViewById(R.id.txtlink);
         txtdesc=(TextView)findViewById(R.id.txtdesc);
         txtroad=(TextView)findViewById(R.id.txtroad);
+
 
 
         btnResearch = (Button)findViewById(R.id.btnResearch);
@@ -142,7 +145,7 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
                /* Intent intentList= new Intent(getApplicationContext(), Listpage.class);
                 intentList.putExtra("title",title);
                 startActivity(intentList);*/
-                if (!isUp) {
+                /*if (!isUp) {
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.foodlist_check, R.id.txt_lan,title);
                     // 리스트뷰에 설정된 arrayadpter를 적용함
                     //listView.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE_MODAL);
@@ -153,12 +156,20 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                         }
-                    });
+                    });*/
+                containertalbe=(LinearLayout)findViewById(R.id.map_Scroll);
+                for (int i=0;i< title.length;i++){
+                    Maplist n_layout= new Maplist(getApplicationContext());
+                    TextView map_user = (TextView)n_layout.findViewById(R.id.map_user);
+                    map_user.setText(title[i]);
+                    containertalbe.addView(n_layout);
+                    Log.d("up",Integer.toString(i));
+                }
 
                     slideUp(myView);
                     isUp = !isUp;
                     myView.bringToFront(); // start when animation complete
-                }
+                //}
                 Log.d("up","눌림");
             }
         });
@@ -192,6 +203,9 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
         road = new StringBuffer();
         Reversegeododing(latitude, longitude);
         searchNaver("문암로"+category);
+
+
+
         //road.toString()
         mapFragment.getMapAsync(this);
 
