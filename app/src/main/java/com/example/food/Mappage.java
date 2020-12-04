@@ -13,6 +13,7 @@ import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.animation.TranslateAnimation;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -66,6 +67,7 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
     private NaverMap mNaverMap;
     Button btnResearch,btn_test;
     ImageButton list_open, list_close;
+    TextView map_title;
     String category="";
     final int display = 5;
     String[] title = new String[display];
@@ -91,10 +93,13 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mappage_main);
+        //requestWindowFeature(Window.FEATURE_NO_TITLE); // 타이틀바 없애기
         myView=(View) findViewById(R.id.my_view);
         myView.setVisibility(View.INVISIBLE);
         myMap=(View)findViewById(R.id.my_map);
         drawer_layout=(View)findViewById(R.id.drawer_layout);
+        map_title=(TextView)findViewById(R.id.map_title);
+
         isUp = false;
         final LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         // 지도 객체 생성
@@ -118,9 +123,7 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
         latitude = intent.getDoubleExtra("latitude", 37.5670135);
         longitude = intent.getDoubleExtra("longitude", 127.066242);
         category = intent.getStringExtra("category");
-
-        TextView location = findViewById(R.id.Txttest);
-        //location.setText("위도=" + latitude + ", 경도=" + longitude);
+        map_title.setText(""+category);
         txtaddress=(TextView)findViewById(R.id.txtaddress);
         txtlink=(TextView)findViewById(R.id.txtlink);
         txtdesc=(TextView)findViewById(R.id.txtdesc);
@@ -142,35 +145,23 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
         list_open.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               /* Intent intentList= new Intent(getApplicationContext(), Listpage.class);
-                intentList.putExtra("title",title);
-                startActivity(intentList);*/
-                /*if (!isUp) {
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.foodlist_check, R.id.txt_lan,title);
-                    // 리스트뷰에 설정된 arrayadpter를 적용함
-                    //listView.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE_MODAL);
-                    listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-                    listView.setAdapter(adapter);
-                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                        }
-                    });*/
-                containertalbe=(LinearLayout)findViewById(R.id.map_Scroll);
-                for (int i=0;i< title.length;i++){
-                    Maplist n_layout= new Maplist(getApplicationContext());
-                    TextView map_user = (TextView)n_layout.findViewById(R.id.map_user);
-                    map_user.setText(title[i]);
-                    containertalbe.addView(n_layout);
-                    Log.d("up",Integer.toString(i));
-                }
+                if (!isUp) {
+                    containertalbe = (LinearLayout) findViewById(R.id.map_Scroll);
+                    for (int i = 0; i < title.length; i++) {
+                        Maplist n_layout = new Maplist(getApplicationContext());
+                        n_layout.setId(i);
+                        TextView map_user = (TextView) n_layout.findViewById(R.id.map_user);
+                        map_user.setText(title[i]);
+                        containertalbe.addView(n_layout);
+                        Log.d("up", Integer.toString(i));
+                    }
 
                     slideUp(myView);
                     isUp = !isUp;
                     myView.bringToFront(); // start when animation complete
-                //}
-                Log.d("up","눌림");
+                    //}
+                }
+                Log.d("up", "눌림");
             }
         });
         list_close=(ImageButton)findViewById(R.id.list_close);
@@ -188,6 +179,8 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
                     }, 500);
 
                 }
+                containertalbe = (LinearLayout) findViewById(R.id.map_Scroll);
+                containertalbe.removeAllViews();
                 Log.d("down","눌림");
             }
         });
@@ -202,11 +195,8 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
 
         road = new StringBuffer();
         Reversegeododing(latitude, longitude);
-        searchNaver("문암로"+category);
+        //searchNaver(road.toString()+category);
 
-
-
-        //road.toString()
         mapFragment.getMapAsync(this);
 
 
@@ -244,7 +234,14 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
         //마커 표시
         marker.setMap(mNaverMap);
     }*/
+    public void map_list_click(View view){
+        Intent Review_intent = new Intent(getApplicationContext(),Review.class);
+        TextView textView=(TextView)findViewById(R.id.map_user);
+        textView.getText().toString();
+        Review_intent.putExtra("title",textView.getText().toString());
+        startActivity(Review_intent);
 
+    }
 
     //----------------------------------------------------------------------------------------------------------------------------
     @Override
@@ -513,14 +510,22 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
                     String[] array;
                     array = data.split("\"");
 
+                    runOnUiThread(new Runnable() {
+                                      @Override
+                                      public void run() {
+                                          StringBuffer roadtest = new StringBuffer();// 도로명 주소가 저장되는 변수
+                                          int count = 0;
+                                          for (int i = array.length - 1; i >= 0; i--) {
+                                              if (array[i].equals("name")) {
+                                                  roadtest.append(array[i + 2].replaceAll("<[^>]*>", " "));
+                                                  break;
+                                              }
+                                          }
 
-                    int count = 0;
-                    for (int i = array.length - 1; i >= 0; i--) {
-                        if (array[i].equals("name")) {
-                            road.append(array[i + 2].replaceAll("<[^>]*>", " "));
-                            break;
-                        }
-                    }
+                                          searchNaver(roadtest.toString()+category);
+                                          Log.d(TAG, "name잘나오니: " + roadtest);
+                                      }
+                                  });
                     //road.append(" 일식");
                     // for (int i = 0; i < array.length; i++) {
                     Log.d(TAG, "name잘나오니: " + road);

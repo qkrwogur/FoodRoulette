@@ -21,7 +21,7 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/white"
                 android:gravity="center_horizontal"
-                android:text="가게 이름"
+                android:text="잘 들어갔니?"
                 android:textSize="25dp" />
 
             <View
@@ -40,19 +40,24 @@
                 android:background="@android:color/white"
 
                 />
+            <TextView
+                android:id="@+id/rv_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="주소"
+                android:gravity="center"
+                />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:orientation="vertical">
-
-            <ImageView
+            <fragment
+                xmlns:map="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/rv_navermap"
+                android:name="com.naver.maps.map.MapFragment"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                 />
-            <Gallery
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="match_parent" />
 
         </LinearLayout>
        <LinearLayout
@@ -75,6 +80,7 @@
                android:gravity="center"
                />
             <Button
+                android:id="@+id/rv_write"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:text="리뷰작성"

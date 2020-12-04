@@ -29,6 +29,7 @@
             android:label="@string/title_activity_naver_map"></activity>
         <activity android:name=".RouletteList"/>
         <activity android:name=".Review"/>
+        <activity android:name=".ReviewWrite"/>
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="ijv9rapnei" />
@@ -43,7 +44,6 @@
         <activity android:name=".login" />
         <activity android:name=".create_acount" />
         <activity android:name=".Roulette" />
-        <activity android:name=".test"/>
         <activity android:name=".ladder"/>
         <activity android:name=".ladderGame"/>
         <activity android:name=".Listpage"/>

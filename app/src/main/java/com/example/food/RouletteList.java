@@ -29,7 +29,6 @@ public class RouletteList extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.roulettelist);
-        requestWindowFeature(Window.FEATURE_NO_TITLE); // 타이틀바 없애기
         String[] items={"한식","일식","양식","중식",
                 "족발, 보쌈","찜, 탕","도시락","패스트푸드","분식","치킨","피자","아시아"};
         ListView roulette_LV =(ListView)findViewById(R.id.roulette_LV);

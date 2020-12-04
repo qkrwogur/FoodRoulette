@@ -32,23 +32,23 @@ public class Roulette extends AppCompatActivity {
     private RelativeLayout layoutRoulette;
 
     private Button btnRotate;
-    Button btnlist;
+
     private TextView tvResult;
 
     //private ArrayList<String> STRINGS;
     String[] list = {};
     private float initAngle = 0.0f;
     private int num_roulette = 0;
+    View dialogView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE); // 타이틀바 없애기
+        //requestWindowFeature(Window.FEATURE_NO_TITLE); // 타이틀바 없애기
         setContentView(R.layout.roulette);
 
         tvResult = findViewById(R.id.tvResult);
         btnRotate = findViewById(R.id.btnRotate);
-        btnlist=(Button)findViewById(R.id.btnlist);
         layoutRoulette = findViewById(R.id.layoutRoulette);
         Intent listintent= getIntent();
         list=listintent.getStringArrayExtra("list");
@@ -147,17 +147,14 @@ public class Roulette extends AppCompatActivity {
 
     // if you want use AlertDialog then use this
     private void buildAlert(String text) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Congratulations")
-                .setMessage("You have earned " + text + " points!")
-                .setPositiveButton("OK", new DialogInterface.OnClickListener(){
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        layoutRoulette.setRotation(360 - initAngle);
-                    }
-                });
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
+        android.app.AlertDialog.Builder mBuilder = new android.app.AlertDialog.Builder(Roulette.this);
+        dialogView=getLayoutInflater().inflate(R.layout.detail,null);
+        mBuilder.setTitle(text);
+        mBuilder.setNegativeButton("취소",null);
+        mBuilder.setPositiveButton("확인",null);
+        mBuilder.setView(dialogView);
+        android.app.AlertDialog dialog = mBuilder.create();
+        dialog.show();
     }
 
     public class CircleManager extends View {

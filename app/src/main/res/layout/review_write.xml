@@ -14,9 +14,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/buttonshape"
+            android:layout_marginBottom="5dp"
             android:orientation="vertical"
             android:padding="15dp">
             <TextView
+                android:id="@+id/rv_write_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/white"
@@ -29,6 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/buttonshape"
+            android:layout_marginBottom="5dp"
             android:orientation="vertical"
             android:padding="15dp">
             <LinearLayout
@@ -39,7 +42,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="3"
                     android:text="맛"
                     android:textSize="20dp"
                     android:layout_gravity="center"
@@ -71,7 +74,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="3"
                     android:text="분위기"
                     android:textSize="20dp"
                     android:layout_gravity="center"
@@ -103,7 +106,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="3"
                     android:text="청결도"
                     android:textSize="20dp"
                     android:layout_gravity="center"
@@ -135,7 +138,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="3"
                     android:text="양"
                     android:textSize="20dp"
                     android:layout_gravity="center"
@@ -167,7 +170,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="3"
                     android:text="가격"
                     android:textSize="20dp"
                     android:layout_gravity="center"
@@ -197,6 +200,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/buttonshape"
+            android:layout_marginBottom="5dp"
             android:orientation="vertical"
             android:padding="15dp">
             <TextView

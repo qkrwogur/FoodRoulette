@@ -44,14 +44,14 @@ public class MainActivity extends AppCompatActivity {
         roulette1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getApplicationContext(),Roulette.class);
+                Intent intent=new Intent(getApplicationContext(),RouletteList.class);
                 startActivity(intent);
             }
         });
         map.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getApplicationContext(),test.class);
+                Intent intent=new Intent(getApplicationContext(),Mappage.class);
                 intent.putExtra("category"," 식당");
                 startActivity(intent);
             }
@@ -74,15 +74,15 @@ public class MainActivity extends AppCompatActivity {
         japan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getApplicationContext(),RouletteList.class);
-                //intent.putExtra("category"," 일식");
+                Intent intent=new Intent(getApplicationContext(),Mappage.class);
+                intent.putExtra("category"," 일식");
                 startActivity(intent);
             }
         });
         chain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getApplicationContext(),test.class);
+                Intent intent=new Intent(getApplicationContext(),Mappage.class);
                 intent.putExtra("category"," 중식");
                 startActivity(intent);
             }
@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         western.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getApplicationContext(),test.class);
+                Intent intent=new Intent(getApplicationContext(),Mappage.class);
                 intent.putExtra("category"," 양식");
                 startActivity(intent);
             }
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         flour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getApplicationContext(),test.class);
+                Intent intent=new Intent(getApplicationContext(),Mappage.class);
                 intent.putExtra("category"," 분식");
                 startActivity(intent);
             }
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         alone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getApplicationContext(),test.class);
+                Intent intent=new Intent(getApplicationContext(),Mappage.class);
                 intent.putExtra("category"," 혼밥");
                 startActivity(intent);
             }
@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
         delivery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getApplicationContext(),test.class);
+                Intent intent=new Intent(getApplicationContext(),Mappage.class);
                 intent.putExtra("category"," 배달");
                 startActivity(intent);
             }
@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
         asia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getApplicationContext(),test.class);
+                Intent intent=new Intent(getApplicationContext(),Mappage.class);
                 intent.putExtra("category"," 아시아");
                 startActivity(intent);
             }
@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
         fast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getApplicationContext(),test.class);
+                Intent intent=new Intent(getApplicationContext(),Mappage.class);
                 intent.putExtra("category"," 햄버거");
                 startActivity(intent);
             }
@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
         latenihgt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getApplicationContext(),test.class);
+                Intent intent=new Intent(getApplicationContext(),Mappage.class);
                 intent.putExtra("category"," 야식");
                 startActivity(intent);
             }
@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
         cafe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getApplicationContext(),test.class);
+                Intent intent=new Intent(getApplicationContext(),Mappage.class);
                 intent.putExtra("category"," 카페");
                 startActivity(intent);
             }
@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
         pig.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getApplicationContext(),test.class);
+                Intent intent=new Intent(getApplicationContext(),Mappage.class);
                 intent.putExtra("category"," 족발");
                 startActivity(intent);
             }
@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
         steamedsoup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getApplicationContext(),test.class);
+                Intent intent=new Intent(getApplicationContext(),Mappage.class);
                 intent.putExtra("category"," 찜");
                 startActivity(intent);
             }
@@ -170,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
         box.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getApplicationContext(),test.class);
+                Intent intent=new Intent(getApplicationContext(),Mappage.class);
                 intent.putExtra("category"," 도시락");
                 startActivity(intent);
             }
@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
         chicken.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getApplicationContext(),test.class);
+                Intent intent=new Intent(getApplicationContext(),Mappage.class);
                 intent.putExtra("category"," 치킨");
                 startActivity(intent);
             }
@@ -186,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
         pizza.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getApplicationContext(),test.class);
+                Intent intent=new Intent(getApplicationContext(),Mappage.class);
                 intent.putExtra("category"," 피자");
                 startActivity(intent);
             }
@@ -194,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
         all.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getApplicationContext(),test.class);
+                Intent intent=new Intent(getApplicationContext(),Mappage.class);
                 intent.putExtra("category"," 식당");
                 startActivity(intent);
             }
