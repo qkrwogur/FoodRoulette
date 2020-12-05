@@ -98,6 +98,8 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
     //Marker marker = new Marker();
     ListView listView;
     private LinearLayout containertalbe;
+
+
     // onCreate-----------------------------------------------------------------------------------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,6 +111,9 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
         myMap=(View)findViewById(R.id.my_map);
         drawer_layout=(View)findViewById(R.id.drawer_layout);
         map_title=(TextView)findViewById(R.id.map_title);
+
+        String a="aa".toString();
+        String b="bb".toString();
 
         isUp = false;
         final LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -192,7 +197,7 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
                                         }
                                     };
                                     //서버로 volly 사용 하여 요청
-                                    StarRequest starRequest = new StarRequest("testid","teststore",reponseListener);
+                                    StarRequest starRequest = new StarRequest(a,b,reponseListener);
                                     RequestQueue queue = Volley.newRequestQueue(Mappage.this);
                                     queue.add(starRequest);
                                 }else{

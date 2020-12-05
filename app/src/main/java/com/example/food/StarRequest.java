@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class StarRequest extends StringRequest {
     //서버 URL 연결 (PHP파일 연결)
-    final static private String URL = "http://food1116.dothome.co.kr/Star.php";
+    final static private String URL = "http://food1116.dothome.co.kr/star.php";
     private Map<String,String> map;
 
     public StarRequest(String id, String store, Response.Listener<String> listener){
