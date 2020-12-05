@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,8 +16,9 @@ import androidx.annotation.Nullable;
 public class ReviewWrite extends Activity {
     TextView rv_write_title;
     Button rv_write_end;
-    String title= new String();
+    String title = new String();
     RatingBar RC_taste,RC_atmosphere,RC_cleanliness,RC_volume,RC_price;
+    EditText rv_write_Contents;
     int taste,atmosphere,cleanliness,volume,price;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -27,27 +29,70 @@ public class ReviewWrite extends Activity {
         Intent titleintent = getIntent();
         title = titleintent.getStringExtra("title");
         rv_write_title.setText(title);
-
+        rv_write_Contents=(EditText)findViewById(R.id.rv_write_Contents);
 
         RC_taste=(RatingBar)findViewById(R.id.RC_taste);
         RC_atmosphere=(RatingBar)findViewById(R.id.RC_atmosphere);
         RC_cleanliness=(RatingBar)findViewById(R.id.RC_cleanliness);
         RC_volume=(RatingBar)findViewById(R.id.RC_volume);
         RC_price=(RatingBar)findViewById(R.id.RC_price);
-
-        taste=(int)RC_taste.getRating();
-
-
+        RC_taste.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                if (ratingBar.getRating()<1.0f){
+                    ratingBar.setRating(0.5f);
+                }
+                taste=(int)(rating*2);
+            }
+        });
+        RC_atmosphere.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                if (ratingBar.getRating()<1.0f){
+                    ratingBar.setRating(0.5f);
+                }
+                atmosphere=(int)(rating*2);
+            }
+        });
+        RC_cleanliness.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                if (ratingBar.getRating()<1.0f){
+                    ratingBar.setRating(0.5f);
+                }
+                cleanliness=(int)(rating*2);
+            }
+        });
+        RC_volume.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                if (ratingBar.getRating()<1.0f){
+                    ratingBar.setRating(0.5f);
+                }
+                volume=(int)(rating*2);
+            }
+        });
+        RC_price.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                if (ratingBar.getRating()<1.0f){
+                    ratingBar.setRating(0.5f);
+                }
+                price=(int)(rating*2);
+            }
+        });
 
         rv_write_end.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Toast.makeText(getApplicationContext(),Integer.toString(taste), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(),Review.class);
+                String Contents = new String();
+                Contents = rv_write_Contents.getText().toString(); // 리뷰내용 저장
+                Toast.makeText(getApplicationContext(),Contents, Toast.LENGTH_SHORT).show();
+                /*Intent intent = new Intent(getApplicationContext(),Review.class);
                 intent.putExtra("title",title);
-                startActivity(intent);
+                startActivity(intent);*/
             }
         });
     }
+
 }

@@ -37,6 +37,7 @@ public class Roulette extends AppCompatActivity {
 
     //private ArrayList<String> STRINGS;
     String[] list = {};
+    int select;
     private float initAngle = 0.0f;
     private int num_roulette = 0;
     View dialogView;
@@ -53,6 +54,7 @@ public class Roulette extends AppCompatActivity {
         Intent listintent= getIntent();
         list=listintent.getStringArrayExtra("list");
         num_roulette=list.length;
+        select=listintent.getIntExtra("select",1);
         circleManager = new CircleManager(Roulette.this, num_roulette);
         layoutRoulette.addView(circleManager);
 
@@ -148,10 +150,24 @@ public class Roulette extends AppCompatActivity {
     // if you want use AlertDialog then use this
     private void buildAlert(String text) {
         android.app.AlertDialog.Builder mBuilder = new android.app.AlertDialog.Builder(Roulette.this);
-        dialogView=getLayoutInflater().inflate(R.layout.detail,null);
-        mBuilder.setTitle(text);
+        dialogView=getLayoutInflater().inflate(R.layout.roulette_dialog,null);
+        //mBuilder.setTitle(text);
+        TextView roulette_result=(TextView)dialogView.findViewById(R.id.roulette_result);
+        roulette_result.setText(text);
         mBuilder.setNegativeButton("취소",null);
-        mBuilder.setPositiveButton("확인",null);
+        mBuilder.setPositiveButton("확인",new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                if(select==1){}
+                else if(select==2){
+                    Intent intent = new Intent(getApplicationContext(),Mappage.class);
+                    intent.putExtra("category",text);
+                    startActivity(intent);
+                }else {
+
+                }
+                Toast.makeText(getApplicationContext(), "예를 선택했습니다.", Toast.LENGTH_LONG).show();
+            }
+        });
         mBuilder.setView(dialogView);
         android.app.AlertDialog dialog = mBuilder.create();
         dialog.show();

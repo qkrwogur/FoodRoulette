@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="@drawable/buttonshape"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/roulette_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="결과"
+        android:textSize="25sp"
+        android:gravity="center"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="도로명 주소"
+        android:textSize="10sp"
+        android:gravity="center"
+        />
+
+</LinearLayout>

@@ -89,6 +89,7 @@ public class RouletteList extends Activity {
             if (count>1&&count<7) {
                 Intent intent = new Intent(getApplicationContext(), Roulette.class);
                 intent.putExtra("list", items);
+                intent.putExtra("select",select);
                 startActivity(intent);
                 Toast.makeText(this, "선택 갯수 : " + selectedItems.size(), Toast.LENGTH_LONG).show();
             }else
@@ -99,6 +100,7 @@ public class RouletteList extends Activity {
                 Intent intent = new Intent(getApplicationContext(), Roulette.class);
                 items = selectedItems.toArray(new String[selectedItems.size()]);
                 intent.putExtra("list", items);
+                intent.putExtra("select",select);
                 startActivity(intent);
                 Toast.makeText(this, "선택 갯수 : " + selectedItems.size(), Toast.LENGTH_LONG).show();
             } else
