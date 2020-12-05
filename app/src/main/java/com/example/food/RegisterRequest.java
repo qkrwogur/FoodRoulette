@@ -20,9 +20,11 @@ public class RegisterRequest extends StringRequest {
         map.put("userPassword",userPassword);
         map.put("userName",userName);
         map.put("userPhone",userPhone);
+        //int 형은 user+""형태로 하면 된다.
 
     }
 
+    //ctrl + o getParams
     @Override
     protected Map<String, String> getParams() throws AuthFailureError {
         return map;
