@@ -20,12 +20,15 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,6 +37,9 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.geometry.Tm128;
 import com.naver.maps.map.LocationTrackingMode;
@@ -45,6 +51,9 @@ import com.naver.maps.map.overlay.Marker;
 import com.naver.maps.map.overlay.Overlay;
 import com.naver.maps.map.util.FusedLocationSource;
 
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 
@@ -156,10 +165,46 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
                         TextView map_user = (TextView) n_layout.findViewById(R.id.map_user);
                         map_user.setId(i+100);
                         map_user.setText(title[i]);
+                        CheckBox map_like = (CheckBox) n_layout.findViewById(R.id.map_like);
+                        map_like.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                                if ( isChecked ) {
+                                    Log.d("checkbox : ", "눌림" );
+                                    Response.Listener<String> reponseListener = new Response.Listener<String>() {
+                                        @Override
+                                        public void onResponse(String response) {
+                                            try {
+                                                JSONObject jsonObject = new JSONObject(response);
+                                                boolean success =jsonObject.getBoolean("success");
+                                                if(success){
+                                                    Toast.makeText(getApplicationContext(),"즐겨찾기 성공",Toast.LENGTH_SHORT).show();
+                                                   /* Intent intent = new Intent(Mappage.this,login.class);
+                                                    startActivity(intent);*/
+                                                }
+                                                else{
+                                                    Toast.makeText(getApplicationContext(),"즐겨찾기 실패",Toast.LENGTH_SHORT).show();
+                                                    return;
+                                                }
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                            }
+
+                                        }
+                                    };
+                                    //서버로 volly 사용 하여 요청
+                                    StarRequest starRequest = new StarRequest("testid","teststore",reponseListener);
+                                    RequestQueue queue = Volley.newRequestQueue(Mappage.this);
+                                    queue.add(starRequest);
+                                }else{
+                                    Log.d("checkbox : ", "안눌림" );
+                                }
+                            }
+                        });
                         n_layout.setOnClickListener(clickInLinearLayout());
                         containertalbe.addView(n_layout);
                         Log.d("up", Integer.toString(i));
-                    }
+
+                   }
 
                     slideUp(myView);
                     isUp = !isUp;
@@ -203,7 +248,6 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
         //searchNaver(road.toString()+category);
 
         mapFragment.getMapAsync(this);
-
 
     }
 
@@ -254,6 +298,7 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
                 Review_intent.putExtra("title",title[position]);
                 Review_intent.putExtra("mx",mx);
                 Review_intent.putExtra("my",my);
+                Review_intent.putExtra("roadaddress",postdate[position]);
                 startActivity(Review_intent);
             }
         };

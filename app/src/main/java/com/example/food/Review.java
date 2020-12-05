@@ -30,11 +30,11 @@ public class Review extends AppCompatActivity implements OnMapReadyCallback {
     String[] test={"1","2","3","4","5","6","7","8","9","10"};
     private LinearLayout containertalbe;
     Button rv_write;    // 리뷰 작성 버튼
-    TextView rv_title;  // 가게 이름 텍스트뷰
+    TextView rv_title, rv_address;  // 가게 이름, 도로명 주소 텍스트뷰
     private NaverMap mNaverMap;
     private FusedLocationSource mLocationSource;
     private static final int PERMISSION_REQUEST_CODE = 100;
-    String get_title;
+    String get_title,roadaddress;
     LatLng latLng;
     CameraPosition cameraPosition;
     @Override
@@ -48,6 +48,9 @@ public class Review extends AppCompatActivity implements OnMapReadyCallback {
         get_title=info_intent.getStringExtra("title");// get_title = 가게이름
         double mx=info_intent.getDoubleExtra("mx",37.5666102);
         double my=info_intent.getDoubleExtra("my",126.9783881);
+        roadaddress=info_intent.getStringExtra("roadaddress");
+        rv_address= (TextView)findViewById(R.id.rv_address);
+        rv_address.setText(roadaddress);
         Tm128 tm128 = new Tm128(mx, my);
         latLng = tm128.toLatLng();
         rv_title.setText(get_title);
