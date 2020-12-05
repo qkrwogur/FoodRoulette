@@ -11,15 +11,20 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.UiThread;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentManager;
 
 import com.naver.maps.geometry.LatLng;
+import com.naver.maps.geometry.Tm128;
 import com.naver.maps.map.CameraPosition;
+import com.naver.maps.map.CameraUpdate;
 import com.naver.maps.map.MapFragment;
 import com.naver.maps.map.NaverMap;
 import com.naver.maps.map.OnMapReadyCallback;
+import com.naver.maps.map.overlay.InfoWindow;
+import com.naver.maps.map.util.FusedLocationSource;
 
 public class Review extends AppCompatActivity implements OnMapReadyCallback {
     String[] test={"1","2","3","4","5","6","7","8","9","10"};
@@ -27,6 +32,8 @@ public class Review extends AppCompatActivity implements OnMapReadyCallback {
     Button rv_write;    // 리뷰 작성 버튼
     TextView rv_title;  // 가게 이름 텍스트뷰
     private NaverMap mNaverMap;
+    private FusedLocationSource mLocationSource;
+    private static final int PERMISSION_REQUEST_CODE = 100;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,18 +43,34 @@ public class Review extends AppCompatActivity implements OnMapReadyCallback {
         containertalbe=(LinearLayout)findViewById(R.id.rv_Reviewtable);
         Intent info_intent=getIntent();
         String get_title=info_intent.getStringExtra("title");
+        double mx=info_intent.getDoubleExtra("mx",37.5666102);
+        double my=info_intent.getDoubleExtra("my",126.9783881);
+        Tm128 tm128 = new Tm128(mx, my);
+        LatLng latLng = tm128.toLatLng();
         rv_title.setText(get_title);
-        CameraPosition cameraPosition =
-                new CameraPosition(new LatLng(37.5666102, 126.9783881), 16);
 
         FragmentManager fm = getSupportFragmentManager();
         MapFragment mapFragment = (MapFragment)fm.findFragmentById(R.id.rv_navermap);
         if (mapFragment == null) {
             mapFragment = MapFragment.newInstance();
-            fm.beginTransaction().add(R.id.map, mapFragment).commit();
+            fm.beginTransaction().add(R.id.rv_navermap, mapFragment).commit();
         }
         mapFragment.getMapAsync(this);
+        mLocationSource =
+                new FusedLocationSource(this, PERMISSION_REQUEST_CODE);
+        CameraUpdate cameraUpdate = CameraUpdate.scrollTo(latLng);
+        InfoWindow infoWindow = new InfoWindow();
+        infoWindow.setAdapter(new InfoWindow.DefaultTextAdapter(getApplicationContext()) {
+            @NonNull
+            @Override
+            public CharSequence getText(@NonNull InfoWindow infoWindow) {
+                return get_title;
+            }
+        });
+        infoWindow.setPosition(latLng);
+        infoWindow.open(mNaverMap);
 
+        mNaverMap.moveCamera(cameraUpdate);
 
         for (int i=0;i< test.length;i++){
             Reviewlist n_layout= new Reviewlist(getApplicationContext());
@@ -64,8 +87,11 @@ public class Review extends AppCompatActivity implements OnMapReadyCallback {
             }
         });
     }
+    @UiThread
     @Override
     public void onMapReady(@NonNull NaverMap naverMap) {
+        mNaverMap = naverMap;
+        mNaverMap.setLocationSource(mLocationSource);
 
     }
 }

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.ActionMode;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -148,10 +149,14 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
                 if (!isUp) {
                     containertalbe = (LinearLayout) findViewById(R.id.map_Scroll);
                     for (int i = 0; i < title.length; i++) {
-                        Maplist n_layout = new Maplist(getApplicationContext());
-                        n_layout.setId(i);
+                       // Maplist n_layout = new Maplist(getApplicationContext());
+                        LayoutInflater inflater = (LayoutInflater)getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                        View n_layout=inflater.inflate(R.layout.foodlist_check,null);
+                        n_layout.setTag(Integer.toString(i));
                         TextView map_user = (TextView) n_layout.findViewById(R.id.map_user);
+                        map_user.setId(i+100);
                         map_user.setText(title[i]);
+                        n_layout.setOnClickListener(clickInLinearLayout());
                         containertalbe.addView(n_layout);
                         Log.d("up", Integer.toString(i));
                     }
@@ -234,13 +239,24 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
         //마커 표시
         marker.setMap(mNaverMap);
     }*/
-    public void map_list_click(View view){
-        Intent Review_intent = new Intent(getApplicationContext(),Review.class);
-        TextView textView=(TextView)findViewById(R.id.map_user);
-        textView.getText().toString();
-        Review_intent.putExtra("title",textView.getText().toString());
-        startActivity(Review_intent);
-
+    private View.OnClickListener clickInLinearLayout()
+    {
+        return new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent Review_intent = new Intent(getApplicationContext(),Review.class);
+                Integer position = Integer.parseInt(v.getTag().toString());
+                double mx = Double.parseDouble(mapx[position]);
+                double my = Double.parseDouble(mapy[position]);
+                Log.d("click",Integer.toString(position));
+                Review_intent.putExtra("title",title[position]);
+                Review_intent.putExtra("mx",mx);
+                Review_intent.putExtra("my",my);
+                startActivity(Review_intent);
+            }
+        };
     }
 
     //----------------------------------------------------------------------------------------------------------------------------
@@ -442,9 +458,6 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
                                 infoWindow.open(mNaverMap);
                             }
 
-                            for(int i = 0; i < display; i++) {
-                                Log.d("maker", " mapx :" + mapx[i] + " mapy :" + mapy[i]);
-                            }
 
                         }
                     });

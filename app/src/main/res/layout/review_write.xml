@@ -42,7 +42,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_weight="2"
                     android:text="맛"
                     android:textSize="20dp"
                     android:layout_gravity="center"
@@ -50,14 +50,14 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="9"
+                    android:layout_weight="8"
                     android:gravity="center_horizontal"
                     >
                     <RatingBar
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:numStars="5"
-                        android:isIndicator="true"
+                        android:isIndicator="false"
                         android:stepSize="0.5"
                         android:max="5"
                         android:layout_gravity="center_horizontal"
@@ -74,7 +74,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_weight="2"
                     android:text="분위기"
                     android:textSize="20dp"
                     android:layout_gravity="center"
@@ -82,14 +82,14 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="9"
+                    android:layout_weight="8"
                     android:gravity="center_horizontal"
                     >
                     <RatingBar
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:numStars="5"
-                        android:isIndicator="true"
+                        android:isIndicator="false"
                         android:stepSize="0.5"
                         android:max="5"
                         android:layout_gravity="center_horizontal"
@@ -106,7 +106,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_weight="2"
                     android:text="청결도"
                     android:textSize="20dp"
                     android:layout_gravity="center"
@@ -114,14 +114,14 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="9"
+                    android:layout_weight="8"
                     android:gravity="center_horizontal"
                     >
                     <RatingBar
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:numStars="5"
-                        android:isIndicator="true"
+                        android:isIndicator="false"
                         android:stepSize="0.5"
                         android:max="5"
                         android:layout_gravity="center_horizontal"
@@ -138,7 +138,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_weight="2"
                     android:text="양"
                     android:textSize="20dp"
                     android:layout_gravity="center"
@@ -146,14 +146,14 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="9"
+                    android:layout_weight="8"
                     android:gravity="center_horizontal"
                     >
                     <RatingBar
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:numStars="5"
-                        android:isIndicator="true"
+                        android:isIndicator="false"
                         android:stepSize="0.5"
                         android:max="5"
                         android:layout_gravity="center_horizontal"
@@ -170,7 +170,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_weight="2"
                     android:text="가격"
                     android:textSize="20dp"
                     android:layout_gravity="center"
@@ -178,14 +178,14 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="9"
+                    android:layout_weight="8"
                     android:gravity="center_horizontal"
                     >
                     <RatingBar
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:numStars="5"
-                        android:isIndicator="true"
+                        android:isIndicator="false"
                         android:stepSize="0.5"
                         android:max="5"
                         android:layout_gravity="center_horizontal"
@@ -227,6 +227,7 @@
 
         </LinearLayout>
         <Button
+            android:id="@+id/rv_write_end"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="작성완료"
