@@ -7,12 +7,12 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ReviewWrite_Request extends StringRequest {
+public class ReviewWriteRequest extends StringRequest {
     //서버 URL 연결 (PHP파일 연결)
-    final static private String URL = "http://food1116.dothome.co.kr/ReviewWrite_Request.php";
+    final static private String URL = "http://food1116.dothome.co.kr/ReviewWriteRequest.php";
     private Map<String,String> map;
 
-    public ReviewWrite_Request(String store, String id, int taste, int atmosphere,int price,int cleanliness ,int volume,String reviewTest,Response.Listener<String> listener){
+    public ReviewWriteRequest(String store, String id, int taste, int atmosphere, int price, int cleanliness , int volume, String reviewTest, Response.Listener<String> listener){
         super(Method.POST,URL,listener,null);
 
         map =new HashMap<>();
