@@ -39,14 +39,14 @@ public class Review extends AppCompatActivity implements OnMapReadyCallback {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.review);
         rv_write=(Button)findViewById(R.id.rv_write);
-        rv_title=(TextView)findViewById(R.id.rv_title);
+        rv_title=(TextView)findViewById(R.id.rv_title); // 가게이름
         containertalbe=(LinearLayout)findViewById(R.id.rv_Reviewtable);
         Intent info_intent=getIntent();
-        String get_title=info_intent.getStringExtra("title");
-        double mx=info_intent.getDoubleExtra("mx",37.5666102);
+        String get_title=info_intent.getStringExtra("title");// get_title = 가게이름
+        /*double mx=info_intent.getDoubleExtra("mx",37.5666102);
         double my=info_intent.getDoubleExtra("my",126.9783881);
         Tm128 tm128 = new Tm128(mx, my);
-        LatLng latLng = tm128.toLatLng();
+        LatLng latLng = tm128.toLatLng();*/
         rv_title.setText(get_title);
 
         FragmentManager fm = getSupportFragmentManager();
@@ -56,7 +56,7 @@ public class Review extends AppCompatActivity implements OnMapReadyCallback {
             fm.beginTransaction().add(R.id.rv_navermap, mapFragment).commit();
         }
         mapFragment.getMapAsync(this);
-        mLocationSource =
+        /*mLocationSource =
                 new FusedLocationSource(this, PERMISSION_REQUEST_CODE);
         CameraUpdate cameraUpdate = CameraUpdate.scrollTo(latLng);
         InfoWindow infoWindow = new InfoWindow();
@@ -70,7 +70,7 @@ public class Review extends AppCompatActivity implements OnMapReadyCallback {
         infoWindow.setPosition(latLng);
         infoWindow.open(mNaverMap);
 
-        mNaverMap.moveCamera(cameraUpdate);
+        mNaverMap.moveCamera(cameraUpdate);*/
 
         for (int i=0;i< test.length;i++){
             Reviewlist n_layout= new Reviewlist(getApplicationContext());
