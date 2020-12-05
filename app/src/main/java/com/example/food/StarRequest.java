@@ -12,16 +12,18 @@ public class StarRequest extends StringRequest {
     final static private String URL = "http://food1116.dothome.co.kr/star.php";
     private Map<String,String> map;
 
-    public StarRequest(String id, String store, Response.Listener<String> listener){
-        super(Method.POST,URL,listener,null);
+    public StarRequest(String id, String store, String road, String mapx, String mapy, Response.Listener<String> listener) {
+        super(Method.POST, URL, listener, null);
 
-        map =new HashMap<>();
-        map.put("id",id);
-        map.put("store",store);
-
+        map = new HashMap<>();
+        map.put("id", id);
+        map.put("store", store);
+        map.put("road", road);
+        map.put("mapx", mapx);
+        map.put("mapy", mapy);
     }
 
-    @Override
+        @Override
     protected Map<String, String> getParams() throws AuthFailureError {
         return map;
     }

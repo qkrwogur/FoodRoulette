@@ -112,8 +112,6 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
         drawer_layout=(View)findViewById(R.id.drawer_layout);
         map_title=(TextView)findViewById(R.id.map_title);
 
-        String a="aa".toString();
-        String b="bb".toString();
 
         isUp = false;
         final LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -171,10 +169,21 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
                         map_user.setId(i+100);
                         map_user.setText(title[i]);
                         CheckBox map_like = (CheckBox) n_layout.findViewById(R.id.map_like);
+                        map_like.setId(i+200);
                         map_like.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                                int i = buttonView.getId();
+                                i=i-200;
+                                double mx = Double.parseDouble(mapx[i]);
+                                double my = Double.parseDouble(mapy[i]);
+                                Tm128 tm128 = new Tm128(mx, my);
+                                LatLng latLng = tm128.toLatLng();
+                                mx=latLng.latitude;
+                                my=latLng.longitude;
+                                Toast.makeText(getApplicationContext(),Integer.toString(i),Toast.LENGTH_LONG).show();
                                 if ( isChecked ) {
                                     Log.d("checkbox : ", "눌림" );
+
                                     Response.Listener<String> reponseListener = new Response.Listener<String>() {
                                         @Override
                                         public void onResponse(String response) {
@@ -182,12 +191,40 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
                                                 JSONObject jsonObject = new JSONObject(response);
                                                 boolean success =jsonObject.getBoolean("success");
                                                 if(success){
-                                                    Toast.makeText(getApplicationContext(),"즐겨찾기 성공",Toast.LENGTH_SHORT).show();
-                                                   /* Intent intent = new Intent(Mappage.this,login.class);
+                                                    Toast.makeText(getApplicationContext(),"즐겨찾기 생성 성공",Toast.LENGTH_SHORT).show();
+                                                    /*Intent intent = new Intent(Mappage.this,login.class);
                                                     startActivity(intent);*/
                                                 }
                                                 else{
-                                                    Toast.makeText(getApplicationContext(),"즐겨찾기 실패",Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(getApplicationContext(),"즐겨찾기 생성 실패",Toast.LENGTH_SHORT).show();
+                                                    return;
+                                                }
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                            }
+
+                                        }
+                                    };
+
+                                    //서버로 volly 사용 하여 요청
+                                    StarRequest starRequest = new StarRequest("이민기",title[i],postdate[i],Double.toString(mx),Double.toString(my),reponseListener);
+                                    RequestQueue queue = Volley.newRequestQueue(Mappage.this);
+                                    queue.add(starRequest);
+                                }else{
+                                    Log.d("checkbox : ", "안눌림" );
+                                    Response.Listener<String> reponseListener = new Response.Listener<String>() {
+                                        @Override
+                                        public void onResponse(String response) {
+                                            try {
+                                                JSONObject jsonObject = new JSONObject(response);
+                                                boolean success =jsonObject.getBoolean("success");
+                                                if(success){
+                                                    Toast.makeText(getApplicationContext(),"즐겨찾기 삭제 성공",Toast.LENGTH_SHORT).show();
+                                                    /*Intent intent = new Intent(Mappage.this,login.class);
+                                                    startActivity(intent);*/
+                                                }
+                                                else{
+                                                    Toast.makeText(getApplicationContext(),"즐겨찾기 삭제 실패",Toast.LENGTH_SHORT).show();
                                                     return;
                                                 }
                                             } catch (JSONException e) {
@@ -197,11 +234,9 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
                                         }
                                     };
                                     //서버로 volly 사용 하여 요청
-                                    StarRequest starRequest = new StarRequest(a,b,reponseListener);
+                                    StarRMRequest starRMRequest = new StarRMRequest("이민기",title[i],reponseListener);
                                     RequestQueue queue = Volley.newRequestQueue(Mappage.this);
-                                    queue.add(starRequest);
-                                }else{
-                                    Log.d("checkbox : ", "안눌림" );
+                                    queue.add(starRMRequest);
                                 }
                             }
                         });

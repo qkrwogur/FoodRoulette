@@ -25,12 +25,13 @@ public class RouletteList extends Activity {
     LinearLayout category;
     LinearLayout free;
     EditText Edt1,Edt2,Edt3,Edt4,Edt5,Edt6;
+    String[] items={"한식","일식","양식","중식",
+            "족발, 보쌈","찜, 탕","도시락","패스트푸드","분식","치킨","피자","아시아"};
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.roulettelist);
-        String[] items={"한식","일식","양식","중식",
-                "족발, 보쌈","찜, 탕","도시락","패스트푸드","분식","치킨","피자","아시아"};
+
         ListView roulette_LV =(ListView)findViewById(R.id.roulette_LV);
         roulette_LV.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
@@ -114,11 +115,16 @@ public class RouletteList extends Activity {
     }
     public void categoryClick(View view) {
         select=2;
+        items= new String[]{"한식", "일식", "양식", "중식",
+                "족발, 보쌈", "찜, 탕", "도시락", "패스트푸드", "분식", "치킨", "피자", "아시아"};
         category.setVisibility(View.VISIBLE);
         free.setVisibility(View.INVISIBLE);
+
     }
     public void starClick(View view) {
         select=3;
+        items= new String[]{"한식", "일식", "양식", "중식",
+                "족발, 보쌈", "찜, 탕", "도시락", "패스트푸드", "분식", "치킨", "피자", "아시아"};
         category.setVisibility(View.INVISIBLE);
         free.setVisibility(View.VISIBLE);
     }
