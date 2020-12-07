@@ -119,7 +119,11 @@ public class ReviewWrite extends Activity {
                     }
                 };
                 //서버로 volly 사용 하여 요청
-                ReviewWriteRequest reviewWriteRequest = new ReviewWriteRequest(title,"qq",taste,atmosphere,cleanliness,volume,price,Contents,reponseListener);
+
+                SessionManagement sessionManagement = new SessionManagement(ReviewWrite.this);
+
+                String userID = sessionManagement.getSession();
+                ReviewWriteRequest reviewWriteRequest = new ReviewWriteRequest(title,userID,taste,atmosphere,cleanliness,volume,price,Contents,reponseListener);
                 RequestQueue queue = Volley.newRequestQueue(ReviewWrite.this);
                 queue.add(reviewWriteRequest);
             }

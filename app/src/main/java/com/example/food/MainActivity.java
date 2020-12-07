@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
     Button map;
     Button ladder;
     Button korea, japan, chain, western, flour, alone, delivery, asia, fast, latenihgt, cafe, pig,steamedsoup,box,chicken,pizza,all;
-    Button home,logoutBtn;
+    Button home,logoutBtn,myinfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         all=(Button)findViewById(R.id.all);
         home =(Button)findViewById(R.id.home);
         logoutBtn=(Button)findViewById(R.id.logoutBtn);
+        myinfo=(Button)findViewById(R.id.myinformation);
 
 
         roulette1.setOnClickListener(new View.OnClickListener() {
@@ -215,6 +216,15 @@ public class MainActivity extends AppCompatActivity {
                 sessionManagement.removeSession();
 
                 moveToLogin();
+
+            }
+        });
+
+        myinfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =new Intent(getApplicationContext(),MyInformation.class);
+                startActivity(intent);
 
             }
         });
