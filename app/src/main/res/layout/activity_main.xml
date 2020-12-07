@@ -232,13 +232,14 @@
         android:id="@+id/ladder1"
         android:layout_width="95dp"
         android:layout_height="50dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="148dp"
         android:text="사디리"
         android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/ladder2"
+        app:layout_constraintBottom_toTopOf="@+id/logoutBtn"
         app:layout_constraintLeft_toRightOf="@id/roulette1"
-        app:layout_constraintTop_toBottomOf="@id/chicken" />
+        app:layout_constraintTop_toBottomOf="@id/chicken"
+        app:layout_constraintVertical_bias="0.015" />
 
     <Button
         android:id="@+id/no"
@@ -279,13 +280,13 @@
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/map"
-        app:layout_constraintRight_toLeftOf="@id/ladder2"/>
+        app:layout_constraintRight_toLeftOf="@id/logoutBtn"/>
 
     <Button
-        android:id="@+id/ladder2"
+        android:id="@+id/logoutBtn"
         android:layout_width="0dp"
         android:layout_height="80dp"
-        android:text="사다리"
+        android:text="로그 아웃"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/roulette2"
@@ -298,7 +299,7 @@
         android:text="내정보"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/ladder2"
+        app:layout_constraintLeft_toRightOf="@id/logoutBtn"
         app:layout_constraintRight_toRightOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

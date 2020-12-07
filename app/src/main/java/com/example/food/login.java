@@ -28,6 +28,7 @@ public class login extends Activity {
         password =findViewById(R.id.password);
         loginBtn = findViewById(R.id.loginBtn);
         goInput = findViewById(R.id.goInput);
+        checkSession();
         //회원 가입 이동
         goInput.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,10 +55,13 @@ public class login extends Activity {
                                 String userID = jsonObject.getString("userID");
                                 String userPass = jsonObject.getString("userPassword");
                                 Toast.makeText(getApplicationContext(),"로그인에 성공",Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(login.this,MyInformation.class);
-                                intent.putExtra("userID",userID);
-                                intent.putExtra("userPass",userPass);
-                                startActivity(intent);
+
+                                User user = new User(userID);
+                                SessionManagement sessionManagement = new SessionManagement(login.this);
+                                sessionManagement.saveSession(user);
+
+                                //2. step
+                                moveToMainActivity();
                             }
                             else{
                                 Toast.makeText(getApplicationContext(),"로그인에 실패",Toast.LENGTH_SHORT).show();
@@ -73,5 +77,30 @@ public class login extends Activity {
                 queue.add(loginRequest);
             }
         });
+    }
+
+    private void checkSession() {
+        //check if user is logged in
+        //if user is logged in --> move to mainActivity
+
+        SessionManagement sessionManagement = new SessionManagement(login.this);
+
+        String userID = sessionManagement.getSession();
+
+
+
+        if(userID != ""){
+            //user id logged in and so move to mainActivity
+            moveToMainActivity();
+        }
+        else{
+            //do nothing
+        }
+    }
+
+    private void moveToMainActivity() {
+        Intent intent = new Intent(login.this, MainActivity.class);
+        //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }

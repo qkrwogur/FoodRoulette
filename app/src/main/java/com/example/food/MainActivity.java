@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
     Button map;
     Button ladder;
     Button korea, japan, chain, western, flour, alone, delivery, asia, fast, latenihgt, cafe, pig,steamedsoup,box,chicken,pizza,all;
-    Button home;
+    Button home,logoutBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         pizza=(Button)findViewById(R.id.pizza);
         all=(Button)findViewById(R.id.all);
         home =(Button)findViewById(R.id.home);
+        logoutBtn=(Button)findViewById(R.id.logoutBtn);
 
 
         roulette1.setOnClickListener(new View.OnClickListener() {
@@ -206,5 +207,23 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        logoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SessionManagement sessionManagement = new SessionManagement(MainActivity.this);
+                sessionManagement.removeSession();
+
+                moveToLogin();
+
+            }
+        });
+
+
+    }
+    private void moveToLogin() {
+        Intent intent = new Intent(MainActivity.this, login.class);
+        //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }
