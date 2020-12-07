@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -52,15 +53,21 @@ import com.naver.maps.map.overlay.Overlay;
 import com.naver.maps.map.util.FusedLocationSource;
 
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Vector;
 
 
@@ -98,6 +105,7 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
     //Marker marker = new Marker();
     ListView listView;
     private LinearLayout containertalbe;
+    String userID;
 
 
     // onCreate-----------------------------------------------------------------------------------------------------
@@ -111,7 +119,8 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
         myMap=(View)findViewById(R.id.my_map);
         drawer_layout=(View)findViewById(R.id.drawer_layout);
         map_title=(TextView)findViewById(R.id.map_title);
-
+        SessionManagement sessionManagement = new SessionManagement(Mappage.this);
+        userID = sessionManagement.getSession();
 
         isUp = false;
         final LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -168,8 +177,34 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
                         TextView map_user = (TextView) n_layout.findViewById(R.id.map_user);
                         map_user.setId(i+100);
                         map_user.setText(title[i]);
+
                         CheckBox map_like = (CheckBox) n_layout.findViewById(R.id.map_like);
                         map_like.setId(i+200);
+
+                        Response.Listener<String> star_reponseListener =new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                try {
+                                    JSONObject jsonObject1 = new JSONObject(response);
+                                    boolean success =jsonObject1.getBoolean("success");
+                                    if(success){
+                                        Log.d("checkBox","체크");
+                                        map_like.setChecked(true);
+                                    }
+                                    else{
+                                        Log.d("checkBox","체크 안함");
+                                        map_like.setChecked(false);
+                                        return;
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        };
+                        StarSearchRequest starSearchRequest =new StarSearchRequest(userID,title[i],star_reponseListener);
+                        RequestQueue queue = Volley.newRequestQueue(Mappage.this);
+                        queue.add(starSearchRequest);
+
                         map_like.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                                 int i = buttonView.getId();
@@ -181,6 +216,7 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
                                 mx=latLng.latitude;
                                 my=latLng.longitude;
                                 Toast.makeText(getApplicationContext(),Integer.toString(i),Toast.LENGTH_LONG).show();
+
                                 if ( isChecked ) {
                                     Log.d("checkbox : ", "눌림" );
 
@@ -207,7 +243,7 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
                                     };
 
                                     //서버로 volly 사용 하여 요청
-                                    StarRequest starRequest = new StarRequest("이민기",title[i],postdate[i],Double.toString(mx),Double.toString(my),reponseListener);
+                                    StarRequest starRequest = new StarRequest(userID,title[i],postdate[i],Double.toString(mx),Double.toString(my),reponseListener);
                                     RequestQueue queue = Volley.newRequestQueue(Mappage.this);
                                     queue.add(starRequest);
                                 }else{
@@ -290,7 +326,6 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
         mapFragment.getMapAsync(this);
 
     }
-
 
     public void slideUp(View view){
         view.setVisibility(View.VISIBLE);
