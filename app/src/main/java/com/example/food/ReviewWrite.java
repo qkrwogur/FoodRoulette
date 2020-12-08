@@ -25,7 +25,7 @@ public class ReviewWrite extends Activity {
     String title = new String();
     RatingBar RC_taste,RC_atmosphere,RC_cleanliness,RC_volume,RC_price;
     EditText rv_write_Contents;
-    int taste,atmosphere,cleanliness,volume,price;
+    int taste=1,atmosphere=1,cleanliness=1,volume=1,price=1;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +42,8 @@ public class ReviewWrite extends Activity {
         RC_cleanliness=(RatingBar)findViewById(R.id.RC_cleanliness);
         RC_volume=(RatingBar)findViewById(R.id.RC_volume);
         RC_price=(RatingBar)findViewById(R.id.RC_price);
+
+
         RC_taste.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {

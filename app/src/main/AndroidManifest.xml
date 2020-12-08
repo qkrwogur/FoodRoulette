@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.food">
-
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the "MyLocation" functionality.
     -->
-    <uses-permission android:name="android.permission.INTERNET"/><!--인터넷 권한-->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -15,7 +13,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -26,18 +23,14 @@
         -->
         <activity
             android:name=".Mappage"
-            android:label="@string/title_activity_naver_map"></activity>
-        <activity android:name=".RouletteList"/>
-        <activity android:name=".Review"/>
-        <activity android:name=".ReviewWrite"/>
-        <meta-data
-            android:name="com.naver.maps.map.CLIENT_ID"
-            android:value="ijv9rapnei" />
+            android:label="@string/title_activity_naver_map" />
+        <activity android:name=".RouletteList" />
+        <activity android:name=".Review" />
+        <activity android:name=".ReviewWrite" />
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"></activity>
 
-        </activity>
-        <activity android:name=".login" >
+        <activity android:name=".login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -46,22 +39,28 @@
         </activity>
         <activity android:name=".create_acount" />
         <activity android:name=".Roulette" />
-        <activity android:name=".ladder"/>
-        <activity android:name=".ladderGame"/>
-        <activity android:name=".Listpage"/>
-        <activity android:name=".MyInformation"/>
-        <activity android:name=".ladderResult"
-            android:theme="@style/Base.Theme.AppCompat.Light.Dialog"></activity>
+        <activity android:name=".ladder" />
+        <activity android:name=".ladderGame" />
+        <activity android:name=".Listpage" />
+        <activity android:name=".MyInformation" />
+        <activity
+            android:name=".ladderResult"
+            android:theme="@style/Base.Theme.AppCompat.Light.Dialog" />
         <activity
             android:name=".List"
             android:theme="@android:style/Theme.Dialog" />
         <activity android:name=".gps" />
         <meta-data
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value="ijv9rapnei" />
+
+        <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
     </application>
-
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
