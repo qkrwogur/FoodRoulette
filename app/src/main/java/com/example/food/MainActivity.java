@@ -6,41 +6,43 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity {
-    Button roulette1;
-    Button map;
-    Button ladder;
-    Button korea, japan, chain, western, flour, alone, delivery, asia, fast, latenihgt, cafe, pig,steamedsoup,box,chicken,pizza,all;
-    Button home,logoutBtn,myinfo;
+    ImageButton roulette1;
+    ImageButton map;
+    ImageButton ladder;
+    ImageButton korea, japan, chain, western, flour, alone, delivery, asia, fast, latenihgt, cafe, pig,steamedsoup,box,chicken,pizza,all;
+    ImageButton pay,logoutBtn,myinfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        roulette1=(Button)findViewById(R.id.roulette1);
-        map=(Button)findViewById(R.id.map);
-        ladder=(Button)findViewById(R.id.ladder1);
-        korea=(Button)findViewById(R.id.korea);
-        japan=(Button)findViewById(R.id.japan);
-        chain=(Button)findViewById(R.id.chain);
-        western=(Button)findViewById(R.id.western);
-        flour=(Button)findViewById(R.id.flour);
-        alone=(Button)findViewById(R.id.alone);
-        delivery=(Button)findViewById(R.id.delivery);
-        asia=(Button)findViewById(R.id.asia);
-        fast=(Button)findViewById(R.id.fast);
-        latenihgt=(Button)findViewById(R.id.latenihgt);
-        cafe=(Button)findViewById(R.id.cafe);
-        pig=(Button)findViewById(R.id.pig);
-        steamedsoup=(Button)findViewById(R.id.steamedsoup);
-        box=(Button)findViewById(R.id.box);
-        chicken=(Button)findViewById(R.id.chicken);
-        pizza=(Button)findViewById(R.id.pizza);
-        all=(Button)findViewById(R.id.all);
-        home =(Button)findViewById(R.id.home);
-        logoutBtn=(Button)findViewById(R.id.logoutBtn);
-        myinfo=(Button)findViewById(R.id.myinformation);
+        setTitle("");
+        roulette1=(ImageButton)findViewById(R.id.roulette1);
+        map=(ImageButton)findViewById(R.id.map);
+        ladder=(ImageButton)findViewById(R.id.ladder1);
+        korea=(ImageButton)findViewById(R.id.korea);
+        japan=(ImageButton)findViewById(R.id.japan);
+        chain=(ImageButton)findViewById(R.id.chain);
+        western=(ImageButton)findViewById(R.id.western);
+        flour=(ImageButton)findViewById(R.id.flour);
+        alone=(ImageButton)findViewById(R.id.alone);
+        delivery=(ImageButton)findViewById(R.id.delivery);
+        asia=(ImageButton)findViewById(R.id.asia);
+        fast=(ImageButton)findViewById(R.id.fast);
+        latenihgt=(ImageButton)findViewById(R.id.latenihgt);
+        cafe=(ImageButton)findViewById(R.id.cafe);
+        pig=(ImageButton)findViewById(R.id.pig);
+        steamedsoup=(ImageButton)findViewById(R.id.steamedsoup);
+        box=(ImageButton)findViewById(R.id.box);
+        chicken=(ImageButton)findViewById(R.id.chicken);
+        pizza=(ImageButton)findViewById(R.id.pizza);
+        all=(ImageButton)findViewById(R.id.all);
+        pay =(ImageButton)findViewById(R.id.pay);
+        logoutBtn=(ImageButton)findViewById(R.id.logoutBtn);
+        myinfo=(ImageButton)findViewById(R.id.myinformation);
 
 
         roulette1.setOnClickListener(new View.OnClickListener() {
@@ -201,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        home.setOnClickListener(new View.OnClickListener() {
+        pay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent =new Intent(getApplicationContext(),login.class);
