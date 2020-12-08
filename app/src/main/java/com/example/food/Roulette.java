@@ -37,6 +37,9 @@ public class Roulette extends AppCompatActivity {
 
     //private ArrayList<String> STRINGS;
     String[] list = {};
+    String[] road = {};
+    String[] mapx = {};
+    String[] mapy = {};
     int select;
     private float initAngle = 0.0f;
     private int num_roulette = 0;
@@ -54,6 +57,10 @@ public class Roulette extends AppCompatActivity {
         Intent listintent= getIntent();
         list=listintent.getStringArrayExtra("list");
         num_roulette=list.length;
+        road=listintent.getStringArrayExtra("road");
+        mapx=listintent.getStringArrayExtra("mapx");
+        mapy=listintent.getStringArrayExtra("mapy");
+
         select=listintent.getIntExtra("select",1);
         circleManager = new CircleManager(Roulette.this, num_roulette);
         layoutRoulette.addView(circleManager);
@@ -140,7 +147,7 @@ public class Roulette extends AppCompatActivity {
             if ((anglepoint>=i*save) && (anglepoint<(i+1)*save)){
                 //text = STRINGS.get(i);
                 text=list[i];
-                buildAlert(text);
+                buildAlert(text, road[i], mapx[i], mapy[i]);
                 break;
             }
         }
@@ -148,12 +155,15 @@ public class Roulette extends AppCompatActivity {
     }
 
     // if you want use AlertDialog then use this
-    private void buildAlert(String text) {
+    private void buildAlert(String text, String road, String mapx, String mapy) {
         android.app.AlertDialog.Builder mBuilder = new android.app.AlertDialog.Builder(Roulette.this);
         dialogView=getLayoutInflater().inflate(R.layout.roulette_dialog,null);
         //mBuilder.setTitle(text);
         TextView roulette_result=(TextView)dialogView.findViewById(R.id.roulette_result);
         roulette_result.setText(text);
+        double mx = Double.parseDouble(mapx);
+        double my = Double.parseDouble(mapy);
+
         mBuilder.setNegativeButton("취소",null);
         mBuilder.setPositiveButton("확인",new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
@@ -163,7 +173,12 @@ public class Roulette extends AppCompatActivity {
                     intent.putExtra("category",text);
                     startActivity(intent);
                 }else {
-
+                    Intent intent = new Intent(getApplicationContext(),Review.class);
+                    intent.putExtra("title",text);
+                    intent.putExtra("mx",mx);
+                    intent.putExtra("my",my);
+                    intent.putExtra("roadaddress",road);
+                    startActivity(intent);
                 }
                 Toast.makeText(getApplicationContext(), "예를 선택했습니다.", Toast.LENGTH_LONG).show();
             }

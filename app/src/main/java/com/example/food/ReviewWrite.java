@@ -96,9 +96,6 @@ public class ReviewWrite extends Activity {
                 String Contents = new String();
                 Contents = rv_write_Contents.getText().toString(); // 리뷰내용 저장
                 Toast.makeText(getApplicationContext(),Contents, Toast.LENGTH_SHORT).show();
-                /*Intent intent = new Intent(getApplicationContext(),Review.class);
-                intent.putExtra("title",title);
-                startActivity(intent);*/
 
                 Response.Listener<String> reponseListener = new Response.Listener<String>() {
                     @Override
@@ -108,6 +105,9 @@ public class ReviewWrite extends Activity {
                             boolean success =jsonObject.getBoolean("success");
                             if(success){
                                 Toast.makeText(getApplicationContext(),"리뷰 작성 성공",Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(getApplicationContext(),Review.class);
+                                intent.putExtra("title",title);
+                                startActivity(intent);
 
                             }
                             else{

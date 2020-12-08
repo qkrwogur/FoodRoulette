@@ -26,6 +26,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -38,8 +39,11 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.geometry.Tm128;
@@ -94,6 +98,7 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
     String[] postdate = new String[display];
     String[] mapx = new String[display];
     String[] mapy = new String[display];
+    boolean flag = true;
     double latitude = 37.5670135;
     double longitude = 127.066242;
     int Index=0;
@@ -106,7 +111,14 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
     ListView listView;
     private LinearLayout containertalbe;
     String userID;
-
+    String[] store_list={};
+    int[] taste_list={};
+    int[] atmosphere_list={};
+    int[] price_list={};
+    int[] cleanliness_list={};
+    int[] volume_list={};
+    float[] RatingScore=new float[display];
+    private static final String showUrl = "http://food1116.dothome.co.kr/ReviewScore.php";
 
     // onCreate-----------------------------------------------------------------------------------------------------
     @Override
@@ -173,16 +185,36 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
                         if(title[i]==null){
 
                         }else {
+                            flag = false;
+                            float avg=0;
+                            int sum=0;
+                            int count=0;
+                            for(int j=0; j<store_list.length;j++){
+                                if (store_list[j].equals(title[i])){
+                                    sum=sum+taste_list[j]+atmosphere_list[j]+price_list[j]+volume_list[j]+cleanliness_list[j];
+                                    count++;
+
+                                }
+                            }
+                            if(sum>0) {
+                                avg = ((float) sum / (float) count) / 5;
+                            }
+                            RatingScore[i]=avg/2;
+                            Log.d("avg",Float.toString(avg));
+
                             LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                             View n_layout = inflater.inflate(R.layout.foodlist_check, null);
                             n_layout.setTag(Integer.toString(i));
+                            RatingBar map_Rating = (RatingBar) n_layout.findViewById(R.id.map_Rating);
+                            map_Rating.setRating(RatingScore[i]);
+                            TextView map_point =(TextView)n_layout.findViewById(R.id.map_point);
+                            map_point.setText(String.format("%.1f", RatingScore[i]));
                             TextView map_user = (TextView) n_layout.findViewById(R.id.map_user);
                             map_user.setId(i + 100);
                             map_user.setText(title[i]);
 
                             CheckBox map_like = (CheckBox) n_layout.findViewById(R.id.map_like);
                             map_like.setId(i + 200);
-
                             Response.Listener<String> star_reponseListener = new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
@@ -192,6 +224,7 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
                                         if (success) {
                                             Log.d("checkBox", "체크");
                                             map_like.setChecked(true);
+
                                         } else {
                                             Log.d("checkBox", "체크 안함");
                                             map_like.setChecked(false);
@@ -205,7 +238,6 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
                             StarSearchRequest starSearchRequest = new StarSearchRequest(userID, title[i], star_reponseListener);
                             RequestQueue queue = Volley.newRequestQueue(Mappage.this);
                             queue.add(starSearchRequest);
-
                             map_like.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                                     int i = buttonView.getId();
@@ -217,61 +249,64 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
                                     mx = latLng.latitude;
                                     my = latLng.longitude;
                                     Toast.makeText(getApplicationContext(), Integer.toString(i), Toast.LENGTH_LONG).show();
+                                    if (flag) {
+                                        if (isChecked) {
+                                            Log.d("checkbox : ", "눌림");
 
-                                    if (isChecked) {
-                                        Log.d("checkbox : ", "눌림");
-
-                                        Response.Listener<String> reponseListener = new Response.Listener<String>() {
-                                            @Override
-                                            public void onResponse(String response) {
-                                                try {
-                                                    JSONObject jsonObject = new JSONObject(response);
-                                                    boolean success = jsonObject.getBoolean("success");
-                                                    if (success) {
-                                                        Toast.makeText(getApplicationContext(), "즐겨찾기 생성 성공", Toast.LENGTH_SHORT).show();
+                                            Response.Listener<String> reponseListener = new Response.Listener<String>() {
+                                                @Override
+                                                public void onResponse(String response) {
+                                                    try {
+                                                        JSONObject jsonObject = new JSONObject(response);
+                                                        boolean success = jsonObject.getBoolean("success");
+                                                        if (success) {
+                                                            Toast.makeText(getApplicationContext(), "즐겨찾기 생성 성공", Toast.LENGTH_SHORT).show();
                                                     /*Intent intent = new Intent(Mappage.this,login.class);
                                                     startActivity(intent);*/
-                                                    } else {
-                                                        Toast.makeText(getApplicationContext(), "즐겨찾기 생성 실패", Toast.LENGTH_SHORT).show();
-                                                        return;
+                                                        } else {
+                                                            Toast.makeText(getApplicationContext(), "즐겨찾기 생성 실패", Toast.LENGTH_SHORT).show();
+                                                            return;
+                                                        }
+                                                    } catch (JSONException e) {
+                                                        e.printStackTrace();
                                                     }
-                                                } catch (JSONException e) {
-                                                    e.printStackTrace();
+
                                                 }
+                                            };
 
-                                            }
-                                        };
-
-                                        //서버로 volly 사용 하여 요청
-                                        StarRequest starRequest = new StarRequest(userID, title[i], postdate[i], Double.toString(mx), Double.toString(my), reponseListener);
-                                        RequestQueue queue = Volley.newRequestQueue(Mappage.this);
-                                        queue.add(starRequest);
-                                    } else {
-                                        Log.d("checkbox : ", "안눌림");
-                                        Response.Listener<String> reponseListener = new Response.Listener<String>() {
-                                            @Override
-                                            public void onResponse(String response) {
-                                                try {
-                                                    JSONObject jsonObject = new JSONObject(response);
-                                                    boolean success = jsonObject.getBoolean("success");
-                                                    if (success) {
-                                                        Toast.makeText(getApplicationContext(), "즐겨찾기 삭제 성공", Toast.LENGTH_SHORT).show();
+                                            //서버로 volly 사용 하여 요청
+                                            StarRequest starRequest = new StarRequest(userID, title[i], postdate[i], Double.toString(mx), Double.toString(my), reponseListener);
+                                            RequestQueue queue = Volley.newRequestQueue(Mappage.this);
+                                            queue.add(starRequest);
+                                        } else {
+                                            Log.d("checkbox : ", "안눌림");
+                                            Response.Listener<String> reponseListener = new Response.Listener<String>() {
+                                                @Override
+                                                public void onResponse(String response) {
+                                                    try {
+                                                        JSONObject jsonObject = new JSONObject(response);
+                                                        boolean success = jsonObject.getBoolean("success");
+                                                        if (success) {
+                                                            Toast.makeText(getApplicationContext(), "즐겨찾기 삭제 성공", Toast.LENGTH_SHORT).show();
                                                     /*Intent intent = new Intent(Mappage.this,login.class);
                                                     startActivity(intent);*/
-                                                    } else {
-                                                        Toast.makeText(getApplicationContext(), "즐겨찾기 삭제 실패", Toast.LENGTH_SHORT).show();
-                                                        return;
+                                                        } else {
+                                                            Toast.makeText(getApplicationContext(), "즐겨찾기 삭제 실패", Toast.LENGTH_SHORT).show();
+                                                            return;
+                                                        }
+                                                    } catch (JSONException e) {
+                                                        e.printStackTrace();
                                                     }
-                                                } catch (JSONException e) {
-                                                    e.printStackTrace();
-                                                }
 
-                                            }
-                                        };
-                                        //서버로 volly 사용 하여 요청
-                                        StarRMRequest starRMRequest = new StarRMRequest("이민기", title[i], reponseListener);
-                                        RequestQueue queue = Volley.newRequestQueue(Mappage.this);
-                                        queue.add(starRMRequest);
+                                                }
+                                            };
+                                            //서버로 volly 사용 하여 요청
+                                            StarRMRequest starRMRequest = new StarRMRequest("이민기", title[i], reponseListener);
+                                            RequestQueue queue = Volley.newRequestQueue(Mappage.this);
+                                            queue.add(starRMRequest);
+                                        }
+                                    }else{
+                                        flag=true;
                                     }
                                 }
                             });
@@ -321,11 +356,57 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
         road = new StringBuffer();
         Reversegeododing(latitude, longitude);
         //searchNaver(road.toString()+category);
-
+        getProducts();
         mapFragment.getMapAsync(this);
 
     }
+    private void getProducts(){
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, showUrl,
 
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONArray array = new JSONArray(response);
+                            store_list=new String[array.length()];
+                            taste_list=new int[array.length()];
+                            atmosphere_list=new int[array.length()];
+                            price_list=new int[array.length()];
+                            cleanliness_list=new int[array.length()];
+                            volume_list=new int[array.length()];
+
+                            for (int i = 0; i < array.length(); i++) {
+                                JSONObject object = array.getJSONObject(i);
+                                String store = object.getString("store");
+                                // String id = object.getString("id");
+                                int taste = object.getInt("taste");
+                                int atmosphere = object.getInt("atmosphere");
+                                int price = object.getInt("price");
+                                int cleanliness = object.getInt("cleanliness");
+                                int volume = object.getInt("volume");
+                                store_list[i]=store;
+                                taste_list[i]=taste;
+                                atmosphere_list[i]=atmosphere;
+                                price_list[i]=price;
+                                cleanliness_list[i]=cleanliness;
+                                volume_list[i]=volume;
+                                //String reviewText = object.getString("reviewText");
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        Volley.newRequestQueue(Mappage.this).add(stringRequest);
+
+    }
     public void slideUp(View view){
         view.setVisibility(View.VISIBLE);
         TranslateAnimation animate = new TranslateAnimation(
@@ -368,10 +449,12 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
                 Integer position = Integer.parseInt(v.getTag().toString());
                 double mx = Double.parseDouble(mapx[position]);
                 double my = Double.parseDouble(mapy[position]);
+                float rating = RatingScore[position];
                 Log.d("click",Integer.toString(position));
                 Review_intent.putExtra("title",title[position]);
                 Review_intent.putExtra("mx",mx);
                 Review_intent.putExtra("my",my);
+                Review_intent.putExtra("rating",rating);
                 Review_intent.putExtra("roadaddress",postdate[position]);
                 startActivity(Review_intent);
             }
@@ -516,6 +599,7 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
                         Log.d(TAG, "title: " + title[i]);
                         // title[0], link[0], bloggername[0] 등 인덱스 값에 맞게 검색결과를 변수화하였다.
                     }
+
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {

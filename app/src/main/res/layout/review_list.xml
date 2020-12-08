@@ -30,12 +30,14 @@
             android:background="@android:color/white" />
 
         <TextView
+            android:id="@+id/rv_ReviewScore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="5"
             android:textSize="15dp" />
     </LinearLayout>
     <TextView
+        android:id="@+id/rv_ReviewTEXT"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="리뷰 내용을 여기에 적습니다."
