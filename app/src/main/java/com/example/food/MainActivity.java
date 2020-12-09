@@ -5,34 +5,29 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity {
     ImageButton roulette1;
-    ImageButton map;
+    ImageButton map,roulette2;
     ImageButton ladder;
-    ImageButton korea, japan, chain, western, flour, alone, delivery, asia, fast, latenihgt, cafe, pig,steamedsoup,box,chicken,pizza,all;
+    ImageButton korea, japan, chain, western, flour, asia, fast, cafe, pig,steamedsoup,box,chicken,pizza,all;
     ImageButton pay,logoutBtn,myinfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_maintest);
         setTitle("");
         roulette1=(ImageButton)findViewById(R.id.roulette1);
-        map=(ImageButton)findViewById(R.id.map);
         ladder=(ImageButton)findViewById(R.id.ladder1);
         korea=(ImageButton)findViewById(R.id.korea);
         japan=(ImageButton)findViewById(R.id.japan);
         chain=(ImageButton)findViewById(R.id.chain);
         western=(ImageButton)findViewById(R.id.western);
         flour=(ImageButton)findViewById(R.id.flour);
-        alone=(ImageButton)findViewById(R.id.alone);
-        delivery=(ImageButton)findViewById(R.id.delivery);
         asia=(ImageButton)findViewById(R.id.asia);
         fast=(ImageButton)findViewById(R.id.fast);
-        latenihgt=(ImageButton)findViewById(R.id.latenihgt);
         cafe=(ImageButton)findViewById(R.id.cafe);
         pig=(ImageButton)findViewById(R.id.pig);
         steamedsoup=(ImageButton)findViewById(R.id.steamedsoup);
@@ -40,9 +35,12 @@ public class MainActivity extends AppCompatActivity {
         chicken=(ImageButton)findViewById(R.id.chicken);
         pizza=(ImageButton)findViewById(R.id.pizza);
         all=(ImageButton)findViewById(R.id.all);
+
         pay =(ImageButton)findViewById(R.id.pay);
         logoutBtn=(ImageButton)findViewById(R.id.logoutBtn);
         myinfo=(ImageButton)findViewById(R.id.myinformation);
+        map=(ImageButton)findViewById(R.id.map);
+        roulette2=(ImageButton)findViewById(R.id.roulette2);
 
 
         roulette1.setOnClickListener(new View.OnClickListener() {
@@ -107,22 +105,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        alone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(getApplicationContext(),Mappage.class);
-                intent.putExtra("category"," 혼밥");
-                startActivity(intent);
-            }
-        });
-        delivery.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(getApplicationContext(),Mappage.class);
-                intent.putExtra("category"," 배달");
-                startActivity(intent);
-            }
-        });
+
         asia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -139,14 +122,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        latenihgt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(getApplicationContext(),Mappage.class);
-                intent.putExtra("category"," 야식");
-                startActivity(intent);
-            }
-        });
+
         cafe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -226,6 +202,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent =new Intent(getApplicationContext(),MyInformation.class);
+                startActivity(intent);
+
+            }
+        });
+        roulette2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =new Intent(getApplicationContext(),RouletteList.class);
                 startActivity(intent);
 
             }

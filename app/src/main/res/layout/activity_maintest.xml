@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:paddingTop="15dp"
+    android:padding="15dp"
+    android:background="@android:color/white">
+
+    <TextView
+        android:id="@+id/main_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="오늘 뭐 먹지"
+        android:background="@drawable/buttonshape"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:padding="15dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+
+    <ImageButton
+        android:id="@+id/korea"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ko"
+        android:layout_marginLeft="5dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/japan"
+        app:layout_constraintTop_toBottomOf="@id/main_title"
+        app:layout_constraintBottom_toTopOf="@id/flour"/>
+
+    <TextView
+        android:id="@+id/koreaText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintTop_toBottomOf="@id/korea"
+        app:layout_constraintLeft_toLeftOf="@id/korea"
+        app:layout_constraintRight_toRightOf="@id/korea"
+        android:text="한식"
+        android:textSize="15dp"
+        />
+
+    <ImageButton
+        android:id="@+id/japan"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:src="@drawable/jp"
+        android:layout_marginLeft="5dp"
+        app:layout_constraintRight_toLeftOf="@id/chain"
+        app:layout_constraintLeft_toRightOf="@id/korea"
+        app:layout_constraintTop_toBottomOf="@id/main_title"
+        app:layout_constraintBottom_toTopOf="@id/chicken"/>
+    <TextView
+        android:id="@+id/japanText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/japan"
+        app:layout_constraintLeft_toLeftOf="@id/japan"
+        app:layout_constraintRight_toRightOf="@id/japan"
+        android:text="일식"
+        android:textSize="15dp"
+        />
+
+
+    <ImageButton
+        android:id="@+id/chain"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ch"
+        android:layout_marginLeft="5dp"
+        app:layout_constraintRight_toLeftOf="@id/western"
+        app:layout_constraintLeft_toRightOf="@id/japan"
+        app:layout_constraintTop_toBottomOf="@id/main_title"
+        app:layout_constraintBottom_toTopOf="@id/pizza"
+        />
+    <TextView
+        android:id="@+id/chainText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/chain"
+        app:layout_constraintLeft_toLeftOf="@id/chain"
+        app:layout_constraintRight_toRightOf="@id/chain"
+        android:text="중식"
+        android:textSize="15dp"
+        />
+    <ImageButton
+        android:id="@+id/western"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:src="@drawable/we"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/chain"
+        app:layout_constraintTop_toBottomOf="@id/main_title"
+        app:layout_constraintBottom_toTopOf="@id/asia"/>
+
+    <TextView
+        android:id="@+id/westernText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/western"
+        app:layout_constraintLeft_toLeftOf="@id/western"
+        app:layout_constraintRight_toRightOf="@id/western"
+        android:text="양식"
+        android:textSize="15dp"
+        />
+
+    <ImageButton
+        android:id="@+id/flour"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:src="@drawable/fl"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="@id/korea"
+        app:layout_constraintRight_toRightOf="@id/korea"
+        app:layout_constraintTop_toBottomOf="@+id/korea"
+        app:layout_constraintBottom_toTopOf="@id/fast"/>
+
+    <TextView
+        android:id="@+id/flourText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/flour"
+        app:layout_constraintLeft_toLeftOf="@id/flour"
+        app:layout_constraintRight_toRightOf="@id/flour"
+        android:text="분식"
+        android:textSize="15dp"
+        />
+
+    <ImageButton
+        android:id="@+id/chicken"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:src="@drawable/chi"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="@id/japan"
+        app:layout_constraintRight_toRightOf="@id/japan"
+        app:layout_constraintTop_toBottomOf="@+id/japan"
+        app:layout_constraintBottom_toTopOf="@id/box"/>
+
+    <TextView
+        android:id="@+id/aloneText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/chicken"
+        app:layout_constraintLeft_toLeftOf="@id/chicken"
+        app:layout_constraintRight_toRightOf="@id/chicken"
+        android:text="치킨"
+        android:textSize="15dp"
+        />
+
+    <ImageButton
+        android:id="@+id/pizza"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:src="@drawable/piz"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="@id/chain"
+        app:layout_constraintRight_toRightOf="@id/chain"
+        app:layout_constraintTop_toBottomOf="@id/chain"
+        app:layout_constraintBottom_toTopOf="@id/cafe"/>
+    <TextView
+        android:id="@+id/pizzaText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/pizza"
+        app:layout_constraintLeft_toLeftOf="@id/pizza"
+        app:layout_constraintRight_toRightOf="@id/pizza"
+        android:text="피자"
+        android:textSize="15dp"
+        />
+
+
+    <ImageButton
+        android:id="@+id/asia"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:src="@drawable/as"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="@id/western"
+        app:layout_constraintRight_toRightOf="@id/western"
+        app:layout_constraintTop_toBottomOf="@id/western"
+        app:layout_constraintBottom_toTopOf="@id/pig"/>
+
+    <TextView
+        android:id="@+id/asiaText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/asia"
+        app:layout_constraintLeft_toLeftOf="@id/asia"
+        app:layout_constraintRight_toRightOf="@id/asia"
+        android:text="아시아"
+        android:textSize="15dp"
+        />
+
+    <ImageButton
+        android:id="@+id/fast"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:src="@drawable/fa"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="@id/korea"
+        app:layout_constraintRight_toRightOf="@id/korea"
+        app:layout_constraintTop_toBottomOf="@+id/flour"
+        app:layout_constraintBottom_toTopOf="@id/steamedsoup"/>
+
+    <TextView
+        android:id="@+id/fastText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/fast"
+        app:layout_constraintLeft_toLeftOf="@id/fast"
+        app:layout_constraintRight_toRightOf="@id/fast"
+        android:text="패스트 푸드"
+        android:textSize="15dp"
+        />
+
+    <ImageButton
+        android:id="@+id/box"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:src="@drawable/bo"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="@id/japan"
+        app:layout_constraintRight_toRightOf="@id/japan"
+        app:layout_constraintTop_toBottomOf="@+id/chicken"
+        app:layout_constraintBottom_toTopOf="@id/all"/>
+
+    <TextView
+        android:id="@+id/boxText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/box"
+        app:layout_constraintLeft_toLeftOf="@id/box"
+        app:layout_constraintRight_toRightOf="@id/box"
+        android:text="도시락"
+        android:textSize="15dp"
+        />
+
+    <ImageButton
+        android:id="@+id/cafe"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ca"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="@id/chain"
+        app:layout_constraintRight_toRightOf="@id/chain"
+        app:layout_constraintTop_toBottomOf="@id/pizza"
+        app:layout_constraintBottom_toTopOf="@id/roulette1"/>
+
+    <TextView
+        android:id="@+id/cafeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/cafe"
+        app:layout_constraintLeft_toLeftOf="@id/cafe"
+        app:layout_constraintRight_toRightOf="@id/cafe"
+        android:text="카페"
+        android:textSize="15dp"
+        />
+
+    <ImageButton
+        android:id="@+id/pig"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:src="@drawable/pi"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="@id/western"
+        app:layout_constraintRight_toRightOf="@id/western"
+        app:layout_constraintTop_toBottomOf="@id/asia"
+        app:layout_constraintBottom_toTopOf="@id/ladder1"/>
+
+    <TextView
+        android:id="@+id/pigText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/pig"
+        app:layout_constraintLeft_toLeftOf="@id/pig"
+        app:layout_constraintRight_toRightOf="@id/pig"
+        android:text="족발,보쌈"
+        android:textSize="15dp"
+        />
+
+    <ImageButton
+        android:id="@+id/steamedsoup"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/steam"
+        app:layout_constraintBottom_toTopOf="@+id/no"
+        app:layout_constraintLeft_toLeftOf="@id/korea"
+        app:layout_constraintRight_toRightOf="@id/korea"
+        app:layout_constraintTop_toBottomOf="@+id/fast" />
+
+    <TextView
+        android:id="@+id/steamedsoupText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/steamedsoup"
+        app:layout_constraintLeft_toLeftOf="@id/steamedsoup"
+        app:layout_constraintRight_toRightOf="@id/steamedsoup"
+        android:text="찜,탕"
+        android:textSize="15dp"
+        />
+
+    <ImageButton
+        android:id="@+id/all"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:src="@drawable/all"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="@id/japan"
+        app:layout_constraintRight_toRightOf="@id/japan"
+        app:layout_constraintTop_toBottomOf="@id/box"
+        app:layout_constraintBottom_toTopOf="@id/no"/>
+
+    <TextView
+        android:id="@+id/allText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/all"
+        app:layout_constraintLeft_toLeftOf="@id/all"
+        app:layout_constraintRight_toRightOf="@id/all"
+        android:text="모든식당"
+        android:textSize="15dp"
+        />
+    <ImageButton
+        android:id="@+id/roulette1"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ro2"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="@id/chain"
+        app:layout_constraintRight_toRightOf="@id/chain"
+        app:layout_constraintTop_toBottomOf="@id/cafe"
+        app:layout_constraintBottom_toTopOf="@id/no"/>
+
+    <TextView
+        android:id="@+id/roulette1Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/roulette1"
+        app:layout_constraintLeft_toLeftOf="@id/roulette1"
+        app:layout_constraintRight_toRightOf="@id/roulette1"
+        android:text="돌림판"
+        android:textSize="15dp"
+        />
+
+    <ImageButton
+        android:id="@+id/ladder1"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ladd"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="@id/western"
+        app:layout_constraintRight_toRightOf="@id/western"
+        app:layout_constraintTop_toBottomOf="@id/pig"
+        app:layout_constraintBottom_toTopOf="@id/no"/>
+
+    <TextView
+        android:id="@+id/ladder1Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/ladder1"
+        app:layout_constraintLeft_toLeftOf="@id/ladder1"
+        app:layout_constraintRight_toRightOf="@id/ladder1"
+        android:text="사다리"
+        android:textSize="15dp"
+        />
+
+    <TextView
+        android:id="@+id/no"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/roulette2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+     />
+
+    <ImageButton
+        android:id="@+id/pay"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/to"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/map" />
+
+    <TextView
+        android:id="@+id/payText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/pay"
+        app:layout_constraintLeft_toLeftOf="@id/pay"
+        app:layout_constraintRight_toRightOf="@id/pay"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        android:text="더치페이"
+        android:textSize="15dp"
+        />
+
+    <ImageButton
+        android:id="@+id/map"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/ma"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/pay"
+        app:layout_constraintRight_toLeftOf="@id/roulette2"
+        />
+
+    <TextView
+        android:id="@+id/mapText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/map"
+        app:layout_constraintLeft_toLeftOf="@id/map"
+        app:layout_constraintRight_toRightOf="@id/map"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        android:text="지도"
+        android:textSize="15dp"
+        />
+
+    <ImageButton
+        android:id="@+id/roulette2"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/ro"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/map"
+        app:layout_constraintRight_toLeftOf="@id/logoutBtn"/>
+
+    <TextView
+        android:id="@+id/roulette2Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/roulette2"
+        app:layout_constraintLeft_toLeftOf="@id/roulette2"
+        app:layout_constraintRight_toRightOf="@id/roulette2"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        android:text="돌림판"
+        android:textSize="15dp"
+        />
+
+    <ImageButton
+        android:id="@+id/logoutBtn"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/lo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/roulette2"
+        app:layout_constraintRight_toLeftOf="@id/myinformation"/>
+
+    <TextView
+        android:id="@+id/logoutBtnText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/logoutBtn"
+        app:layout_constraintLeft_toLeftOf="@id/logoutBtn"
+        app:layout_constraintRight_toRightOf="@id/logoutBtn"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        android:text="로그 아웃"
+        android:textSize="15dp"
+        />
+
+    <ImageButton
+        android:id="@+id/myinformation"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/my"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/logoutBtn"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <TextView
+        android:id="@+id/myinformationText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/myinformation"
+        app:layout_constraintLeft_toLeftOf="@id/myinformation"
+        app:layout_constraintRight_toRightOf="@id/myinformation"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        android:text="내정보"
+        android:textSize="15dp"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
