@@ -41,7 +41,7 @@
             android:layout_marginRight="12dp"
             android:layout_marginLeft="12dp"
             android:paddingLeft="10dp"
-            android:hint="아이디 입력"
+
             />
 
     </LinearLayout>
@@ -68,7 +68,7 @@
             android:layout_marginRight="12dp"
             android:layout_marginLeft="12dp"
             android:paddingLeft="10dp"
-            android:hint="비밀번호 입력"/>
+            />
 
     </LinearLayout>
 
@@ -94,7 +94,7 @@
             android:layout_marginRight="12dp"
             android:layout_marginLeft="12dp"
             android:paddingLeft="10dp"
-            android:hint="이름 입력"/>
+            />
 
     </LinearLayout>
 
@@ -120,7 +120,7 @@
             android:layout_marginRight="12dp"
             android:layout_marginLeft="12dp"
             android:paddingLeft="10dp"
-            android:hint="핸드폰번호 입력"
+
             />
 
     </LinearLayout>
