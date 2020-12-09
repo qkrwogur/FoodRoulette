@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent=new Intent(getApplicationContext(),ladder.class);
                 startActivity(intent);
             }
-        });
+        });//
         korea.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

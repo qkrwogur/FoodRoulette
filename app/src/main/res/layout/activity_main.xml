@@ -23,7 +23,6 @@
         app:layout_constraintRight_toRightOf="parent"
         />
 
-
     <ImageButton
         android:id="@+id/korea"
         android:layout_width="0dp"

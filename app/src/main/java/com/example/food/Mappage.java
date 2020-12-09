@@ -86,7 +86,7 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
 
     private FusedLocationSource mLocationSource;
     private NaverMap mNaverMap;
-    Button btnResearch,btn_test;
+    Button btnResearch;
     ImageButton list_open, list_close;
     TextView map_title;
     String category="";
@@ -343,14 +343,6 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
                 containertalbe = (LinearLayout) findViewById(R.id.map_Scroll);
                 containertalbe.removeAllViews();
                 Log.d("down","눌림");
-            }
-        });
-        btn_test=(Button)findViewById(R.id.btn_test);
-        btn_test.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent testintent = new Intent(getApplicationContext(),Review.class);
-                startActivity(testintent);
             }
         });
 
