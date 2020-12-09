@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     ImageButton roulette1;
@@ -194,6 +195,7 @@ public class MainActivity extends AppCompatActivity {
                 sessionManagement.removeSession();
 
                 moveToLogin();
+                finish();
 
             }
         });
@@ -222,4 +224,14 @@ public class MainActivity extends AppCompatActivity {
         //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        finish();
+
+    }
+
 }

@@ -62,6 +62,7 @@ public class login extends Activity {
 
                                 //2. step
                                 moveToMainActivity();
+                                finish();
                             }
                             else{
                                 Toast.makeText(getApplicationContext(),"로그인에 실패",Toast.LENGTH_SHORT).show();
@@ -92,6 +93,7 @@ public class login extends Activity {
         if(userID != ""){
             //user id logged in and so move to mainActivity
             moveToMainActivity();
+            finish();
         }
         else{
             //do nothing
