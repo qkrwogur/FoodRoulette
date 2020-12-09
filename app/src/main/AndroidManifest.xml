@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.food">
 
     <application
@@ -22,6 +23,8 @@
             android:name=".Mappage"
             android:label="@string/title_activity_naver_map" />
         <activity android:name=".RouletteList" />
+        <activity android:name=".pay"
+            tools:ignore="DuplicateActivity" />
         <activity android:name=".Review" />
         <activity android:name=".ReviewWrite" />
         <activity android:name=".MainActivity" />
@@ -38,6 +41,7 @@
         <activity android:name=".ladderGame" />
         <activity android:name=".Listpage" />
         <activity android:name=".MyInformation" />
+
         <activity
             android:name=".ladderResult"
             android:theme="@style/Base.Theme.AppCompat.Light.Dialog" />

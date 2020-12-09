@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onClick"
-            android:text="◀"
+            android:text="◁"
             android:background="@drawable/buttonshape"/>
 
 
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onClick"
-            android:text="▶"
+            android:text="▷"
             android:background="@drawable/buttonshape"/>
 
         <Button

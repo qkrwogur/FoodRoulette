@@ -92,7 +92,7 @@ public class ladderGame extends AppCompatActivity {
             if( mArHBar == null) {
                 createGame(canvas);
             }
-            canvas.drawColor(Color.LTGRAY);
+            canvas.drawColor(Color.WHITE);
             /*Paint pnt = new Paint();
             pnt.setStyle(Paint.Style.FILL);
             //pnt.setStrokeWidth(3);
@@ -134,7 +134,8 @@ public class ladderGame extends AppCompatActivity {
             Paint pnt = new Paint();
             pnt.setStyle(Paint.Style.STROKE);
             pnt.setStrokeWidth(mCanvasW / 80);
-            pnt.setColor(Color.rgb(255, 255, 255));
+            pnt.setColor(Color.rgb(0, 0, 0));
+            //여기
 
             for( int i=0; i < mPeopleMax; i++) {
                 Rect rtPart = getLadderPartArea(i);
@@ -227,7 +228,7 @@ public class ladderGame extends AppCompatActivity {
             Paint pnt = new Paint();
             pnt.setStyle(Paint.Style.STROKE);
             pnt.setStrokeWidth(mCanvasW / 80);
-            pnt.setColor(Color.rgb(255, 100, 100));
+            pnt.setColor(Color.rgb(0 , 0, 0));
 
             for(int i=0; i < mArHBar.size(); i++ ) {
                 Point ptHBar = mArHBar.get(i);
@@ -262,7 +263,7 @@ public class ladderGame extends AppCompatActivity {
                 // 사람 개별 영역 좌표를 반환
                 Rect rtPresentPart = getPeoplePartArea(i);
                 // 둥근 사각형 그리기
-                drawRoundRect(canvas, rtPresentPart, Color.rgb(180, 180, 255));
+                drawRoundRect(canvas, rtPresentPart, Color.rgb(166, 226, 253));
                 // 사각형 영역 안에 텍스트 출력
                 drawText(canvas, rtPresentPart, mArPeople.get(i).mName);
             }
@@ -398,7 +399,7 @@ public class ladderGame extends AppCompatActivity {
             }
             // 게임이 완료되었다면
             else {
-                Toast.makeText(getApplicationContext(), "Game Completed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "게임 완료", Toast.LENGTH_SHORT).show();
                 // 게임 완료 이벤트 함수
                 onGameCompleted();
             }
