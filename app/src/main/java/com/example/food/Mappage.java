@@ -185,7 +185,7 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
                         if(title[i]==null){
 
                         }else {
-                            flag = false;
+
                             float avg=0;
                             int sum=0;
                             int count=0;
@@ -222,10 +222,12 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
                                         JSONObject jsonObject1 = new JSONObject(response);
                                         boolean success = jsonObject1.getBoolean("success");
                                         if (success) {
+                                            flag=false;
                                             Log.d("checkBox", "체크");
                                             map_like.setChecked(true);
 
                                         } else {
+                                            flag=true;
                                             Log.d("checkBox", "체크 안함");
                                             map_like.setChecked(false);
                                             return;
@@ -248,7 +250,6 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
                                     LatLng latLng = tm128.toLatLng();
                                     mx = latLng.latitude;
                                     my = latLng.longitude;
-                                    Toast.makeText(getApplicationContext(), Integer.toString(i), Toast.LENGTH_LONG).show();
                                     if (flag) {
                                         if (isChecked) {
                                             Log.d("checkbox : ", "눌림");
