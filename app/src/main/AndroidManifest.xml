@@ -29,7 +29,6 @@
             tools:ignore="DuplicateActivity" />
         <activity android:name=".Review" />
         <activity android:name=".ReviewWrite" />
-        <activity android:name=".MainActivity" />
         <activity android:name=".login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
