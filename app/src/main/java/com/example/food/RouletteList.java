@@ -95,7 +95,6 @@ public class RouletteList extends Activity {
         Edt6=(EditText)findViewById(R.id.roulette_free_Edt6);
         requestQueue = Volley.newRequestQueue(getApplicationContext());
         getProducts();
-        Toast.makeText(getApplicationContext(),userID,Toast.LENGTH_SHORT).show();
         adapter=new ArrayAdapter<>(this, R.layout.roulettelist_check,R.id.roulette_CH,items);
         roulette_LV.setAdapter(adapter);
         roulette_LV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
