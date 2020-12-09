@@ -134,7 +134,7 @@ public class ladderGame extends AppCompatActivity {
             Paint pnt = new Paint();
             pnt.setStyle(Paint.Style.STROKE);
             pnt.setStrokeWidth(mCanvasW / 80);
-            pnt.setColor(Color.rgb(255, 100, 100));
+            pnt.setColor(Color.rgb(255, 255, 255));
 
             for( int i=0; i < mPeopleMax; i++) {
                 Rect rtPart = getLadderPartArea(i);
