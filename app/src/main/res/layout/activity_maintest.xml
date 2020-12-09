@@ -336,12 +336,14 @@
         android:id="@+id/roulette1"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:src="@drawable/ro2"
+        android:src="@drawable/ro"
         android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="@id/chain"
         app:layout_constraintRight_toRightOf="@id/chain"
         app:layout_constraintTop_toBottomOf="@id/cafe"
-        app:layout_constraintBottom_toTopOf="@id/no"/>
+        app:layout_constraintBottom_toTopOf="@id/no"
+        android:scaleType="centerCrop"
+        android:background="@android:color/white"/>
 
     <TextView
         android:id="@+id/roulette1Text"
@@ -441,7 +443,11 @@
         android:src="@drawable/ro"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/map"
-        app:layout_constraintRight_toLeftOf="@id/logoutBtn"/>
+        app:layout_constraintRight_toLeftOf="@id/logoutBtn"
+        android:scaleType="centerCrop"
+        android:background="@android:color/white"
+
+        />
 
     <TextView
         android:id="@+id/roulette2Text"
