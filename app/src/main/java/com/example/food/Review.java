@@ -77,6 +77,7 @@ public class Review extends AppCompatActivity implements OnMapReadyCallback {
         rv_title.setText(get_title);
         rv_Rating=(RatingBar)findViewById(R.id.rv_Rating);
 
+
         FragmentManager fm = getSupportFragmentManager();
         MapFragment mapFragment = (MapFragment)fm.findFragmentById(R.id.rv_navermap);
         if (mapFragment == null) {

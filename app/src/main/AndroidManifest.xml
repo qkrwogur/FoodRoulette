@@ -26,7 +26,7 @@
             android:name="com.example.food.Mappage"
             android:label="@string/title_activity_naver_map" />
         <activity android:name=".RouletteList" />
-        <activity android:name=".pay"
+        <activity android:name="com.example.food.pay"
             tools:ignore="DuplicateActivity" />
         <activity android:name=".Review" />
         <activity android:name=".ReviewWrite" />

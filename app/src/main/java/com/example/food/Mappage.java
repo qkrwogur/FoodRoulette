@@ -246,10 +246,7 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
                                     i = i - 200;
                                     double mx = Double.parseDouble(mapx[i]);
                                     double my = Double.parseDouble(mapy[i]);
-                                    Tm128 tm128 = new Tm128(mx, my);
-                                    LatLng latLng = tm128.toLatLng();
-                                    mx = latLng.latitude;
-                                    my = latLng.longitude;
+
                                     if (flag) {
                                         if (isChecked) {
                                             Log.d("checkbox : ", "눌림");
@@ -302,7 +299,7 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
                                                 }
                                             };
                                             //서버로 volly 사용 하여 요청
-                                            StarRMRequest starRMRequest = new StarRMRequest("이민기", title[i], reponseListener);
+                                            StarRMRequest starRMRequest = new StarRMRequest(userID, title[i], reponseListener);
                                             RequestQueue queue = Volley.newRequestQueue(Mappage.this);
                                             queue.add(starRMRequest);
                                         }

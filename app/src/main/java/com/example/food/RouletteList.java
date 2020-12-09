@@ -212,6 +212,8 @@ public class RouletteList extends Activity {
                             star_road = new String[count];
                             star_mapx = new String[count];
                             star_mapy = new String[count];
+                            int j=0;
+
                             for (int i = 0; i < array.length(); i++) {
                                 JSONObject object = array.getJSONObject(i);
                                 String id = object.getString("id");
@@ -220,11 +222,12 @@ public class RouletteList extends Activity {
                                 String mapx = object.getString("mapx");
                                 String mapy = object.getString("mapy");
                                 if(id.equals(userID)){
-                                    star_items[i] = store;
-                                    star_road[i] = road;
-                                    star_mapx[i] = mapx;
-                                    star_mapy[i] = mapy;
+                                    star_items[j] = store;
+                                    star_road[j] = road;
+                                    star_mapx[j] = mapx;
+                                    star_mapy[j] = mapy;
                                     Log.d("item =", userID + ", userid :"+id);
+                                    j++;
                                 }
                                     //Toast.makeText(getApplicationContext(),items[i],Toast.LENGTH_SHORT).show();
                             }
