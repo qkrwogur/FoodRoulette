@@ -4,18 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:padding="15dp"
     tools:context=".pay"
 >
+    <TextView
+        android:id="@+id/pay_tilte"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="15dp"
+        android:background="@drawable/buttonshape"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+
+        android:text="더치페이"
+        android:textSize="30dp"/>
 
     <EditText
         android:id="@+id/payEdit1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pay_tilte"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/payEdit2"
         android:paddingTop="50dp"
         android:hint="인원수"
+        android:gravity="center"
         android:textSize="30dp"/>
 
     <EditText
@@ -25,18 +42,22 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/payEdit1"
+        app:layout_constraintBottom_toTopOf="@id/payBtn1"
+        android:gravity="center"
         android:paddingTop="50dp"
         android:hint="가격"
         android:textSize="30dp"/>
 
     <Button
         android:id="@+id/payBtn1"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:padding="15dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/payEdit2"
+        app:layout_constraintBottom_toTopOf="@+id/payText"
         android:background="@drawable/buttonshape"
         android:text="계산"
         android:textSize="25dp"/>
@@ -49,6 +70,8 @@
         app:layout_constraintTop_toBottomOf="@id/payBtn1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:hint="결과"
         android:textSize="30dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,9 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:paddingTop="30dp"
+    android:paddingTop="15dp"
+    android:padding="15dp"
     android:background="@android:color/white">
 
+    <TextView
+        android:id="@+id/main_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="오늘 뭐 먹지"
+        android:background="@drawable/buttonshape"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:padding="15dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
 
 
     <ImageButton
@@ -18,12 +32,16 @@
         android:layout_marginLeft="5dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/japan"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/main_title"
+        app:layout_constraintBottom_toTopOf="@id/flour"
+        android:scaleType="centerCrop"
+        android:background="@android:color/white"/>
 
     <TextView
         android:id="@+id/koreaText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
         app:layout_constraintTop_toBottomOf="@id/korea"
         app:layout_constraintLeft_toLeftOf="@id/korea"
         app:layout_constraintRight_toRightOf="@id/korea"
@@ -39,7 +57,10 @@
         android:layout_marginLeft="5dp"
         app:layout_constraintRight_toLeftOf="@id/chain"
         app:layout_constraintLeft_toRightOf="@id/korea"
-        app:layout_constraintTop_toTopOf="parent"  />
+        app:layout_constraintTop_toBottomOf="@id/main_title"
+        app:layout_constraintBottom_toTopOf="@id/chicken"
+        android:scaleType="centerCrop"
+        android:background="@android:color/white"/>
     <TextView
         android:id="@+id/japanText"
         android:layout_width="wrap_content"
@@ -60,7 +81,10 @@
         android:layout_marginLeft="5dp"
         app:layout_constraintRight_toLeftOf="@id/western"
         app:layout_constraintLeft_toRightOf="@id/japan"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_title"
+        app:layout_constraintBottom_toTopOf="@id/pizza"
+        android:scaleType="centerCrop"
+        android:background="@android:color/white"
         />
     <TextView
         android:id="@+id/chainText"
@@ -77,12 +101,15 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:src="@drawable/we"
-
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toRightOf="@id/chain"
-        app:layout_constraintTop_toTopOf="parent"  />
+        app:layout_constraintTop_toBottomOf="@id/main_title"
+        app:layout_constraintBottom_toTopOf="@id/asia"
+        android:scaleType="centerCrop"
+        android:background="@android:color/white"
+        />
 
     <TextView
         android:id="@+id/westernText"
@@ -100,10 +127,13 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:src="@drawable/fl"
+        android:background="@android:color/white"
+        android:scaleType="centerCrop"
         android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="@id/korea"
         app:layout_constraintRight_toRightOf="@id/korea"
-        app:layout_constraintTop_toBottomOf="@+id/korea" />
+        app:layout_constraintTop_toBottomOf="@+id/korea"
+        app:layout_constraintBottom_toTopOf="@id/fast"/>
 
     <TextView
         android:id="@+id/flourText"
@@ -117,11 +147,15 @@
         />
 
     <ImageButton
-        android:id="@+id/alone"
+        android:id="@+id/chicken"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:src="@drawable/al"
         android:layout_marginTop="20dp"
+        android:background="@android:color/white"
+        android:scaleType="centerCrop"
+        android:src="@drawable/chi"
+        app:layout_constraintBottom_toTopOf="@id/box"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="@id/japan"
         app:layout_constraintRight_toRightOf="@id/japan"
         app:layout_constraintTop_toBottomOf="@+id/japan" />
@@ -130,30 +164,33 @@
         android:id="@+id/aloneText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/alone"
-        app:layout_constraintLeft_toLeftOf="@id/alone"
-        app:layout_constraintRight_toRightOf="@id/alone"
-        android:text="혼밥"
+        app:layout_constraintTop_toBottomOf="@id/chicken"
+        app:layout_constraintLeft_toLeftOf="@id/chicken"
+        app:layout_constraintRight_toRightOf="@id/chicken"
+        android:text="치킨"
         android:textSize="15dp"
         />
 
     <ImageButton
-        android:id="@+id/delivery"
+        android:id="@+id/pizza"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:src="@drawable/de"
+        android:src="@drawable/piz"
         android:layout_marginTop="20dp"
+        android:background="@android:color/white"
+        android:scaleType="centerCrop"
         app:layout_constraintLeft_toLeftOf="@id/chain"
         app:layout_constraintRight_toRightOf="@id/chain"
-        app:layout_constraintTop_toBottomOf="@id/chain" />
+        app:layout_constraintTop_toBottomOf="@id/chain"
+        app:layout_constraintBottom_toTopOf="@id/cafe"/>
     <TextView
-        android:id="@+id/deliveryText"
+        android:id="@+id/pizzaText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/delivery"
-        app:layout_constraintLeft_toLeftOf="@id/delivery"
-        app:layout_constraintRight_toRightOf="@id/delivery"
-        android:text="배달"
+        app:layout_constraintTop_toBottomOf="@id/pizza"
+        app:layout_constraintLeft_toLeftOf="@id/pizza"
+        app:layout_constraintRight_toRightOf="@id/pizza"
+        android:text="피자"
         android:textSize="15dp"
         />
 
@@ -164,9 +201,12 @@
         android:layout_height="50dp"
         android:src="@drawable/as"
         android:layout_marginTop="20dp"
+        android:background="@android:color/white"
+        android:scaleType="centerCrop"
         app:layout_constraintLeft_toLeftOf="@id/western"
         app:layout_constraintRight_toRightOf="@id/western"
-        app:layout_constraintTop_toBottomOf="@id/western" />
+        app:layout_constraintTop_toBottomOf="@id/western"
+        app:layout_constraintBottom_toTopOf="@id/pig"/>
 
     <TextView
         android:id="@+id/asiaText"
@@ -185,9 +225,12 @@
         android:layout_height="50dp"
         android:src="@drawable/fa"
         android:layout_marginTop="20dp"
+        android:background="@android:color/white"
+        android:scaleType="centerCrop"
         app:layout_constraintLeft_toLeftOf="@id/korea"
         app:layout_constraintRight_toRightOf="@id/korea"
-        app:layout_constraintTop_toBottomOf="@+id/flour" />
+        app:layout_constraintTop_toBottomOf="@+id/flour"
+        app:layout_constraintBottom_toTopOf="@id/steamedsoup"/>
 
     <TextView
         android:id="@+id/fastText"
@@ -201,23 +244,26 @@
         />
 
     <ImageButton
-        android:id="@+id/latenihgt"
+        android:id="@+id/box"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:src="@drawable/la"
+        android:src="@drawable/bo"
         android:layout_marginTop="20dp"
+        android:background="@android:color/white"
+        android:scaleType="centerCrop"
         app:layout_constraintLeft_toLeftOf="@id/japan"
         app:layout_constraintRight_toRightOf="@id/japan"
-        app:layout_constraintTop_toBottomOf="@+id/alone" />
+        app:layout_constraintTop_toBottomOf="@+id/chicken"
+        app:layout_constraintBottom_toTopOf="@id/all"/>
 
     <TextView
-        android:id="@+id/latenihgtText"
+        android:id="@+id/boxText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/latenihgt"
-        app:layout_constraintLeft_toLeftOf="@id/latenihgt"
-        app:layout_constraintRight_toRightOf="@id/latenihgt"
-        android:text="야식"
+        app:layout_constraintTop_toBottomOf="@id/box"
+        app:layout_constraintLeft_toLeftOf="@id/box"
+        app:layout_constraintRight_toRightOf="@id/box"
+        android:text="도시락"
         android:textSize="15dp"
         />
 
@@ -227,9 +273,12 @@
         android:layout_height="50dp"
         android:src="@drawable/ca"
         android:layout_marginTop="20dp"
+        android:background="@android:color/white"
+        android:scaleType="centerCrop"
         app:layout_constraintLeft_toLeftOf="@id/chain"
         app:layout_constraintRight_toRightOf="@id/chain"
-        app:layout_constraintTop_toBottomOf="@id/delivery" />
+        app:layout_constraintTop_toBottomOf="@id/pizza"
+        app:layout_constraintBottom_toTopOf="@id/roulette1"/>
 
     <TextView
         android:id="@+id/cafeText"
@@ -248,9 +297,12 @@
         android:layout_height="50dp"
         android:src="@drawable/pi"
         android:layout_marginTop="20dp"
+        android:background="@android:color/white"
+        android:scaleType="centerCrop"
         app:layout_constraintLeft_toLeftOf="@id/western"
         app:layout_constraintRight_toRightOf="@id/western"
-        app:layout_constraintTop_toBottomOf="@id/asia" />
+        app:layout_constraintTop_toBottomOf="@id/asia"
+        app:layout_constraintBottom_toTopOf="@id/ladder1"/>
 
     <TextView
         android:id="@+id/pigText"
@@ -267,8 +319,12 @@
         android:id="@+id/steamedsoup"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:src="@drawable/steam"
         android:layout_marginTop="20dp"
+        android:src="@drawable/steam"
+        android:background="@android:color/white"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toTopOf="@+id/no"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="@id/korea"
         app:layout_constraintRight_toRightOf="@id/korea"
         app:layout_constraintTop_toBottomOf="@+id/fast" />
@@ -285,77 +341,17 @@
         />
 
     <ImageButton
-        android:id="@+id/box"
+        android:id="@+id/all"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:src="@drawable/bo"
+        android:src="@drawable/all"
         android:layout_marginTop="20dp"
+        android:background="@android:color/white"
+        android:scaleType="centerCrop"
         app:layout_constraintLeft_toLeftOf="@id/japan"
         app:layout_constraintRight_toRightOf="@id/japan"
-        app:layout_constraintTop_toBottomOf="@id/latenihgt" />
-
-    <TextView
-        android:id="@+id/boxText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/box"
-        app:layout_constraintLeft_toLeftOf="@id/box"
-        app:layout_constraintRight_toRightOf="@id/box"
-        android:text="도시락"
-        android:textSize="15dp"
-        />
-    <ImageButton
-        android:id="@+id/chicken"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:src="@drawable/chi"
-        android:layout_marginTop="20dp"
-        app:layout_constraintLeft_toLeftOf="@id/chain"
-        app:layout_constraintRight_toRightOf="@id/chain"
-        app:layout_constraintTop_toBottomOf="@id/cafe" />
-
-    <TextView
-        android:id="@+id/chickenText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/chicken"
-        app:layout_constraintLeft_toLeftOf="@id/chicken"
-        app:layout_constraintRight_toRightOf="@id/chicken"
-        android:text="치킨"
-        android:textSize="15dp"
-        />
-
-    <ImageButton
-        android:id="@+id/pizza"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:src="@drawable/piz"
-        android:layout_marginTop="20dp"
-        app:layout_constraintLeft_toLeftOf="@id/western"
-        app:layout_constraintRight_toRightOf="@id/western"
-        app:layout_constraintTop_toBottomOf="@id/pig" />
-
-    <TextView
-        android:id="@+id/pizzaText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/pizza"
-        app:layout_constraintLeft_toLeftOf="@id/pizza"
-        app:layout_constraintRight_toRightOf="@id/pizza"
-        android:text="피자"
-        android:textSize="15dp"
-        />
-
-    <ImageButton
-        android:id="@+id/all"
-        android:layout_width="95dp"
-        android:layout_height="50dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/all"
-        app:layout_constraintBottom_toTopOf="@+id/map"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/steamedsoup" />
+        app:layout_constraintBottom_toTopOf="@id/no"/>
 
     <TextView
         android:id="@+id/allText"
@@ -364,20 +360,21 @@
         app:layout_constraintTop_toBottomOf="@id/all"
         app:layout_constraintLeft_toLeftOf="@id/all"
         app:layout_constraintRight_toRightOf="@id/all"
-        android:text="모둔 식당"
+        android:text="모든식당"
         android:textSize="15dp"
         />
-
     <ImageButton
         android:id="@+id/roulette1"
-        android:layout_width="95dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
         android:src="@drawable/ro2"
-        app:layout_constraintBottom_toTopOf="@+id/roulette2"
-        app:layout_constraintLeft_toRightOf="@id/all"
-        app:layout_constraintTop_toBottomOf="@id/box" />
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="@id/chain"
+        app:layout_constraintRight_toRightOf="@id/chain"
+        app:layout_constraintTop_toBottomOf="@id/cafe"
+        app:layout_constraintBottom_toTopOf="@id/no"
+        android:scaleType="centerCrop"
+        android:background="@android:color/white"/>
 
     <TextView
         android:id="@+id/roulette1Text"
@@ -392,14 +389,15 @@
 
     <ImageButton
         android:id="@+id/ladder1"
-        android:layout_width="95dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
         android:src="@drawable/ladd"
-        app:layout_constraintBottom_toTopOf="@+id/logoutBtn"
-        app:layout_constraintLeft_toRightOf="@id/roulette1"
-        app:layout_constraintTop_toBottomOf="@id/chicken" />
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="@id/western"
+        app:layout_constraintRight_toRightOf="@id/western"
+        app:layout_constraintTop_toBottomOf="@id/pig"
+        app:layout_constraintBottom_toTopOf="@id/no"/>
+
     <TextView
         android:id="@+id/ladder1Text"
         android:layout_width="wrap_content"
@@ -411,15 +409,15 @@
         android:textSize="15dp"
         />
 
-    <Button
+    <TextView
         android:id="@+id/no"
-        android:layout_width="10dp"
+        android:layout_width="match_parent"
         android:layout_height="10dp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/myinformation"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/ladder1"
-        app:layout_constraintTop_toBottomOf="@id/pizza" />
+        app:layout_constraintBottom_toTopOf="@+id/roulette2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+     />
 
     <ImageButton
         android:id="@+id/pay"
@@ -429,7 +427,10 @@
         android:src="@drawable/to"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/map" />
+        app:layout_constraintRight_toLeftOf="@id/map"
+        android:scaleType="centerCrop"
+        android:background="@android:color/white"
+        />
 
     <TextView
         android:id="@+id/payText"
@@ -453,6 +454,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/pay"
         app:layout_constraintRight_toLeftOf="@id/roulette2"
+        android:scaleType="centerCrop"
+        android:background="@android:color/white"
         />
 
     <TextView
@@ -476,7 +479,11 @@
         android:src="@drawable/ro"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/map"
-        app:layout_constraintRight_toLeftOf="@id/logoutBtn"/>
+        app:layout_constraintRight_toLeftOf="@id/logoutBtn"
+        android:scaleType="centerCrop"
+        android:background="@android:color/white"
+
+        />
 
     <TextView
         android:id="@+id/roulette2Text"
@@ -497,6 +504,8 @@
         android:layout_height="80dp"
         android:layout_marginBottom="16dp"
         android:src="@drawable/lo"
+        android:scaleType="centerCrop"
+        android:background="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/roulette2"
         app:layout_constraintRight_toLeftOf="@id/myinformation"/>
@@ -520,6 +529,8 @@
         android:layout_height="80dp"
         android:layout_marginBottom="16dp"
         android:src="@drawable/my"
+        android:scaleType="centerCrop"
+        android:background="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/logoutBtn"
         app:layout_constraintRight_toRightOf="parent"/>
@@ -532,7 +543,6 @@
         app:layout_constraintLeft_toLeftOf="@id/myinformation"
         app:layout_constraintRight_toRightOf="@id/myinformation"
         app:layout_constraintBottom_toBottomOf="parent"
-
         android:text="내정보"
         android:textSize="15dp"
         />
