@@ -12,7 +12,7 @@
         android:hardwareAccelerated="false"
         android:largeHeap="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".pay"></activity>
+        <activity android:name="com.example.food.pay"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -21,9 +21,9 @@
              sign the APK for publishing.
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
-        <activity android:name=".MainActivity"/>
+        <activity android:name="com.example.food.MainActivity"/>
         <activity
-            android:name=".Mappage"
+            android:name="com.example.food.Mappage"
             android:label="@string/title_activity_naver_map" />
         <activity android:name=".RouletteList" />
         <activity android:name=".pay"

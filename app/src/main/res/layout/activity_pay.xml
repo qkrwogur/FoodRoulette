@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:padding="15dp"
-    tools:context=".pay"
+    tools:context="com.example.food.pay"
 >
     <TextView
         android:id="@+id/pay_tilte"

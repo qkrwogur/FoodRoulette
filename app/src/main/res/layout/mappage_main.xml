@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
-    tools:context=".Mappage">
+    tools:context="com.example.food.Mappage">
     <LinearLayout
         android:id="@+id/my_map"
         android:layout_width="match_parent"
