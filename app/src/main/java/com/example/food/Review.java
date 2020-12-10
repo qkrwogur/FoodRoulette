@@ -109,6 +109,9 @@ public class Review extends AppCompatActivity implements OnMapReadyCallback {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),ReviewWrite.class);
                 intent.putExtra("title",rv_title.getText().toString());
+                intent.putExtra("road",roadaddress);
+                intent.putExtra("mx",mx);
+                intent.putExtra("my",my);
                 startActivity(intent);
             }
         });

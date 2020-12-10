@@ -147,7 +147,10 @@ public class Roulette extends AppCompatActivity {
             if ((anglepoint>=i*save) && (anglepoint<(i+1)*save)){
                 //text = STRINGS.get(i);
                 text=list[i];
-                buildAlert(text, road[i], mapx[i], mapy[i]);
+                if (select==3)
+                    buildAlert(text, road[i], mapx[i], mapy[i]);
+                else
+                    buildAlert2(text);
                 break;
             }
         }
@@ -167,17 +170,35 @@ public class Roulette extends AppCompatActivity {
         mBuilder.setNegativeButton("취소",null);
         mBuilder.setPositiveButton("확인",new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                if(select==1){}
-                else if(select==2){
-                    Intent intent = new Intent(getApplicationContext(),Mappage.class);
-                    intent.putExtra("category",text);
-                    startActivity(intent);
-                }else {
+
                     Intent intent = new Intent(getApplicationContext(),Review.class);
                     intent.putExtra("title",text);
                     intent.putExtra("mx",mx);
                     intent.putExtra("my",my);
                     intent.putExtra("roadaddress",road);
+                    startActivity(intent);
+
+                Toast.makeText(getApplicationContext(), "예를 선택했습니다.", Toast.LENGTH_LONG).show();
+            }
+        });
+        mBuilder.setView(dialogView);
+        android.app.AlertDialog dialog = mBuilder.create();
+        dialog.show();
+    }
+    private void buildAlert2(String text) {
+        android.app.AlertDialog.Builder mBuilder = new android.app.AlertDialog.Builder(Roulette.this);
+        dialogView=getLayoutInflater().inflate(R.layout.roulette_dialog,null);
+        //mBuilder.setTitle(text);
+        TextView roulette_result=(TextView)dialogView.findViewById(R.id.roulette_result);
+        roulette_result.setText(text);
+
+        mBuilder.setNegativeButton("취소",null);
+        mBuilder.setPositiveButton("확인",new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                if(select==1){}
+                else if(select==2){
+                    Intent intent = new Intent(getApplicationContext(),Mappage.class);
+                    intent.putExtra("category",text);
                     startActivity(intent);
                 }
                 Toast.makeText(getApplicationContext(), "예를 선택했습니다.", Toast.LENGTH_LONG).show();
@@ -187,7 +208,6 @@ public class Roulette extends AppCompatActivity {
         android.app.AlertDialog dialog = mBuilder.create();
         dialog.show();
     }
-
     public class CircleManager extends View {
         private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         private int[] COLORS = {Color.parseColor("#F79D96"), Color.parseColor("#F7D14A"), Color.parseColor("#9DC0E5"),

@@ -23,6 +23,7 @@ public class ReviewWrite extends Activity {
     TextView rv_write_title;
     Button rv_write_end;
     String title = new String();
+    String road = new String();
     RatingBar RC_taste,RC_atmosphere,RC_cleanliness,RC_volume,RC_price;
     EditText rv_write_Contents;
     int taste=1,atmosphere=1,cleanliness=1,volume=1,price=1;
@@ -34,6 +35,9 @@ public class ReviewWrite extends Activity {
         rv_write_end=(Button)findViewById(R.id.rv_write_end);
         Intent titleintent = getIntent();
         title = titleintent.getStringExtra("title");
+        road = titleintent.getStringExtra("road");
+        double mx=titleintent.getDoubleExtra("mx",37.5666102);
+        double my=titleintent.getDoubleExtra("my",126.9783881);
         rv_write_title.setText(title);
         rv_write_Contents=(EditText)findViewById(R.id.rv_write_Contents);
 
@@ -95,7 +99,7 @@ public class ReviewWrite extends Activity {
             public void onClick(View view) {
                 String Contents = new String();
                 Contents = rv_write_Contents.getText().toString(); // 리뷰내용 저장
-                Toast.makeText(getApplicationContext(),Contents, Toast.LENGTH_SHORT).show();
+
 
                 Response.Listener<String> reponseListener = new Response.Listener<String>() {
                     @Override
@@ -107,6 +111,9 @@ public class ReviewWrite extends Activity {
                                 Toast.makeText(getApplicationContext(),"리뷰 작성 성공",Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(getApplicationContext(),Review.class);
                                 intent.putExtra("title",title);
+                                intent.putExtra("roadaddress",road);
+                                intent.putExtra("mx",mx);
+                                intent.putExtra("my",my);
                                 startActivity(intent);
 
                             }

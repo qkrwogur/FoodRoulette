@@ -273,7 +273,7 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
                                             };
 
                                             //서버로 volly 사용 하여 요청
-                                            StarRequest starRequest = new StarRequest(userID, title[i], postdate[i], Double.toString(mx), Double.toString(my), reponseListener);
+                                            StarRequest starRequest = new StarRequest(userID, title[i], postdate[i], Double.toString(mx),  Double.toString(my), reponseListener);
                                             RequestQueue queue = Volley.newRequestQueue(Mappage.this);
                                             queue.add(starRequest);
                                         } else {
@@ -727,7 +727,6 @@ public class Mappage extends AppCompatActivity implements OnMapReadyCallback {
                                                   break;
                                               }
                                           }
-
                                           searchNaver(roadtest.toString()+category);
                                           Log.d(TAG, "name잘나오니: " + roadtest);
                                       }
