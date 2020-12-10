@@ -41,32 +41,51 @@ public class create_acount extends Activity {
                 String userName = nameInput.getText().toString();
                 String userPhone = phoneInput.getText().toString();
 
-                Response.Listener<String> reponseListener = new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            boolean success =jsonObject.getBoolean("success");
-                            if(success){
-                                Toast.makeText(getApplicationContext(),"회원 등록의 성공",Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(create_acount.this,login.class);
-                                startActivity(intent);
+                if(check(userID,userPassword,userName,userPhone))
+                {
+                    Response.Listener<String> reponseListener = new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+                                JSONObject jsonObject = new JSONObject(response);
+                                boolean success =jsonObject.getBoolean("success");
+                                if(success){
+                                    Toast.makeText(getApplicationContext(),"회원 등록의 성공",Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(create_acount.this,login.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                                else{
+                                    Toast.makeText(getApplicationContext(),"회원 등록의 실패",Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
-                            else{
-                                Toast.makeText(getApplicationContext(),"회원 등록의 실패",Toast.LENGTH_SHORT).show();
-                                return;
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
 
-                    }
-                };
-                //서버로 volly 사용 하여 요청
-                RegisterRequest registerRequest = new RegisterRequest(userID,userPassword,userName,userPhone,reponseListener);
-                RequestQueue queue = Volley.newRequestQueue(create_acount.this);
-                queue.add(registerRequest);
+                        }
+                    };
+                    //서버로 volly 사용 하여 요청
+                    RegisterRequest registerRequest = new RegisterRequest(userID,userPassword,userName,userPhone,reponseListener);
+                    RequestQueue queue = Volley.newRequestQueue(create_acount.this);
+                    queue.add(registerRequest);
+                }else{
+                    Toast.makeText(getApplicationContext(),"값을 다 입력 하세요",Toast.LENGTH_SHORT).show();
+                }
+
+
             }
         });
+    }
+    private boolean check(String id,String password,String name,String phone){
+
+        if(id.length()==0 || password.length()==0 || name.length() == 0 || phone.length() ==0 ){
+
+            return false;
+        }
+
+
+
+        return true;
     }
 }
