@@ -47,9 +47,6 @@
         <activity
             android:name=".ladderResult"
             android:theme="@style/Base.Theme.AppCompat.Light.Dialog" />
-        <activity
-            android:name=".List"
-            android:theme="@android:style/Theme.Dialog" />
         <activity android:name=".gps" />
 
         <meta-data
