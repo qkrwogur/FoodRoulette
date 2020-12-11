@@ -12,6 +12,7 @@ import android.os.Handler;
 import android.os.Message;
 
 import android.os.Bundle;
+import android.view.Display;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -127,6 +128,8 @@ public class ladderGame extends AppCompatActivity {
             // 1번째 이미지를 캔버스에 출력
             canvas.drawBitmap(bitmap1, null, rtDest1, null);*/
 
+
+
         }
 
         // 배경 그리기
@@ -163,9 +166,12 @@ public class ladderGame extends AppCompatActivity {
                 // 벌칙 개별 영역 좌표를 반환
                 Rect rtPresentPart = getPresentPartArea(i);
                 // 둥근 사각형 그리기
+
                 drawRoundRect(canvas, rtPresentPart, Color.rgb(255, 255, 160));
+
                 // 사각형 영역 안에 텍스트 출력
                 drawText(canvas, rtPresentPart, mArPresent.get(i));
+
             }
 
         }
@@ -266,6 +272,7 @@ public class ladderGame extends AppCompatActivity {
                 drawRoundRect(canvas, rtPresentPart, Color.rgb(166, 226, 253));
                 // 사각형 영역 안에 텍스트 출력
                 drawText(canvas, rtPresentPart, mArPeople.get(i).mName);
+
             }
         }
     }
@@ -288,6 +295,7 @@ public class ladderGame extends AppCompatActivity {
 
     // 사다리 영역 좌표를 반환
     public Rect getLadderArea() {
+
         Rect rtPart = new Rect(0, 0, mCanvasW, mCanvasH);
         rtPart.top = (int)(mCanvasH * 0.08);
         rtPart.bottom = (int)(mCanvasH - rtPart.top);
