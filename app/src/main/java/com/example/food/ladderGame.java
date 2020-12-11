@@ -203,7 +203,7 @@ public class ladderGame extends AppCompatActivity {
         // 게임 정보를 생성
         public void createGame(Canvas canvas) {
             mCanvasW = canvas.getWidth();           // 캔버스 넓이
-            mCanvasH = canvas.getHeight();          // 캔버스 높이
+            mCanvasH = canvas.getHeight()-500;          // 캔버스 높이
             mMoveUnitH = (int)((float)mCanvasW / 100.f);        // 수평 이동 단위
             mMoveUnitV = (int)((float)mCanvasH / 100.f);        // 수직 이동 단위
             mArHBar = new ArrayList<Point>();            // 수평 사다리 정보 배열
