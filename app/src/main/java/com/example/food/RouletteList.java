@@ -241,7 +241,7 @@ public class RouletteList extends Activity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
+
             }
         });
         Volley.newRequestQueue(RouletteList.this).add(stringRequest);
